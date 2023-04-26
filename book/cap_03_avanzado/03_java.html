@@ -1,0 +1,429 @@
+<!DOCTYPE HTML>
+<html lang="es" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Diseño a profundidad (aplicación Java) - Osciloscopio</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../cap_00_intro/index.html">Introducción</a></li><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/index.html"><strong aria-hidden="true">1.</strong> Manual de usuario</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/01_alambrado.html"><strong aria-hidden="true">1.1.</strong> Cómo armarlo</a></li><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/02_esp32.html"><strong aria-hidden="true">1.2.</strong> Cómo programarlo</a></li><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/03_aplicacion_java.html"><strong aria-hidden="true">1.3.</strong> Cómo usarlo</a></li></ol></li><li class="chapter-item expanded "><a href="../cap_02_disenno/index.html"><strong aria-hidden="true">2.</strong> Entender el diseño</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_02_disenno/00_ideas_disenno.html"><strong aria-hidden="true">2.1.</strong> Diseños descartados</a></li><li class="chapter-item expanded "><a href="../cap_02_disenno/01_alambrado.html"><strong aria-hidden="true">2.2.</strong> Diseño circuito</a></li><li class="chapter-item expanded "><a href="../cap_02_disenno/02_esp32.html"><strong aria-hidden="true">2.3.</strong> Diseño con ESP-32</a></li><li class="chapter-item expanded "><a href="../cap_02_disenno/03_aplicacion_java.html"><strong aria-hidden="true">2.4.</strong> Diseño interfaz usuario</a></li></ol></li><li class="chapter-item expanded "><a href="../cap_03_avanzado/index.html"><strong aria-hidden="true">3.</strong> Usuario avanzado</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_03_avanzado/01_alambrado.html"><strong aria-hidden="true">3.1.</strong> Diseño a profundidad (circuito)</a></li><li class="chapter-item expanded "><a href="../cap_03_avanzado/02_programacion.html"><strong aria-hidden="true">3.2.</strong> Diseño a profundidad (ESP-32)</a></li><li class="chapter-item expanded "><a href="../cap_03_avanzado/03_java.html" class="active"><strong aria-hidden="true">3.3.</strong> Diseño a profundidad (aplicación Java)</a></li></ol></li><li class="chapter-item expanded "><a href="../cap_99_extras/index.html"><strong aria-hidden="true">4.</strong> Extras</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_99_extras/correo_desfase_dos_ESP.html"><strong aria-hidden="true">4.1.</strong> Correo desfase</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/correo_inversion_condens.html"><strong aria-hidden="true">4.2.</strong> Correo inversión condensadores</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/correo_ion_litio.html"><strong aria-hidden="true">4.3.</strong> Correo baterías ion litio</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/correo_protocolo_sennal.html"><strong aria-hidden="true">4.4.</strong> Correo protocolo señal</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/programa_arduino.html"><strong aria-hidden="true">4.5.</strong> Programa arduino</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Osciloscopio</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="diseño-a-profundidad-aplicación-java"><a class="header" href="#diseño-a-profundidad-aplicación-java">Diseño a profundidad (aplicación Java)</a></h1>
+<p>En este capítulo diseñaremos un programa sin omitir un solo paso con el cual podremos visualizar los valores del protocolo de cifrado implementado el capítulo pasado. </p>
+<p>Se necesita un nivel intermedio de programación para seguir esta guía. No se requiere conocimiento de diseño. </p>
+<h2 id="lector-de-voltaje"><a class="header" href="#lector-de-voltaje">Lector de voltaje</a></h2>
+<p>Primero haremos una pequeñísima aplicación, la cual calibraremos usando un generador de señal. Esta aplicación la llamaremos el &quot;mini-calibrador&quot; ya que esa será su única función; Calibrar el voltaje cuando las terminales del osciloscopio estén ambos conectados al mismo punto y después funcionar como un lector de voltaje.</p>
+<p>Sería prácticamente imposible plasmar en este manual todas las mañas y trucos de programación que se tuvieron que usar al momento de programar la aplicación final, sin embargo, podemos hacer un intento en programar una versión más chiquita de esta aplicación para intentar transmitir el proceso de diseño.</p>
+<p>Como ya dijimos, comenzaremos creando una aplicación chiquta, el mini-calibrador.</p>
+<h3 id="mini-calibrador"><a class="header" href="#mini-calibrador">mini-calibrador</a></h3>
+<p>Toda la programación la realizaré en el IDE <a href="https://www.jetbrains.com/idea/">IntelliJ Idea Community</a> (por preferencia personal, no por otra razón).</p>
+<p>Este ejemplo ni siquiera va a depender de una interfaz gráfica, será todo por medio de consola. Introduciremos más adelante el desarrollo con interfaces gráficas.</p>
+<ol>
+<li>Creamos un nuevo proyecto en Java. </li>
+<li>Descargamos la biblioteca de <a href="http://fazecast.github.io/jSerialComm/">JSerialComm</a> ya que la necesitamos para el manejo de los puertos seriales.</li>
+<li>Importamos la biblioteca a nuestro proyecto.</li>
+</ol>
+<ul>
+<li>Nuestro primer objetivo será leer los valores de los bytes enviados por el puerto serial, ya después nos preocuparemos por la interpretación.</li>
+</ul>
+<p>El primer código que podemos ejecutar (solo para demostrar que todos esté funcionando correctamente) es el siguiente:</p>
+<pre><code class="language-java">package com.marroja;
+
+import com.fazecast.jSerialComm.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        SerialPort[] puertos = SerialPort.getCommPorts();
+        for(SerialPort p: puertos){
+            System.out.println(p.getSystemPortName());
+        }
+    }
+}
+</code></pre>
+<p>El ejecutar este código deberíamos obtener una salida semejante a esta:</p>
+<pre><code>---En Mac y Linux---
+cu.wlan-debug
+tty.wlan-debug
+cu.ESP32_LED_Control
+tty.ESP32_LED_Control
+cu.Bluetooth-Incoming-Port
+tty.Bluetooth-Incoming-Port
+cu.usbserial-0001
+tty.usbserial-0001
+
+---en Windows---
+COM1
+COM3
+qph
+</code></pre>
+<p>Esto nos dice que en el listado de puertos sí está contemplando nuestro dispositivo. En el caso de Mac o Linux nuestro dispositivo sería el marcado con cu.usbserial-0001 y el tty.usbserial-0001 (son dos diferentes protocolos de acceder al mismo dispositivo).</p>
+<p>El siguiente paso es abrir la comunicación con ese puerto en concreto. Existen tres diferentes tipos de comunicación, con bloqueo, con semi-bloqueo y la comunicación con bloqueo completo. En nuestro caso, ya que no debería de existir ningún otro dispositivo leyendo el flujo de  bytes y queremos establecer la comunicación más estable y rápida posible usaremos comunicación con bloqueo completo. Esto significa que solo nosotros tendremos acceso a esta comuncación.</p>
+<p>Según la <a href="https://github.com/Fazecast/jSerialComm/wiki/Java-InputStream-and-OutputStream-Interfacing-Usage-Example">documentación</a>, si queremos abrir un puerto del cual leer un flujo de datos tenemos que usar el siguiente código ejemplo:</p>
+<pre><code class="language-java">SerialPort comPort = SerialPort.getCommPorts()[0];
+comPort.openPort();
+comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 0, 0);
+InputStream in = comPort.getInputStream();
+try
+{
+   for (int j = 0; j &lt; 1000; ++j)
+      System.out.print((char)in.read());
+   in.close();
+} catch (Exception e) { e.printStackTrace(); }
+comPort.closePort();
+
+</code></pre>
+<p>El código ejemplo recibe una cadena de bytes y las imprime como caracteres. En nuestro caso nosotros no queremos hacer eso, sin embargo, podemos imprimirlos en binario y revisar si en efecto los valores que leemos son los valores que esperamos que esté enviando la tarjeta ESP-32.</p>
+<p>Modificamos nuestro código original:</p>
+<pre><code class="language-java">public static void main(String[] args) {
+
+    //Hay que definir cuál va a ser nuestro puerto
+    //Lo podemos definir a partir de la lista que vimos antes
+    //O lo podemos detectar por medio de entrada de usuario
+    int numPort = 7;
+
+    //Imprimimos la lista completa de puertos
+    SerialPort[] puertos = SerialPort.getCommPorts();
+    for(SerialPort p: puertos){
+        System.out.println(p.getSystemPortName());
+    }
+
+    SerialPort comPort = SerialPort.getCommPorts()[numPort];
+    comPort.setBaudRate(921600);    //Máxima velocidad estable
+    comPort.openPort();
+    comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 0, 0);
+    InputStream in = comPort.getInputStream();
+
+    //Aquí guardaremos el número conforme lo decodifiquemos
+    int numDecodificado = 0;
+
+    //Ciclo de lectura e interpretación
+    while(true) {
+        try {
+            //Este valor es de una sola lectura (un solo byte acomodado en un entero)
+            //La cola inicial del número es de puros ceros.
+            int lectura = in.read();
+            //Revisamos el primer bit para ver si es inicio de paquete
+            if((lectura &amp; 0b1000_0000) == 0b1000_0000) {
+                //Como sabemos que este es un nuevo inicio de paquete,
+                //limpiamos el entero donde guardamos la decodificación
+                numDecodificado = 0;
+                //revisamos el segundo bit para ver si es negativo
+                if ((lectura &amp; 0b1100_0000) == 0b1100_0000) {
+                    //Como es un número negativo, tenemos que llenar de 1's 
+                    //esto para simular el complemento a 2
+                    numDecodificado = 0xFFFF_F000;
+                }
+                lectura &amp;= 0b0011_1111;
+                numDecodificado += lectura &lt;&lt; 6;
+            }
+            //Sino es el primer byte, esperamos lectura 0b0sxx_xxxx
+            //Trabajando en el segundo byte
+            else {
+                lectura &amp;= 0b0011_1111;
+                numDecodificado += lectura;
+                //Imprimimos cuando acaba el paquete
+                System.out.println(Integer.toBinaryString(numDecodificado));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            break;
+        }
+    }
+    comPort.closePort();
+}
+</code></pre>
+<p>El paso siguiente es la conversión de valores del ADC -4096 -&gt; 4095 a valores de voltaje usando las fórmulas que obtuvimos en la fase del diseño de circuito.</p>
+<p>Agregamos una manera de calcular el voltaje en RN a partir del valor del ADC y a partir de este valor obtenemos el valor de voltaje en T:</p>
+<pre><code class="language-java">    public static double VTdeVR(double resol, double valADC, double VRef, double R1, double R2, double N){
+        //Calculamos el valor del voltaje en RN
+        double VRN = VRef * (valADC + resol)/(resol*2);
+        return ((VRN*(R1 * R2 + N * R1 + N * R2)) - VRef*(N * R2))/(R1 * R2);
+    }
+</code></pre>
+<p>Y agregamos la impresión de este método para visualizar los valores:</p>
+<pre><code class="language-java">                //Sino, esperamos lectura 0b0sxx_xxxx
+                //Trabajando en el segundo byte
+                else {
+                    lectura &amp;= 0b0011_1111;
+                    numDecodificado += lectura;
+                    //Imprimimos cuando acaba el paquete
+                    System.out.println(&quot;Lectura ADC : &quot;+ numDecodificado);
+                    System.out.println(&quot;Voltaje V_RN: &quot;+ VTdeVR(4096.0, numDecodificado, 3.3, 217.8, 233.2, 3300.0));
+                }
+</code></pre>
+<p>Podemos agregar una arreglo con valores de prueba para hacer pruebas y verificar que los valores obtenidos sean los correctos:</p>
+<p>qph</p>
+<p>Con el código como lo tenemos ahora, deberíamos obtener una lista de valores de este estilo:</p>
+<pre><code>cu.wlan-debug
+tty.wlan-debug
+cu.ESP32_LED_Control
+tty.ESP32_LED_Control
+cu.Bluetooth-Incoming-Port
+tty.Bluetooth-Incoming-Port
+cu.usbserial-0001
+tty.usbserial-0001
+Lectura ADC : 0
+Voltaje V_RN: -9.43396226419055E-4
+Lectura ADC : 10
+Voltaje V_RN: 0.12112461306013829
+Lectura ADC : 100
+Voltaje V_RN: 1.2197366966391452
+Lectura ADC : 255
+Voltaje V_RN: 3.111790840580775
+Lectura ADC : 1000
+Voltaje V_RN: 12.205857532429242
+Lectura ADC : 4095
+Voltaje V_RN: 49.98590640661851
+Lectura ADC : -1
+Voltaje V_RN: -0.013150197155072955
+Lectura ADC : -10
+Voltaje V_RN: -0.12301140551297639
+Lectura ADC : -100
+Voltaje V_RN: -1.2216234890919833
+Lectura ADC : -1000
+Voltaje V_RN: -12.20774432488208
+Lectura ADC : -4096
+Voltaje V_RN: -50.0
+</code></pre>
+<p>Podemos ver que los valores que obtuvimos coinciden con la predicción que habíamos realizado. Al tener la lectura del ADC más baja obtuvimos el valor de voltaje que deseábamos desde la fase de diseño, -50[V]. Al obtener el valor más alto, obtuvimos +50, que era el máximo valor que queríamos medir.</p>
+<p>Con este pequeño programa podríamos enviar el flujo de datos a cualquier aplicación gráfica por medio de protocolos del sistema operativo, sin embargo, por facilidad de programación, ya que estamos trabajando en un programa de Java, podremos agregar esa interfaz gráfica a este mismo programa.</p>
+<h2 id="cómo-haremos-el-proyecto"><a class="header" href="#cómo-haremos-el-proyecto">Cómo haremos el proyecto</a></h2>
+<p>Que la aplicación se utilizará principalmente en computadoras personales (por diversas cuestiones convenientes como el uso de múltiples puertos USB y por extensión la posibilidad de usar varias tarjetas ESP-32) podemos pensar que en realidad el diseño del código que implementamos previamente es únicamente para interpretar los valores de un dispositivo cualquiera. </p>
+<p>Podemos considerar que existen varios puertos USB en una computadora de la misma forma que existen otros puertos por los cuales podemos interpretar un valor de voltaje (por ejemplo la entrada de audio auxiliar). Pensemos que existen varios dispositivos conectados a la computadora. Inlcuso podríamos considerar la existencia de un &quot;generador de señal&quot; virtual, el cual genere una onda perfecta sinusoidal, una señal de escalón o simplemente un impulso cada determinado tiempo.</p>
+<p>La solución que propongo yo para el manejo de todos estos dispositivos, y dejar abierta la posibilidad al desarrollo de dispositivos posteriores (como el uso de tarjetas integradas distintas a futuro así como generadores de señal personalizados) es manejar todos los valores que se introduzcan al osciloscopio por medio del protocolo UDP.</p>
+<p>En este sentido, el osciloscopio, el intérprete de señal desde la ESP-32 así como cualquier dispositivo adicional posterior será una especia de aplicación independiente por sí sola. Esto nos dará ciertas ventajas a posteriori, no estaremos sujetos al desarrollo de ninguna aplicación por medio de ningún lenguaje de programación en específico. Además esto nos permitirá desarrollar incluso otros programas sustituto al osciloscopio así como de cada uno de los orígenes de señal que aquí hemos propuesto.</p>
+<h2 id="implementación-final"><a class="header" href="#implementación-final">Implementación final</a></h2>
+<p>Los programas en los que se muestra el funcionamiento básico son los siguientes tres:</p>
+<ul>
+<li><a href="">Intérprete ESP-32</a></li>
+<li><a href="">Generador función seno</a></li>
+<li><a href="">Aplicación graficadora dos canales</a></li>
+</ul>
+<p>La arquitectura final de diseño será como en el siguiente diagrama: </p>
+<p align="center">
+  <img src="../../capturas/3_avanzado/programa_java/captura00.png?raw=true" />
+</p>
+<p>En ánimos de darle modularidad a este proyecto, así como permitir que cualquiera pueda crear programas adicionales para su funcionamiento, el proyecto estará dividido en dos partes: generadores de señal y un graficador.</p>
+<p>El graficador será un programa con interfaz gráfica de usuario donde se podrán visualizar los valores de voltaje a lo largo del tiempo, tal y como lo haríamos con un osciloscopio común. Estos valores de voltaje tendrán que llegar por medio de algún medio. Este medio deberá ser un medio accesible por cualquier otro programa que otras personas quieran programar. Es por esto que se optó por usar el protocolo UDP por medio de un puerto red para recibir los valores en el graficador. </p>
+<p align="center">
+  <img src="../../capturas/3_avanzado/programa_java/captura01.png?raw=true" />
+</p>
+<p>Los generadores de señales serán únicamente programas que mandarán valores de voltaje a esos puertos UDP. En concreto, vamos a enviar un valor de 8 bytes entero &quot;long&quot; (el tiempo en nanosegundos cuando se generó ese voltaje) y el valor del voltaje que se generó &quot;double&quot;. </p>
+<p>Los valores del tiempo en nanosegundos se usarán para calcular el eje X en el que se graficará el valor de voltaje y los valores de voltaje para calcular el eje Y. </p>
+<p>Uno de estos generadores de señal será el traductor de la ESP-32 a UDP. Este progama lo que hará será usar los valores de voltaje suministrados por el ADC de la tarjeta ESP-32 que llegarán por medio del puerto de monitor serial. Al tomar esos valores mandará esos valores por medio del protocolo UDP para que se reciban en el programa graficador.</p>
+<p>Es importantísimo enfatizar, no es necesario utilizar todos los programas que estoy aquí suministrando para usar los demás. Es decir, si un usuario encontrara que mi programa generador de función seno es poco intuitiva, lenta o carente de funcionalidad, este usuario podría programar su propio programa para generar señales. El único verdader requisito sería mandar los valores &quot;long&quot; de tiempo y &quot;double&quot; de voltaje por los puertos UDP correctos. </p>
+<p>Lo mismo ocurre con el programa graficador; el programa que estoy aquí presentando es un programa demostración con utilidad suficiente para muchos escenarios prácticos de los estudiantes, sin embargo, si un estudiante quisiera mejorarlo podría tomar su código fuente para agregarle las funcionalidades que considere faltantes, modificarlo más a su gusto o incluso reprogramarlo completamente y crear su propia implementación. Bajo ninguna circunstancia mi diseño es el mejor, hay mucho espacio para mejoría pero conceputalmente con este trabajo queda demostrado que se puede obtener la funcionalidad de un osciloscopio a partir de una computadora personal y una tarjeta de desarrollo si se usa el circuito y la programación correctas. </p>
+<p>Omitiré las explicaciones del código en este documento.</p>
+<h1 id="conclusiones"><a class="header" href="#conclusiones">Conclusiones</a></h1>
+<p>Invito a los usuarios de este proyecto a desarollar sus propios generadores de función y realizar sus modificaciones al programa graficador. Aquí he presentado los tres programas que he considerado más vitales para su uso: un programa que nos permite realizar mediciones con la ESP-32; un programa para generar funciones de referencia sinusoidales; un programa graficador para esas señales. Sin embargo, existen muchos programas que se podrían crear a partir de estas plantillas básicas.</p>
+<ul>
+<li>Generador de función escalón</li>
+<li>Generador de función sierra</li>
+<li>Generador de funciones arbitrarias a partir de un modelo</li>
+<li>Conección con el micrófono de la computadora</li>
+</ul>
+<p>También existen cuestiones que no contempla mi graficador que se podrían agregar. </p>
+<ul>
+<li>Cálculo de frecuencias más frecuentes a partir de la transformada de Fourier</li>
+<li>Cálculo y correcta representación del momento &quot;trigger&quot; para centrar señales de manera estática</li>
+<li>Guardado y reproducción de señales personalizadas (i.e. a partir de archivos de audio)</li>
+</ul>
+<p>Las únicas consideraciones a tener es la velocidad límite del protocolo UDP. De manera experimental logré determinar que mandar 50'000 lecturas (50'000 longs y 50'000 doubles) por segundo era suficientemente rápido como para empezar a ser poco confiable esto nos pone una cota superior a la máxima frecuencia confiable en 50kHz. Este fue el caso haciendo uso de mi computadora y mis circunstancias específicas de diseño. Quizá alguien con más conocimientos en este campo consiga velocidades más altas. Igualmente, con el paso del tiempo y el gradual incremento en las capacidades de las computadoras, quizá esta velocidad aumente con el tiempo también. </p>
+<p>Suministraré aquí las plantillas básicas para aquellos que quieran programar una nueva señal sin crear un programa con interfaz gráfica de cero. Los comentarios en el código funcionarán de guía así como el documento de presentación visible en Github. Como siempre, recomiendo el uso del IDE Intellij Idea Community, pero cualquier otro editor de código sería igualmente funcional. </p>
+<ul>
+<li>Implementación sencilla: <a href="">Plantilla generador de señal sin GUI</a></li>
+<li>Implementación completa: <a href="">Plantilla generador de señal con GUI</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../cap_03_avanzado/02_programacion.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../cap_99_extras/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../cap_03_avanzado/02_programacion.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../cap_99_extras/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

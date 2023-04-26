@@ -1,0 +1,306 @@
+<!DOCTYPE HTML>
+<html lang="es" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Diseños descartados - Osciloscopio</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../cap_00_intro/index.html">Introducción</a></li><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/index.html"><strong aria-hidden="true">1.</strong> Manual de usuario</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/01_alambrado.html"><strong aria-hidden="true">1.1.</strong> Cómo armarlo</a></li><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/02_esp32.html"><strong aria-hidden="true">1.2.</strong> Cómo programarlo</a></li><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/03_aplicacion_java.html"><strong aria-hidden="true">1.3.</strong> Cómo usarlo</a></li></ol></li><li class="chapter-item expanded "><a href="../cap_02_disenno/index.html"><strong aria-hidden="true">2.</strong> Entender el diseño</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_02_disenno/00_ideas_disenno.html" class="active"><strong aria-hidden="true">2.1.</strong> Diseños descartados</a></li><li class="chapter-item expanded "><a href="../cap_02_disenno/01_alambrado.html"><strong aria-hidden="true">2.2.</strong> Diseño circuito</a></li><li class="chapter-item expanded "><a href="../cap_02_disenno/02_esp32.html"><strong aria-hidden="true">2.3.</strong> Diseño con ESP-32</a></li><li class="chapter-item expanded "><a href="../cap_02_disenno/03_aplicacion_java.html"><strong aria-hidden="true">2.4.</strong> Diseño interfaz usuario</a></li></ol></li><li class="chapter-item expanded "><a href="../cap_03_avanzado/index.html"><strong aria-hidden="true">3.</strong> Usuario avanzado</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_03_avanzado/01_alambrado.html"><strong aria-hidden="true">3.1.</strong> Diseño a profundidad (circuito)</a></li><li class="chapter-item expanded "><a href="../cap_03_avanzado/02_programacion.html"><strong aria-hidden="true">3.2.</strong> Diseño a profundidad (ESP-32)</a></li><li class="chapter-item expanded "><a href="../cap_03_avanzado/03_java.html"><strong aria-hidden="true">3.3.</strong> Diseño a profundidad (aplicación Java)</a></li></ol></li><li class="chapter-item expanded "><a href="../cap_99_extras/index.html"><strong aria-hidden="true">4.</strong> Extras</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_99_extras/correo_desfase_dos_ESP.html"><strong aria-hidden="true">4.1.</strong> Correo desfase</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/correo_inversion_condens.html"><strong aria-hidden="true">4.2.</strong> Correo inversión condensadores</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/correo_ion_litio.html"><strong aria-hidden="true">4.3.</strong> Correo baterías ion litio</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/correo_protocolo_sennal.html"><strong aria-hidden="true">4.4.</strong> Correo protocolo señal</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/programa_arduino.html"><strong aria-hidden="true">4.5.</strong> Programa arduino</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Osciloscopio</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="ideas-de-diseño"><a class="header" href="#ideas-de-diseño">Ideas de diseño</a></h1>
+<p>El diseño de un nuevo dispositivo se parece a la exploración de un nuevo mar, se parece en el sentido de que a pesar de que hay muchas manera de llegar a nuestro destino, habrá unas con el mar más quebrado, unas que requerirán de un barco más equipado, unas que requerirán de una tripulación más grande.</p>
+<p>Siguiendo esta analogía, yo soy un barquero en una chalupa que le promete llegar al otro lado del Atlántico por solo 300 pesos. Quizá resulte difícil de creer pero quizá con eso me haya ganado su atención con este pequeño cuento. Además, no lo vea como comprar un viaje, yo aquí únicamente le estoy dando un panfleto de viajes &quot;¡Llegue a América con 300mxn!&quot;.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Detail_from_a_map_of_Ortelius_-_Magellan%27s_ship_Victoria.png/1920px-Detail_from_a_map_of_Ortelius_-_Magellan%27s_ship_Victoria.png" alt="Exploración" /></p>
+<p>En este capítulo se tratarán las múltiples ideas que se exploraron antes de comenzar con la exploración de la última iteración del proyecto. Por lo mismo, considero que no es demasiado importante profundizar en el funcionamiento propuesto al momento de proponer estas implementaciones, sin embargo, creo que merecen su mención. </p>
+<p>A pesar de que muchos de estos fallos tienen una potencial solución relativamente sencilla, estas soluciones generalmente exceden el presupuesto límite, la facilidad de acceso para estudiantes o son un riesgo para el dispositivo a manos de un usuario inexperto. Esta lista está aquí más bien para dar idea del proceso de diseño que para descartar las ideas como inviables.</p>
+<h1 id="ide-arduino"><a class="header" href="#ide-arduino">IDE Arduino</a></h1>
+<p>El IDE de Arduino es para muchos el primer contacto que tienen con el desarrollo de herramental lógico para tarjetas integradas. Ya sea por medio de las tarjetas de Arduino, las de la serie ESP o circuitos integrados de otros fabricantes, el IDE Arduino se ha convertido en una especie de herramienta estándar de la industria por su facilidad de uso. En este IDE podemos encontrar ciertas herramientas ya incluidas para realizar la lectura del monitor serial. </p>
+<p>El IDE Arduino está programado en Java en buena medida por su compatibilidad entre diferentes plataformas y sistemas operativos. Al IDE también se le pueden agregar diferentes complementos para hacerlo &quot;más completo&quot; según el caso de uso que uno le esté dando. Consideré por un tiempo que quizá aprovechar gran difusión de el IDE Arduino sería benéfico al momento de realizar este proyecto, sin embargo, por las cuestiones aquí planteadas abandoné esa idea.</p>
+<ol>
+<li>Limitantes de diseño</li>
+<li>Dependencia de código exterior (Arduino) (La creación de este proyecto coincidió con el cambio del IDE Arduino a la versión 2.0)</li>
+<li>Inestabilidad del IDE al momento de cambiar puertos (en especial en computadoras con sistema operativo (SO) Mac y Linux)</li>
+</ol>
+<span style="color:teal">
+    <ul>Propuestas de valor:
+    <li> Java como lenguaje de programación por su compatibilidad entre SOs</li>
+    <li> Uso del puerto serial como medio de comunicación ESP-32 -> Computadora </li>
+    </ul>
+</span>
+<h1 id="programación-en-c-con-biblioteca-olcpixelgameengineh"><a class="header" href="#programación-en-c-con-biblioteca-olcpixelgameengineh">Programación en C++ con biblioteca olcPixelGameEngine.h</a></h1>
+<p>El segundo lenguaje de programación contemplado para la realización de este proyecto fue C++ haciendo uso de diferentes bibliotecas, en el caso de C++ (a diferencia de Java) no se incluye una manera directa de crear ventanas y graficar sobre de ellas por lo que es un poco más complicado realizar interfaces gráficas con aceleración por medio de la tarjeta gráfica (GPU).</p>
+<p>Consideré que <a href="https://www.youtube.com/watch?v=kRH6oJLFYxY">olcPixelGameEngine</a> (documentación en inglés) era una opción viable para conseguir la graficación de las lecturas del osciloscopio por ser suficientemente amable al momento de graficar a altas velocidades y proporcionar un ciclo de graficación análogo al de la programación de un videojuego. Esto permitía que a pesar de que todo se graficara lento, uno podría mantener una imagen constante con problemas menores.</p>
+<p>Hubo ciertas consideraciones que surgieron al momento de empezar a programar con C++, no existe una biblioteca única en C++ para el menejo de los puertos seriales por lo que la programación cambiaría bastante según qué biblioteca eligiera. En su momento había utilizado <a href="http://fazecast.github.io/jSerialComm/">JSerialComm</a> ya que era la más referenciada en el trabajo en Java, sin embargo, no había ningún análogo &quot;estándar de industria&quot; en C++. </p>
+<p>Entre los problemas surgidos por el desconocimiento de C++ así como las ventajas que traía Java a la mesa surgieron las siguientes conclusiones:</p>
+<span style="color:teal">
+    <ul>Propuestas de valor:
+    <li> Java como lenguaje de programación por la biblioteca JSerialComm </li>
+    <li> Java como lenguaje de programación por la biblioteca Swing de interfaces gráficas </li>
+    <li> Planteamiento de la graficación, ya fuera en Java, C++ o cualquier otro lenguaje de programación como un problema análogo al dibujo de entidades en la pantalla en un video juego. </li>
+    </ul>
+</span>
+<h1 id="uso-de-adc-convertidor-analógico-digital-externo"><a class="header" href="#uso-de-adc-convertidor-analógico-digital-externo">Uso de ADC (Convertidor Analógico Digital) externo</a></h1>
+<p>Esta idea surgió y rápidamente desapareció ya que como se planteo en el capítulo de introducción. El uso de un dispositivo ADC externo podía haber resultado benéfico para conseguir mayores velocidades de muestreo, sin embargo, por restricciones de precio y de accesibilidad a los estudiantes esta propuesta fue rápidamente descartada.</p>
+<span style="color:teal">
+    <ul>Propuestas de valor:
+    <li> Mientras menos partes tenga el dispositivo armado al final será más barato, fácil de armar y fácil de reutilizar para los estudiantes por lo que partes especializadas como un ADC externo (ADC Flash) quedaron descartadas. </li>
+    </ul>
+</span>
+<h1 id="uso-de-tecnología-bluetooth"><a class="header" href="#uso-de-tecnología-bluetooth">Uso de tecnología Bluetooth</a></h1>
+<p>La tarjeta ESP-32 así como varias de las otras consideradas tienen capacidades de Bluetooth así como de Wi-Fi, sin embargo, dado que el máximo baudaje por medio de Bluetooth 4.0 es de 115200 baudios. Este protocolo serial, se traduce a 14'400 Bytes por segundo, cada una de las mediciones, por ser de 12 bits de resolución necesitaríamos 16 bits por lectura yendo desde la ESP-32 hacia la computadora. A pesar de que en papel esto debería de darnos aproximadamente un 1kHz en lecturas, la realidad es que este tiempo únicamente considera el tiempo que le toma al protocolo RXTX en la ESP-32. Dada la naturaleza de la tarjeta (cuyo lenguaje ensamblador no está bien documentado) estamos trabajando con el compilador de Arduino como una caja negra y por tanto no tenemos demasiado control con respecto a esto. </p>
+<p>De todas formas, fijar la tasa de baudios a la mayor posible (en nuestro caso 1'000'000 de baudios) permitió aumentar sustancialmente la frecuencia de muestreo. Para mantener esta tasa de baudios fue necesario trabajar siempre con un cable USB-MicroUSB. Así también ahorrando la necesidad de usar alimentación con otros dispositivos.</p>
+<span style="color:teal">
+    <ul>Propuestas de valor:
+    <li> A pesar de que hay procesos que no interfieren de manera directa con el ADC sí mantienen ocupado al procesador del ESP-32 por lo que tener un programa que tome menos tiempo en cualquier proceso es indispensable. </li>
+    <li> Evitar usar condicionales, código complejo, funciones, bibliotecas externas etc. ayudaría a mantener una mayor velocidad de muestreo. RXTX via cable resultó siempre ser la mejor opción en términos de practicidad-velocidad. </li>
+    </ul>
+</span>
+<h1 id="uso-de-baterías-y-alimentación-externa"><a class="header" href="#uso-de-baterías-y-alimentación-externa">Uso de baterías y alimentación externa</a></h1>
+<p>Simultáneamente a la exploración de la tecnología Bluetooth se consideró que el dispositivo osciloscopio podría ser un aparato con independencia energética de la computadora o teléfono móvil al que se encontrara conectado. Esto signficaría el uso de una batería para manterlo encendido y operando. Dado que el funcionamiento de las tarjetas ESP-32 es con voltajes de 3.3V necesitaríamos dos baterías de Ion Litio (Lion) para tenerlo funcionando de manera segura. Además, el tener baterías en serie nos facilitaría el uso de voltajes positivos y negativos con respecto a un punto de referencia (i.e. -2.2V a 2.2V con respecto al punto entre ambas baterías). La realidad es que el manejor de las baterías de litio resultó ser más conflictivo de lo que parecía inicialmente si uno decidía no usar dispositivos para su manejos. </p>
+<p>Análisis muy posteriores (realizados por el laboratorio de Robótica en el edificio J) junto con información anecdótica por parte del profesor Yukihiro Minami dieron sustento y completitud a la hipótesis del fallo observado en su momento. </p>
+<ul>
+<li>Al armar el dispositivo para su uso con baterías, al momento de emparejar tierras entre las baterías de Ion-Litio y la computadora en la cual se realizaría la visualización de los datos de RXTX rápidamente se quemaba la tarjeta ESP-32 que se encontrara conectada. </li>
+</ul>
+<p><a href="../cap_99_extras/correo_ion_litio.html">Correo original</a></p>
+<p>La información posterior reveló que en efecto era muy complicado obtener un comportamiento confiable de las baterías de Ion-Litio sin utilizar cuatro tipos de de circuito adicional:</p>
+<ol>
+<li>Desconección automática a bajo voltaje</li>
+<li>Circuito controlador de carga</li>
+<li>Circuito controlador de descarga</li>
+</ol>
+<p>Sin estos dispositivos o un (qph) (dispositivo que contiene a los tres) sería casi imposible utilizar baterías de Ion-Litio de forma segura. Es por eso que quedaron descartadas. </p>
+<span style="color:teal">
+    <ul>Propuestas de valor:
+    <li> Todos los escenarios en los que es necesario emparejar voltaje pueden resultar peligrosos para el circuito de medición por lo que es ideal eliminarlos o evitarlos </li>
+    <li> A pesar de que las baterías de Ion-Litio no son tan nuevas, intentar manejar nuevas tecnologías como ésta ahorrando la seguridad de los circuitos de carga/descarga/desconección es mucho más riesgoso de lo que uno podría pensar en primera instancia. Se decidió omitir el uso de toda esta tecnología por precio y seguridad del circuito ya que está diseñado por gente que falló para gente que igualmente podría fallar en obtener los resultados esperados.</li> 
+    </ul>
+</span>
+<h1 id="uso-de-aplificadores-operacionales"><a class="header" href="#uso-de-aplificadores-operacionales">Uso de aplificadores operacionales</a></h1>
+<p>Durante la mayor parte del desarrollo de este circuito se contempló que sería imposible evitar el uso de amplificadores operacionales (a veces llamados &quot;operacionales&quot;) para dar ganancia, reducción, filtrado y demás manipulaciones que se quisieran aplicar a las señales eléctricas leídas por el osciloscopio. A pesar de que la mayoría de los dispositivos del mundo real sí usan amplificadores operacionales para la manipulación de las señales que utilizan, en nuestro caso, una de las decisiones más difíciles de tomar fue el abandono total de los amplificadores para hacer la manipulación de la información de la señal completamente en herramental lógico (software).</p>
+<p>Se llegó a esta decisión cuando se abandonó la idea de utilizar baterías externas. Esto nos llevó a únicamente poder trabajar con un intervalo de 5V para alimentar los amplificadores operacionales y con este voltaje poder invertir, amplificar, reducir o seguir voltajes. No pudimos lograr ninguno de estos comportamientos (además de la reducción) usando amplificadores de la serie TTL (los que se suelen usar en las otras prácticas de la Facultad) esto significaría tener que comprar dispositivos más raros de bajo voltaje haciendo el proyecto más difícil de conseguir y económicamente menos viable de lo que se deseaba.</p>
+<span style="color:teal">
+    <ul>Propuestas de valor:
+    <li> Se decidió eliminar el uso de los dispositivos más usados en la industria para manejo de señales por cuestión de precios. Esto nos dejó únicamente con la posibilidad de usar resistores, condensadores, diodos y cable. La solución a encontrar tendría que ser muy sencilla o de plano no existir.</li>
+    </ul>
+</span>
+<h1 id="uso-de-condensadores-para-separar-señales"><a class="header" href="#uso-de-condensadores-para-separar-señales">Uso de condensadores para separar señales</a></h1>
+<p>Entre las propuestas que tiene un osciloscopio siempre se encuentra la separación de las señales de corriente alterna (CA) y corriente directa (CD). Esto puede resultar muy útil al momento de visualizar valores así como dar información que no es necesariamente fácil de leer únicamente a partir de gráficas pero sí resulta fácil de interpretar para una calculadora que conoce la información y la puede promediar o calcular. </p>
+<p>Por medio de condensadores hubiera sido fácil separar la señal leída en dos diferentes señales, una señal pasa-bajas en la que únicamente se mediría el promedio de la señal introducida (esto nos daría inmediatamente el componente de CD) mientras que por medio de un condensador de &quot;bypass&quot; se podía haber desacoplado el componente de directa y únicamente medir la oscilación de voltaje después de ese condensador de desacomple. Esta idea se abandonó cuando se ponderaron las ventajas de usar condensadores contra el hecho de no usarlos. </p>
+<p>Ventajas:</p>
+<ol>
+<li>Facíl desacople de señales</li>
+<li>Garantía de protección tras el condensador de desacople</li>
+<li>Lectura inmediata del voltaje de CD</li>
+<li>Lectura inmediata de voltaje de CA con respecto a la referencia</li>
+</ol>
+<p>Desventajas:</p>
+<ol>
+<li>Estados transitorios (inexactitudes)</li>
+<li>Tiempo de transitorio (carga y descarga) a menos que se tuviera una señal estacionaria</li>
+<li>Desfase de señales de alta frecuencia en el tiempo</li>
+<li>Precio peligrosamente cercano al presupuesto máximo permisible</li>
+</ol>
+<p>La realidad es que de haber querido armar un osciloscopio &quot;mejor&quot; hubiera sido posible dejarlos en el diseño final, sin embargo, se obviaron, dejándole el trabajo del análisis de las señales completamente al herramental lógico.</p>
+<span style="color:teal">
+    <ul>Propuestas de valor:
+    <li> No es fácil trabajar con componentes no lineales. En algunas cosas resultan realmente convenientes pero al momento de hacer ajustes aparentemente menores en el resto del diseño es muy fácil obtener comportamientos de partes "olvidadas" que antes funcionaban ya de la manera esperada. Poder mandar todo a una capa abstracta (herramental lógico) hace mucho más fáciles las cosas. </li>
+    </ul>
+</span>
+<h1 id="uso-de-botones-y-controles-externos"><a class="header" href="#uso-de-botones-y-controles-externos">Uso de botones y controles externos</a></h1>
+<p>La propuesta inicial de osciloscopio contemplaba la posibilidad de modular resistores así como mandar comandos a la ESP-32 por medio de botones o interruptores. Con el abandono de los condensadores también se abandonó la idea de utilizar resistores modulares (potenciómetros) ya que tenerlos en el dispositivo hubiera significado un mayor nivel de desconocimiento con respecto a los resistores reales que de tener resistores fijos con un error de fábrica.</p>
+<p>Posteriormente se volvería bastante claro que a pesar de tener un error de fábrica, dado que los fenómenos observados en los resistores son siempre lineales en nuestro rango de voltajes/corrientes esperado sería mayormente sencillo ajustar las lecturas con valores de voltaje de referencia y así tener valores más cercanos a la realidad pese a tener errores inherentes a la manufactura de nuestro dispositivo. </p>
+<span style="color:teal">
+    <ul>Propuestas de valor:
+    <li> Dado que existe la posibilidad de usar un voltaje de referencia para la calibración de nuestro osciloscopio, es posible calibrar haciendo uso de un par de constantes linealmente dependientes del voltaje y la resistencia por lo que es posible calibrar todo por medio del herramental lógico. </li>
+    </ul>
+</span>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../cap_02_disenno/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../cap_02_disenno/01_alambrado.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../cap_02_disenno/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../cap_02_disenno/01_alambrado.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

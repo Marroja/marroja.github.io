@@ -1,0 +1,311 @@
+<!DOCTYPE HTML>
+<html lang="es" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Diseño circuito - Osciloscopio</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../cap_00_intro/index.html">Introducción</a></li><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/index.html"><strong aria-hidden="true">1.</strong> Manual de usuario</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/01_alambrado.html"><strong aria-hidden="true">1.1.</strong> Cómo armarlo</a></li><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/02_esp32.html"><strong aria-hidden="true">1.2.</strong> Cómo programarlo</a></li><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/03_aplicacion_java.html"><strong aria-hidden="true">1.3.</strong> Cómo usarlo</a></li></ol></li><li class="chapter-item expanded "><a href="../cap_02_disenno/index.html"><strong aria-hidden="true">2.</strong> Entender el diseño</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_02_disenno/00_ideas_disenno.html"><strong aria-hidden="true">2.1.</strong> Diseños descartados</a></li><li class="chapter-item expanded "><a href="../cap_02_disenno/01_alambrado.html" class="active"><strong aria-hidden="true">2.2.</strong> Diseño circuito</a></li><li class="chapter-item expanded "><a href="../cap_02_disenno/02_esp32.html"><strong aria-hidden="true">2.3.</strong> Diseño con ESP-32</a></li><li class="chapter-item expanded "><a href="../cap_02_disenno/03_aplicacion_java.html"><strong aria-hidden="true">2.4.</strong> Diseño interfaz usuario</a></li></ol></li><li class="chapter-item expanded "><a href="../cap_03_avanzado/index.html"><strong aria-hidden="true">3.</strong> Usuario avanzado</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_03_avanzado/01_alambrado.html"><strong aria-hidden="true">3.1.</strong> Diseño a profundidad (circuito)</a></li><li class="chapter-item expanded "><a href="../cap_03_avanzado/02_programacion.html"><strong aria-hidden="true">3.2.</strong> Diseño a profundidad (ESP-32)</a></li><li class="chapter-item expanded "><a href="../cap_03_avanzado/03_java.html"><strong aria-hidden="true">3.3.</strong> Diseño a profundidad (aplicación Java)</a></li></ol></li><li class="chapter-item expanded "><a href="../cap_99_extras/index.html"><strong aria-hidden="true">4.</strong> Extras</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_99_extras/correo_desfase_dos_ESP.html"><strong aria-hidden="true">4.1.</strong> Correo desfase</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/correo_inversion_condens.html"><strong aria-hidden="true">4.2.</strong> Correo inversión condensadores</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/correo_ion_litio.html"><strong aria-hidden="true">4.3.</strong> Correo baterías ion litio</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/correo_protocolo_sennal.html"><strong aria-hidden="true">4.4.</strong> Correo protocolo señal</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/programa_arduino.html"><strong aria-hidden="true">4.5.</strong> Programa arduino</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Osciloscopio</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="circuito"><a class="header" href="#circuito">Circuito</a></h1>
+<p>En esta sección se tratará muy brevemente el circuito final que se utilizó para acondicionar la señal leída.</p>
+<p>Después de las muchas consideraciones que se tomaron en la sección anterior, ya que la gran mayoría de las cosas ideas terminaron en fallo, el diseño se fue reduciendo más y más hasta únicamente poder trabajar con resistores y la tarjeta de desarrollo ESP-32. </p>
+<p>Entonces, todo el diseño del osciloscopio se vio reducido a una máquina lineal (la cual iremos descubriendo a lo largo de este capítulo) la cual consta únicamente de resistores.</p>
+<p>Esto quiere decir que tenemos una función lineal que relaciona el voltaje que queremos leer (sin procesamiento) y el voltaje que va a leer la tarjeta ESP-32 (con procesamiento). Esta función la podremos expresar como:</p>
+<p>\[ V_{ESP-32}(V_{Real}) = V_{Real} * K_{Atenuación}\]</p>
+<p>Lo que tendremos que hacer es diseñar un circuito tal que conozcamos la atenuación de nuestros resistores <em>a priori</em> además de poder aprovechar el rango de voltajes disponibles en el ADC de nuestro ESP-32. Esto sugiere que tendremos que hacer un centrado posterior a la atenuación de nuestra señal eléctrica:</p>
+<p>\[ V_{ESP-32}(V_{Real}) = V_{Real} * K_{Atenuación} + C_{Ajuste}\]</p>
+<p>Por conveniencia de diseño podemos solicitar en nuestro diseño que el voltaje mínimo sea el voltaje mínimo posible a leer con la ESP-32.
+De la misma manera, podemos solicitar que el voltaje máximo sea el voltaje máximo disponible para el ADC de la ESP-32.</p>
+<p>\[  V_{ESP-32}(V_{Min}) = 0[V] = V_{Min} * K_{Atenuación} + C_{Ajuste} \]
+\[ V_{ESP-32}(V_{Max}) = 3.3[V] = V_{Max} * K_{Atenuación} + C_{Ajuste} \]</p>
+<p>Por último, resulta más o menos obvio (pero podemos explicitarlo) que el voltaje central (voltaje &quot;real cero&quot; de ahora en adelante). </p>
+<p>\[ V_{ESP-32}(V_{cero}) = 1.65[V] = V_{cero} * K_{Atenuación} + C_{Ajuste} \]</p>
+<p>El volaje mínimo entonces será el voltaje negativo al voltaje máximo. Lo que nos garantizará que en el intervalo de operación para Vreal
+\[ V_{real} \in (V_{min}, V_{max})\] 
+Así, tendremos valores siempre positivos entre 0[V] y 3.3[V] en la lectura del ESP-32 y así evitaremos darle voltajes superiores a 3.3[V] o inferiores a 0[V] con respecto a su tierra, (respetando así nuestro intervalo de operación seguro en todo momento).</p>
+<p>Esto nos deja con la siguiente tarea de diseño: 
+Diseñar un circuito con resistores tal que funcione como un circuito de atenuación de factor K, donde además podamos centrar el voltaje. Solo por el bien de hacer una gráfica descriptiva en los ejes X, Y, con X siendo &quot;Voltaje real&quot; y Y siendo &quot;Voltaje ESP-32&quot;, sugeriremos un Vmax de 20[V], un Vmin de -20[V] y un voltaje &quot;cero&quot; de 1.65[V].</p>
+<p align="center">
+  <img src="../../capturas/2_disenno/circuito/captura00.png?raw=true" />
+</p>
+<p>Graficado en <a href="https://www.desmos.com/calculator?lang=es">Desmos</a></p>
+<p>Existen muchas muchas maneras de obtener un comportamiento semejante a este haciendo uso únicamente de resistores ya que hay una infinidad de arreglos que pueden proporcionar este comportamiento. En Este caso en concreto, el arreglo de resisores que se decidió usar fue uno de cuatro resistores.</p>
+<p>La idea fue:</p>
+<ol>
+<li>Supongamos que tenemos un arreglo de dos resistores en serie (también llamado divisor de voltaje)</li>
+</ol>
+<p align="center">
+  <img src="../../capturas/2_disenno/circuito/captura01.png?raw=true" />
+</p>
+<ol start="2">
+<li>Ese divisor de voltaje lo podemos diseñar de manera que quede exactamente en 1.65[V] en el nodo central.</li>
+</ol>
+<p align="center">
+  <img src="../../capturas/2_disenno/circuito/captura02.png?raw=true" />
+</p>
+<ol start="3">
+<li>Si agregamos un tercer resistor a este nodo, podremos &quot;desviar&quot; el voltaje hacia valores más altos o más bajos. En este ejemplo, el voltaje cambia 1/3 del voltaje original ya que está conectado a tierra pero no es difícil de ver que si el nuevo resistor estuviera conectado a un voltaje igual al generador inicial el nuevo resultado sería 2/3 del voltaje original. </li>
+</ol>
+<p align="center">
+  <img src="../../capturas/2_disenno/circuito/captura03.png?raw=true" />
+</p>
+<ol start="4">
+<li>
+<p>Este resistor nuevo lo podemos llamar N. si los dos resistores originales los llamamos R1 y R2 quedaría un nodo central conectado en paralelo a tres resistores, R1 con voltaje, R2 con tierra y N con un voltaje variable. En ese nodo compartido por R1, R2 y N podremos realizar mediciones con el ADC del ESP-32.</p>
+</li>
+<li>
+<p>Pensemos que el voltaje variable dependiera no de nosotros sino del fenómeno que estamos intentando medir. Ya que todo nuestro modelado es lineal, sería bastante fácil saber qué voltaje está ocurriendo del lado opuesto de N. N es de alguna manera nuestro &quot;termómetro de voltaje&quot; ya que lo podemos colocar en otro lugar y obtendremos una medición. Esta medición ya será bastante interesante ya que podremos determinar el voltaje de el dispositivo al que se conecte N con respecto al voltaje de tierra y el voltaje de operación del ESP-32. Esto está bien PERO nosotros somos un poco más ambiciosos, estamos buscando medir el voltaje entre dos puntos, no importa cuáles sean. </p>
+</li>
+</ol>
+<p>Ahora, recordemos brevemente el divisor de voltaje, el divisor de voltaje divide \[ \frac{V1 - V2}{R1 - R2} \]</p>
+<p>Supongamos que la manipulación del voltaje de N la realizáramos por medio de esa división de voltaje en un nuevo divisor de voltaje paralelo. </p>
+<p align="center">
+  <img src="../../capturas/2_disenno/circuito/captura04.png?raw=true" />
+</p>
+<p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3EbBFEPKjz5gaNKOJqDo9KrOgI2AJ269wolXxSTxYeEo0gtg1dmyEdegOYHT5od0J5xkNtZphzA2jSdfZbAHcDL3dPf2UjQ217SKpdODYAD0M8JEw+XE0MJDEtEAA5JO4MJzBic0lS0lookAAldmTsPAgUYjF3VrIavLqUfUiwFCdI2OQEiO1R6LMLBK5I5tyZ81laKiQ1mAUF7S9B4ed16i35VyiqLzK+Pyhzxbwxa+5H5yKypGeUPI+esQBlRrgaptYiGQ6ZP4gf79IA">Circuito interactivo</a></p>
+<ol start="6">
+<li>Dado que nuestro sistema de alambrado está constituido de resistores que no cambian con el voltaje (o al menos eso queremos suponer) podremos obtener fácilmente el valor de (V1 - V2). Así, podremos saber cuál es el voltaje entre dos puntos. O bueno, ya casi. Hay que recordar que el valor de voltaje que estamos leyendo en todo momento es el voltaje en el nodo compartido por N, R1 y R2.</li>
+</ol>
+<p>Ahora, si hiciéramos eso ¿qué valores leeríamos? Todos los valores leídos serían con respecto a los valores extremos de operación (en nuestro caso 0[V] y 3.3[V]).</p>
+<p>Vale la pena mencionar, al hacer esto, los valores de 1k ya no funcionan como quisiéramos ya que la introducción del resistor N hizo que ya no fuera un divisor de voltaje invariable además que desconocemos qué voltajes se van a introducir en los resistores S1 y S2.</p>
+<p>Aquí es donde, si uno no presta suficiente atención o realiza las suficientes pruebas es muy fácil dejar que un error pase desapercibido. Hasta el momento no hemos cometido ningún error garrafal ¿o sí?</p>
+<p>Hagamos un rápido resumen:</p>
+<ul>
+<li>Pensamos en el divisor de voltaje de dos resistores como nuestra base. (resistores R1, R2)</li>
+<li>Le agregamos un tercer resistor por medio del cual introduciríamos una variación en el voltaje del nodo central del divisor de voltaje. (resistor N)</li>
+<li>Agregamos un segundo divisor de voltaje por medio del cual obtendríamos la diferencia de voltajes entre las dos terminales de medición del osciloscopio. (resistores S1 y S2) Con este divisor de voltaje obtendríamos un gradiente de voltaje entre S1 y S2 con el cual afecteríamos de manera predecible el voltaje en el nodo central de R1, R2 y N. </li>
+</ul>
+<p>Aquí es donde algo se nos está pasando, un error que tomó mucho rato encontrar y resolver.</p>
+<p>El nodo R1, R2, N no está desacoplado del nodo S1, S2, N. Este es el verdadero problema. El hecho de que no estén desacoplados puede parecer una nimiedad, sin embargo, este pequeño detalle destruye nuestro diseño.  (O al menos nos obliga a replantear algunas cosas).</p>
+<p>Llamemos a los nodos S1, S2, N el nodo SN y a R1, R2, N el nodo RN.</p>
+<p>Veámoslo en una simulación rápidamente: </p>
+<p>Supongamos</p>
+<ul>
+<li>El voltaje de tierra se encuentra en el resistor R2. </li>
+<li>El voltaje de 3.3V se encuentra en el resistor R1.</li>
+<li>Algún voltaje (solo por esta vez, pensemos que 3.3V) se encuentra en el resistor S1</li>
+<li>Algún voltaje (solo por esta vez, pensemos que 0V) se encuentra en el resistor S2. </li>
+</ul>
+<p>Esperaríamos que el voltaje en el nodo SN se encuentre en alguna vecindad que nuestro osciloscopio pueda manejar. Se generaría una desviación de voltaje en el nodo RN y podríamos calcular el voltaje en el nodo SN. La realidad es que en este escenario no tendríamos ningún cambio de voltaje en el nodo RN. Además los resultados obtenidos serían un sinsentido, ¿qué voltaje se mostraría si en S1 tuviéramos un voltaje altísimo y en S2 un voltaje negativo de un enorme valor absoluto? Sería impredecible y sería dependiente del valor de N. Si N fuera muy grande podríamos casi lograr un desacoplo, si N fuera muy chica la influencia del voltaje SN en el voltaje RN sería enorme. Pensemos también en el escenario ¿y si tanto el voltaje de S1 como el voltaje de S2 fueran altísimos? Quizá no obtendríamos una real diferencia de voltaje en el divisor SN pero sí veríamos una influencia muy grande en el nodo RN. </p>
+<p>Está mal, falla por todos lados y solo funcionaría nuestro circuito en un puñado muy muy selecto de escenarios. Es por eso que tenemos que cambiar nuestro modelo.</p>
+<p>Regresemos al paso en que agregamos N.</p>
+<p>Venga, una vez más, paso 4</p>
+<p align="center">
+  <img src="../../capturas/2_disenno/circuito/captura05.png?raw=true" />
+</p>
+<ol start="4">
+<li>El resistor nuevo lo podemos llamar N, por medio de este resistor podremos introducir un voltaje y por medio de este resistor conoceremos el valor de voltaje en UN SOLO PUNTO con respecto a nuestro nodo RN.</li>
+</ol>
+<p>Este sistema sabemos que funciona, sabemos que no estamos cometiendo ningún error hasta este momento:
+Tres resistores, tres fuentes de voltaje, conocemos el valor de dos fuentes, conocemos el valor de todos los resistores, podemos caracterizar perféctamente el valor del voltaje introducido a N si conocemos el valor de voltaje en RN.</p>
+<ol start="5">
+<li>Llegamos una vez más al punto en que necesitamos saber el voltaje en dos puntos, no nada más en uno ya que todo osciloscopio necesita un voltaje para la terminal negativa y uno para la terminal positiva. Deje de leer en este punto si desea darle vueltas un poco por su propia cuenta.</li>
+</ol>
+<p>Nota: Me intriga saber qué soluciones se le pueden haber ocurrido, lector. Ya llegaremos a la parte de diseño avanzado donde quizá pueda ponerlas en marcha.</p>
+<ol start="6">
+<li>Agregamos un segundo arreglo de tres resistores, R1, R2 y N, una vez más, una medición más. Entonces, obtendremos el siguiente arreglo de resistores:</li>
+</ol>
+<p align="center">
+  <img src="../../capturas/2_disenno/circuito/captura06.png?raw=true" />
+</p>
+<p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3ETFEPKnuBo0oomlWzR6VGdARsATtwy8ww5bxTjRYeIo3dtg7NkI69AcwMmzxwnlGQ2Vm3wn23jtgHcD-EK7+TkpghAJGKoYyyHBsAB7ckEiCWsTKSCJaIAByAPoAhvHcxA5gxGampaS0hiAASgW57Am4ECjEItgYbWQ1WQ35uShFCHhp7SKECOO9mSINAEZDI3hmZWZTa9Vz9blLzbTE9IIIXel9InkL+sIOWlQIYVHmsb6PVP6EWUHOIF8in0enhkv3eAVMFCelS8SjB90hEghVF0sVhTzUIjh2mRei4YP8YIxjloEikxJg8iAA">Circuito interactivo</a></p>
+<p>Así ya tendremos el arreglo A y el arreglo B. Con el arreglo A realizaremos la medición de un voltaje con una punta de terminal (podemos definir que el arreglo A lleve a la terminal roja &quot;positiva&quot;) y con la otra terminal podemos realizar la otra medición (el arreglo B lleva a la terminal negra &quot;negativa&quot;). </p>
+<ol start="7">
+<li>Aquí termina la perte del diseño del circuito, realizaremos la medición del nodo RNA y del nodo RNB de manera simultánea con el ESP-32 ya que esta tarjeta cuenta con dos ADCs. Esta es una más de las razones por las cuales resulta tan conveniente esta tarjeta. </li>
+</ol>
+<p>Leídos los dos voltajes de manera individual podremos realizar una resta entre ellos y hacer todas las manipulaciones posteriores por medio de herramental lógico (software).</p>
+<h1 id="conclusión"><a class="header" href="#conclusión">Conclusión</a></h1>
+<p>En la parte de usuario avanzado explicaré a más detalle cómo calcular los valores de los resistores a usar, cómo determinar los voltajes máximos seguros así como explorar los múltiples diseños que se llevaron antes de llegar a este último arreglo que resultó aparentemente tan sencillo al final.</p>
+<p>Del diseño podemos concluir que muchas veces lo mejor es delegar la responsabilidad de realizar operaciones lógicas a la programación y a las capas más abstractas del proyecto. Es por esto que siempre se intenta delegar responsabilidad a &quot;una capa superior&quot;. Lo mismo ocurrirá cuando trabajemos con el ESP-32, le delegaremos responsabilidades a aplicación de Java ya que ahí tendremos todavía más holgura en cuanto a capacidad de procesamiento. </p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../cap_02_disenno/00_ideas_disenno.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../cap_02_disenno/02_esp32.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../cap_02_disenno/00_ideas_disenno.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../cap_02_disenno/02_esp32.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

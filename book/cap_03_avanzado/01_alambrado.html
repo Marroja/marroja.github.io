@@ -1,0 +1,401 @@
+<!DOCTYPE HTML>
+<html lang="es" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Diseño a profundidad (circuito) - Osciloscopio</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../cap_00_intro/index.html">Introducción</a></li><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/index.html"><strong aria-hidden="true">1.</strong> Manual de usuario</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/01_alambrado.html"><strong aria-hidden="true">1.1.</strong> Cómo armarlo</a></li><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/02_esp32.html"><strong aria-hidden="true">1.2.</strong> Cómo programarlo</a></li><li class="chapter-item expanded "><a href="../cap_01_manual_usuario/03_aplicacion_java.html"><strong aria-hidden="true">1.3.</strong> Cómo usarlo</a></li></ol></li><li class="chapter-item expanded "><a href="../cap_02_disenno/index.html"><strong aria-hidden="true">2.</strong> Entender el diseño</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_02_disenno/00_ideas_disenno.html"><strong aria-hidden="true">2.1.</strong> Diseños descartados</a></li><li class="chapter-item expanded "><a href="../cap_02_disenno/01_alambrado.html"><strong aria-hidden="true">2.2.</strong> Diseño circuito</a></li><li class="chapter-item expanded "><a href="../cap_02_disenno/02_esp32.html"><strong aria-hidden="true">2.3.</strong> Diseño con ESP-32</a></li><li class="chapter-item expanded "><a href="../cap_02_disenno/03_aplicacion_java.html"><strong aria-hidden="true">2.4.</strong> Diseño interfaz usuario</a></li></ol></li><li class="chapter-item expanded "><a href="../cap_03_avanzado/index.html"><strong aria-hidden="true">3.</strong> Usuario avanzado</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_03_avanzado/01_alambrado.html" class="active"><strong aria-hidden="true">3.1.</strong> Diseño a profundidad (circuito)</a></li><li class="chapter-item expanded "><a href="../cap_03_avanzado/02_programacion.html"><strong aria-hidden="true">3.2.</strong> Diseño a profundidad (ESP-32)</a></li><li class="chapter-item expanded "><a href="../cap_03_avanzado/03_java.html"><strong aria-hidden="true">3.3.</strong> Diseño a profundidad (aplicación Java)</a></li></ol></li><li class="chapter-item expanded "><a href="../cap_99_extras/index.html"><strong aria-hidden="true">4.</strong> Extras</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../cap_99_extras/correo_desfase_dos_ESP.html"><strong aria-hidden="true">4.1.</strong> Correo desfase</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/correo_inversion_condens.html"><strong aria-hidden="true">4.2.</strong> Correo inversión condensadores</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/correo_ion_litio.html"><strong aria-hidden="true">4.3.</strong> Correo baterías ion litio</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/correo_protocolo_sennal.html"><strong aria-hidden="true">4.4.</strong> Correo protocolo señal</a></li><li class="chapter-item expanded "><a href="../cap_99_extras/programa_arduino.html"><strong aria-hidden="true">4.5.</strong> Programa arduino</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Osciloscopio</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="diseño-a-profundidad-circuito"><a class="header" href="#diseño-a-profundidad-circuito">Diseño a profundidad (circuito)</a></h1>
+<p>En este capítulo trataremos con todo detalle y minucia el diseño del circuito al que está conectada la tarjeta ESP-32. Se espera un conocimiento con buenos fundamentos de electrónica para tener un buen seguimiento de esta parte. No se tocarán temas de programación sino únicamente de electrónica. </p>
+<p>El simulador con el que se realizó buena parte del diseño fue <a href="https://www.labcenter.com/simulation/">Proteus</a> sin embargo, la alternativa en línea de <a href="https://falstad.com/circuit/">Falstad Circuit</a> será la mejor opción para presentarlo en este texto.</p>
+<h2 id="acondicionamiento-de-señal"><a class="header" href="#acondicionamiento-de-señal">Acondicionamiento de señal</a></h2>
+<p>Como ya se trabajó en la parte de diseño, en esta sección estamos intentando darle un acondicionamiento a una señal eléctrica la cual desconocemos su origen. Hay unas pocas cosas que tenemos que tener en consideración al momento de diseñar este dispositivo:</p>
+<ol>
+<li>Tendremos dos terminales de medición, como cualquier oscsiloscopio. </li>
+<li>El acondicionamiento de señal tiene que transformar los voltajes de las terminales de entrada en voltajes que se encuentren en un rango de operación seguro para la ESP-32. (0V a 3.3V con respecto a la tierra de la tarjeta)</li>
+<li>Es indispensable poder caracterizar el voltaje sin la necesidad de predicciones en software, es decir, la información entregada por el circuito de acondicionamiento es la única información de la que podremos generar más información.</li>
+<li>La información sumistrada por medio del circuito de acondicionamiento tiene que ser suficiente para calcular los valores del voltaje entre las terminales de medición haciendo uso de un algoritmo replicable en cualquier intervalo de voltaje entre esas terminales. Con esto quiero decir, no podemos hacer uso de una X fórmula para calcular ese voltaje cuando el voltaje es negativo y de una fórmula Y cuando el voltaje sea positivo (por ejemplo). </li>
+</ol>
+<p>Hay una serie de puntos adicionales que ya son más bien buenas prácticas que requisitos:</p>
+<ol start="5">
+<li>De usar componentes no lineales (condensadores, inductores, transistores etc.) es indispensable que se mantenga la seguridad de la tarjeta ESP-32 por encima de los componentes de acondicionamiento. </li>
+<li>De usar componentes no lineales el circuito tiene que operar en un rango seguro en cuanto a su frecuencia. Es decir, no podemos permitir la formación de armónicos en el circuito en el rango de frecuencias que esperamos poder medir.</li>
+<li>El dispositivo idealmente se tiene que poder alimentar con un solo cable o una sola fuente de energía. En nuestro caso, ya que estamos trabajando con un cable USB como alimentación de la tarjeta ESP-32, la recomendación es mantenerse en el rango de 0[V] a 5[V] con respecto a la tierra de la tarjeta. Esto quiere decir hay que tener MUCHÍSIMO cuidado al momento de trabajar con voltajes negativos.</li>
+<li>El dispositivo no puede poner en riezgo la integridad de la tarjeta ESP-32 al momento de encendido o apagado inesperado. Esto quiere decir, todos los estados transitorios tienen que estar contemplados y corregidos. Esto es especialmente importante al momento de considerar diseño con baterías.</li>
+</ol>
+<h2 id="implementación-con-solo-resistores"><a class="header" href="#implementación-con-solo-resistores">Implementación con solo resistores</a></h2>
+<p>La implementación recomendada para el dispositivo más sencillo fue la que se propuso en los capítulos anteriores: </p>
+<p align="center">
+  <img src="../../capturas/2_disenno/captura06.png" />
+</p>
+<p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3ETFEPKnuBo0oomlWzR6VGdARsATtwy8ww5bxTjRYeIo3dtg7NkI69AcwMmzxwnlGQ2Vm3wn23jtgHcD-EK7+TkpghAJGKoYyyHBsAB7ckEiCWsTKSCJaIAByAPoAhvHcxA5gxGampaS0hiAASgW57Am4ECjEItgYbWQ1WQ35uShFCHhp7SKECOO9mSINAEZDI3hmZWZTa9Vz9blLzbTE9IIIXel9InkL+sIOWlQIYVHmsb6PVP6EWUHOIF8in0enhkv3eAVMFCelS8SjB90hEghVF0sVhTzUIjh2mRei4YP8YIxjloEikxJg8iAA">Circuito interactivo</a></p>
+<p>En el capítulo de diseño únicamente platicamos el proceso de diseño pero no entramos a detalle en el cálculo de los resistores necesarios. </p>
+<p>Para calcular el valor de los resistores hicimos uso del método de fuentes de voltaje linealmente independientes.
+Como por diseño sabemos que el resistor de tierra va a tierra, no es necesario realizar el análisis con este resistor.</p>
+<p>Para los otros dos tenemos</p>
+<p>Para la fuente linealmente independiente en R1 (V_Ref) tenemos:</p>
+<p align="center">
+  <img src="../../capturas/2_disenno/captura06.png" />
+</p>
+<p>Para la fuente linealmente independiente en N (V_T) tenemos:</p>
+<p align="center">
+  <img src="../../capturas/2_disenno/captura06.png" />
+</p>
+<p>Esquemas realizados en <a href="https://www.onenote.com/Download">OneNote</a></p>
+<p>Así, que podemos caracterizar el voltaje presente en el nodo RN (tanto para la terminal positiva como para la negativa, en el diseño llamados terminal A y B):</p>
+<p>\[ V_{RN} =  V_{Ref} \frac{N || R_{1}}{N||R_{2} + R_{1}} + V_{T} \frac{R_{1}||R_{2}}{R_{1}||R_{2} + N} \]</p>
+<p>Donde el operador || significa &quot;resistor equivalente paralelo&quot;.</p>
+<p>Podemos simplificar estas expresiones para convertirlo en una expresión únicamente dependiente de sumas y multiplicaciones:</p>
+<p>\[ V_{RN} = V_{Ref} \frac{N R_{2}}{N R_{2} + N R_{1} + R_{1} R_{2}} + V_{T} \frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
+<p>Hay que recordar que para nuestro sistema, N, R1 y R2 estarán todos determinados, el valor de V_ref es conocido (3.3V) y el valor de V_RN es el valor que leeremos con el ESP-32 por lo que el único valor que tendremos que determinar será el valor de V_T. Para conseguir esto únicamente hay que despejar:</p>
+<p>\[ (V_{RN} - V_{Ref} \frac{N R_{2}}{N R_{2} + N R_{1} + R_{1} R_{2}}) \frac{R_{1} R_{2} + N R_{1} + N R_{2}}{R_{1} R_{2}} = V_{T}(V_{RN})  \]</p>
+<p>Parece un poco aparatoso pero la realidad es que como todos los valores son constantes todo se podrá simplificar a un par de números reales. De hecho, a simple vista se puede ver que ya existen ciertos factores que se pueden simplificar sin demasiados trucos algebráicos.</p>
+<p>Ya que tenemos la definición de un modelo para determinar el voltaje de las terminales donde aplicaremos el voltaje externo, hay que determinar los resistores para que se cumplan los requisitos que necesitábamos cumplir desde la fase de diseño:</p>
+<p>Recordando rápidamente:</p>
+<p>\[ V_{RN}(V_{Min}) = 0[V] = V_{Min} * K_{Atenuación} + C_{Ajuste} \]
+\[ V_{RN}(V_{Max}) = 3.3[V] = V_{Max} * K_{Atenuación} + C_{Ajuste} \]
+\[ V_{RN}(V_{cero}) = 1.65[V] = V_{cero} * K_{Atenuación} + C_{Ajuste} \]
+\[ V_{Terminal} \in (V_{min}, V_{max})\] </p>
+<p>Aquí tenemos una serie de solicitudes a cumplir y por diseño tenemos que determinar varias de ellas para poder determinar el sistema. En realidad, no es difícil ver que la parte de </p>
+<p>\[ V_{Min/Max} * K_{Atenuación} + C_{Ajuste} \] </p>
+<p>la vamos a tener que sustituir por la definición que ahorita obtuvimos para el voltaje en RN en función del voltaje de la terminal T en el resistor N. </p>
+<p>Por facilidad de diseño se decidió que el voltaje mínimo fuera el mismo voltaje pero con signo negativo que el voltaje máximo:</p>
+<p>\[ V_{Min} = - V_{Max} \]</p>
+<p>Esto inmediatamente (como lo descubrimos en el modelado lineal) nos determina que el valor &quot;central&quot; (el que llamams Voltaje &quot;cero&quot; en la fase de diseño) sería exactamente 1.65[V] para nuestra tarjeta ESP-32. Esto quiere decir, cuando nosotros leamos 1.65 en RN significará que el valor real de voltaje aplicado en la terminal T será de 0[V] con respecto a la tierra.</p>
+<p>Poniendo el voltaje en el nodo RN en función del voltaje de la terminal T se describiría así:</p>
+<p>\[ V_{RN}(V_{T}) = V_{T} * K_{Atenuación} + C_{Ajuste} \]
+\[ V_{RN}(0[V]) = 1.65[V] \]</p>
+<p>En realidad estamos sobre-definiendo nuestro sistema ya que, sabiendo que nuestro sistema es lineal, únicamente necesitaremos determinar los valores del voltaje Máximo y Mínimo en la terminal T para determinar todo lo demás. </p>
+<p>Regresando a la simplificación de nuestra caracterización de voltaje de la terminal T en función de el voltaje en RN: </p>
+<p>\[  V_{T}(V_{RN}) = (V_{RN} - V_{Ref} \frac{N R_{2}}{N R_{2} + N R_{1} + R_{1} R_{2}}) \frac{R_{1} R_{2} + N R_{1} + N R_{2}}{R_{1} R_{2}}  \]</p>
+<p>Simplificando obtenemos:</p>
+<p>\[ V_{T}(V_{RN}) = V_{RN} \frac{R_{1} R_{2} + N R_{1} + N R_{2}}{R_{1} R_{2}} - V_{Ref} \frac{N}{R_{1}} \]</p>
+<p>Si deciéramos obtener el voltaje en RN en función del voltaje de la terminal en vez de el voltaje de la terminal en funcion de el voltaje en RN nos quedaría algo muy parecido al sistema que propusimos de:</p>
+<p>\[ V_{RN}(V_{T}) = V_{T} * K_{Atenuación} + C_{Ajuste} \]</p>
+<p>Comprobémoslo para convencernos que el sistema es correcto:</p>
+<p>\[ V_{RN}(V_{T}) = V_{T} \frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} + V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
+<p>Resulta bastante convincente que en efecto estamos caracterizando el fenómeno correcto. </p>
+<p>Ya que llegamos a este punto es necesario decidir si nuestras restricciones de diseño serán los voltajes mínimos y máximos o si serán los resistores que podemos utilizar para crear nuestra K de atenuación y nuestro C de ajuste. </p>
+<p>Como decisión de diseño, personalmente recomiendo considerar los voltajes máximos y mínimos que uno se va a encontrar como la variable de mayor peso. Los resistores se puede comprar por un precio relativamente accesible y así cambiar el diseño por completo, sin embargo, los voltajes que encontraremos en el mundo están más o menos determinados y es bastante fácil construir a partir de esa información. </p>
+<p>Por ejemplo, el voltaje de la electricidad en un enchufe común es de 127[V] RMS en México. Esto quiere decir que estaríamos trabajando con un voltaje Pico a Pico de 359.2 [V], en realidad el voltaje que se suministra en el país es bastante más inestable de lo que nos gustaría por lo que valdría la pena agregar un buen margen de seguridad; pensemos que el máximo voltaje que nos podríamos encontrar fuera uno Pico a Pico de 500 [V] solo para tener suficiente margen de error y garantizar la seguridad de nuestro dispositivo.</p>
+<p>En este sentido, podríamos crear un sistema de resistores para atenuación de grandes voltajes (como el voltaje suministrado por un enchufe). Al mismo tiempo tendríamos que crear un sistema que nos diera atenuación para voltajes de uso de laboratorio (voltajes entre -20[V] y +20[V], por ejemplo). </p>
+<p>Así tendríamos dos pequeños arreglos de resistores con los cuales podríamos medir prácticamente cualquier voltaje a nuestro alcance sin tener que sufrir una atenuación excesiva en voltajes pequeños.</p>
+<p>Entonces, determinemos los resistores necesarios:</p>
+<p>Personalmente me gusta comenzar con la ecuación que describe el voltaje &quot;cero&quot; ya que por medio de ese podemos rápidamente poner rápidamente un resistor en función de los otros dos. Esto es gracias a que podemos obviar la influencia del voltaje de la terminal T. </p>
+<p>\[ V_{RN}(V_{T}) = V_{T} \frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} + V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
+<p>Sustituyendo el voltaje en la terminal T por cero (ya que asumimos que en este punto no estamos dando ningún voltaje) esperamos obtener un voltaje en RN de 1.65[V]:</p>
+<p>\[ V_{RN}(0) = 1.65 = V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
+<p>Cambiando por el valor del voltaje de referencia de operación (3.3) obtenemos una manera rápida de poner un resistor en función de los otros.</p>
+<p>\[ V_{RN}(0) = V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
+<p>Pensando en sustituir el resistor R1:</p>
+<p>\[ R_{1} = \frac{N R_{2} * \frac{V_{Ref}}{V_{RN}} - N R_{2}}{R_{2} + N} = \frac{N R_{2}(\frac{V_{Ref}}{V_{RN}} - 1)}{R_{2} + N} \]</p>
+<p>Tenemos que recordar que en este escenario V_Ref es 3.3[V] y V_RN es 1.65[V] por lo que podemos sustituir de una vez y volver a simplificar:</p>
+<p>\[ R_{1} = \frac{N R_{2}(\frac{3.3}{1.65} - 1)}{R_{2} + N} = \frac{N R_{2}(2 - 1)}{R_{2} + N} = \frac{N R_{2}}{R_{2} + N}\]</p>
+<p>¡Nada mal!</p>
+<p>Hagamos brevemente un análisis del resultado aquí obtenido. Si nos fijamos, el valor de R1 lo acabamos de determinar como el circuito paralelo entre R2 y N. Revisemos rápidamente si esto tiene sentido.</p>
+<p>Dado que estamos anticipando que cuando el voltaje sumistrado en T sea de 0[V] esperaríamos que el voltaje en el nodo RN sea exactamente el voltaje que se le está suministrando al Resistor 1 por medio del nodo del VRef. Es decir, el resistor equivalente entre R2 y N debería de ser igual a la resistencia en R1. Parece ser que en efecto, tiene sentido al menos en este escenario.</p>
+<p>Ahora podemos sustituir el Resitor 1 en alguna otra de nuestras ecuaciones y deberíamos obtener alguna otra caracterización; pensemos en describir R2 a partir de N en la ecuación usada para el voltaje máximo:</p>
+<p>\[ V_{RN}(V_{Max}) = V_{Max} \frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} + V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
+<p>Sustituimos el valor del Resistor 1 por su equivalente descrito en términos de R2 y N:</p>
+<p>\[ R_{1} = \frac{N R_{2}}{R_{2} + N}\]</p>
+<p>\[ V_{RN}(V_{Max}) = V_{Max} \frac{\frac{N R_{2}}{R_{2} + N} R_{2}}{\frac{N R_{2}}{R_{2} + N} R_{2} + N \frac{N R_{2}}{R_{2} + N} + N R_{2}} + V_{Ref} \frac{N R_{2}}{\frac{N R_{2}}{R_{2} + N} R_{2} + N \frac{N R_{2}}{R_{2} + N} + N R_{2}} \]</p>
+<p>Ahora intentaremos poner R2 en términos de N, V_Rn(V_max), V_ref y V_Max, haciendo algo de álgebra obtenemos que:</p>
+<p>\[ N = \frac{R_{2}(2 V_{RN} - V_{Max} - V_{Ref})}{V_{Ref} - 2 V_{RN}}\]</p>
+<p>Es difícil identificar de manera inmediata algo que nos revele que la información que obtuvimos aquí sea la correcta, sin embargo, podemos convencernos ligeramente con el análisis dimensional del resultado obtenido. Tenemos que:</p>
+<p>\[ Resistencia = Resistencia * \frac{Voltaje}{Voltaje} \]</p>
+<p>Esto nos puede dar al menos cierto nivel de garantía que nuestro análisis no está tan mal.</p>
+<p>Podemos hacer unos pocos cambios para intentar dejar los números resultantes de las restas como positovos ya que quizá eso nos ayude a interpretar los valores obtenidos:</p>
+<p>\[ N = R_{2} \frac{-(2 V_{RN} - V_{Max} - V_{Ref})}{-(V_{Ref} - 2 V_{RN})} = R_{2} (\frac{V_{Max} + V_{Ref} - 2 V_{RN}}{ 2 V_{RN} - V_{Ref}}) \]</p>
+<p>Tampoco es demasiado visible pero parecería que podemos asumir que el valor de del factor entre paréntesis será un número positivo siempre en nuestro intervalo de uso. Si este número resultara negativo estaríamos metidos en un tremendo problema ya que no existen resistores con valor negativo.</p>
+<p>Analisemos por partes, nominador y denominador:</p>
+<p>En el nominador, por diseño V_Max es siempre más grande que V_RN y V_Ref también lo es durante todo nuestro intervalo de voltajes de operación así que, por esta parte vamos bien, esto es sin importar el valor de V_RN (el cual, hay que recordar que depende de V_T). El único valor en el que V_RN y V_Ref pueden ser iguales es cuando estemos aplicando en V_T un voltaje igual a V_Max.</p>
+<p>Es importante recordar, V_RN es siempre función del voltaje en la terminal T (V_T) ya que V_T es el valor que hace que oscile el valor en RN, el voltaje de V_Ref es siempre constante.</p>
+<p>\[ V_{Max} &gt;&gt; V_{RN} \]
+\[ V_{Ref} &gt;= V_{RN} \]</p>
+<p>Así que en el nominador todos los valores son positivos.</p>
+<p>En el denominador tenemos que hacer uso del hecho que estamos trabajando con V_Max en la terminal T. Hay que recordar que este sistema de ecuasiones lo resolvimos simbólicamente pero en realidad:</p>
+<p>\[ V_{RN}(V_{Max}) = V_{Ref}\]</p>
+<p>Esto lo establecimos por diseño, de lo que se sigue:</p>
+<p>\[ 2V_{RN} - V_{Ref} = 2V_{Ref} - V_{Ref} \]</p>
+<p>Como el valor de voltaje de referencia es positivo (en nuestro caso es de 3.3[V]) igualmente tenemos un valor positivo.
+En realidad, con este conocimiento ya explícito podemos simplifcar toda la expresión de N en función de R2.</p>
+<p>\[ N = R_{2} \frac{V_{Max} + V_{Ref} - 2 V_{RN}}{ 2 V_{RN} - V_{Ref}} = R_{2} \frac{V_{Max} + V_{Ref} - 2V_{Ref}}{2V_{Ref} - V_{Ref}} = R_{2} \frac{V_{Max} - V_{Ref}}{V_{Ref}}\]</p>
+<p>¡Lindo!</p>
+<p>Ahora ponemos rápidamente R2 en términos de N (que era la intención todo este tiempo):</p>
+<p>\[ R_{2} = N \frac{V_{Ref}}{V_{Max} - V_{Ref}}\]</p>
+<p>Aquí tenemos que tomar una nueva decisión de diseño ¿Cómo determinaremos el primer resistor N de nuestro sistema?</p>
+<p>La decisión que yo considero más prudente es determinar el resistor N a partir del voltaje máximo que se aplicará en la terminal T. Esto es porque, a pesar de que tengamos una idea más o menos buena de cuánto es el voltaje máximo que le vamos a aplicar a nuestro osciloscopio, es indispensable agregar un pámetro de seguridad adicional. En especial, con las mediciones en el mundo real, es muy muy común que el componente de tierra no el mismo para nuestra computadora (y por extensión en nuestra ESP-32) y la tierra del fenómeno que estamo intentando medir. Pensemos en que nuestra computadora funcionara por medio de una batería (como es el caso de las computadora portátiles), no tenemos ninguna garantía que la tierra de la batería de la pila sea la misma que la tierra de un generador se señales conectado a la corriente de un enchufe. En realidad, dado que están desacopladas ambas fuentes de voltaje, existe garantía que de que la tierra no sea la misma. Lo más probable es que el voltaje de diferencia entre tierras de la batería y la red eléctrica no sea de demasiados voltios, pero sí puede ser de unos cinco o diez voltios ante condiciones más o menos anómalas (apagones, generadores de emergencia, baterías de coche, etc.) Es por eso que recomiendo darle un parámetro de seguridad a nuestro diseño de al menos 20%. Tendremos una sobre-atenuación, sin embargo, nuestro modelo lo contemplará de la manera correcta.</p>
+<p>Recordemos que es indisepensable garantizar la seguridad de la ESP-32, eso quiere decir, el voltaje presente en RN no puede ser mayor a 3.3[V] ni menor a 0[V]. </p>
+<p>Correremos riesgo de exceder los 3.3[V] cuando sea máximo y de irnos por debajo de los 0[V] cuando sea mínimo. Podemos plantear un circuito de ejemplo para determinar entonces nuestro primer resistor N. </p>
+<p>Ya que R1 y R2 serán mucho más chiquitos que el resistor N, podemos considerarlos de buenas a primeras resistores de 330 ohmios ya que además van a ser resistores de valores más o menos semejantes y únicamente preocuparnos por la discipación en el resistor N. Esto nos dará un valor propuesta para el resistor N, el cual podemos multiplicar por algún factor de seguridad y posteriormente cambiar el valor de R1 y R2 siguiendo la formulación que realizamos previamente donde R1 y R2 dependen de N. Ya que el voltaje de V_T es mucho mucho más grande que V_Ref podemos incluso considerar que V_Ref es una fuente apagada.</p>
+<p>Suponiendo un resistor inicial de:</p>
+<p align="center">
+  <img src="../../capturas/2_disenno/captura06.png" />
+</p>
+<p>Y una simplificación haciendo análisis por fuentes independientes:</p>
+<p align="center">
+  <img src="../../capturas/2_disenno/captura06.png" />
+</p>
+<p>Obtenemos una vez más un divisor de voltaje, el cual podemos caracterizar con:</p>
+<p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3ENPEQm7vnApeVKjSrZo9MVGgI2AJ0G8wIldxQDJuJRpRaN2NFBDZdAcyMmeZhClOQ2VzA-5nIA92LYB3De6ufNp6xISaArYG2iCkcWwAHuA0ECgI4WAIvGnEtNwCAHKJ+eRgWNzlYHji+SAASuxJaVSYuSItBHmGdSjFhFngGLkYNEhVDpECDQA6AM4APvNzPcX22Qj0CKPc6V2FejTVGgjEDrZUYPDOfHjZQoS3EY56J2f3j+fg-cV0mkh45AMvEmIAAagB9AAqPzAkTUtAGKEyezBULYQA">Circuito interactivo</a></p>
+<p>Entonces, el voltaje en RN queda caracterizado en este primer modelo propuesta:
+\[ V_{RN} = V_{T} \frac{R_{1} || R_{2}}{R_{N} + R1||R2} \]</p>
+<p>Ahora necesitamos nuestro valor propuesta de V_T. Este valor a proponer, como ya dijimos, tiene que ser el valor de voltaje máximo que esperemos encontrar en nuestros escenarios de lectura. Por el bien del ejemplo y únicamente para ser congruente con los valores propuestos en la parte del armado, usaremos un valor de 50[V]. Esto quiere decir, nuesto osciloscopio será capaz de medir valores de voltaje de +50[V] y -50[V] con respecto a su tierra de manera segura y bastante exacta.</p>
+<p>\[ 3.3 = 50 \frac{165}{R_{N} + 165} \]</p>
+<p>De donde obtenemos el valor del resistor N:</p>
+<p>\[ N = \frac{50 * 165}{3.3} - 165  = 2335\]</p>
+<p>Considerando ahora en valores de resistores comerciales, podemos ver que un resitor de 3300 ohmios cumple con una tolerancia adicional de aproximadamente 30%. Así que lo definimos:</p>
+<p>\[ N = 3300\]</p>
+<p>Ya determinado nuestro resistor N proseguimos a determinar los resistores R1 y R2 siguiendo las fórmulas que demostramos antes:</p>
+<p>\[ R_{2} = N \frac{V_{Ref}}{V_{Max} - V_{Ref}} = 3300 \frac{3.3}{50 - 3.3}  = 233.19\]</p>
+<p>\[ R_{1} = \frac{N R_{2}}{R_{2} + N} = \frac{3300 * 233.19}{3300 + 233.19} = 217.79\]</p>
+<p>En efecto, obtuvimos resultados más o menos como lo esperábamos.</p>
+<p>Ahora probemos el dispositivo que acabamos de diseñar únicamente para revisar su validés, una vez más haciendo uso de un simulador.</p>
+<p align="center">
+  <img src="../../capturas/2_disenno/captura06.png" />
+</p>
+<p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3EFFGkFwt1608UMTSrZo9KrOgI2AJyF8wNPjw0SxKbFLDElKkcbV8qKMBmgZDAc2O8LwzCjGQ2DlHlECQ2NH4wQVk2AHdjP29fYKgjVjczU3UxPTg2AA9wBHIrQStVW1puPgA5TO4CZAhsMETIPi0QACV2LO9E4lFatzQIJuaUCppiZCo6+jBIeiaANQB9AFkAQwzPf0SU8a24rgDwFISD83EqSncoeU4Rbb4EQluL7SZz2UuFBxo8R-VRJNCsiNcnAKIQkFMZiUQAtFgBLAB2FRw4y6IAwD24kH6UMGSNw1TRGKmjRxbRAD3B6PJPHARSa5WU90ehAwmxOaQ8ERZbj8OEEfg8Dj5QUE6JiITiDm5JSo0tc7iM0q+5NZxx0VhshmU0qScu0Fj00AM12lfiVoje2ikMncVwADskNKqkhBQg6MA01RgEGzwAqIh7VCkdVs2EA">Circuito interactivo</a></p>
+<p>¡Lo logramos!</p>
+<p>¡En teoría y en simulación el modelo funciona!</p>
+<p>Es obvio que sería muy difícil conseguir resistores de 218 ohmios y de 233 ohmios. Entonces tenemos que una vez más considerar que el necesitaremos resistores comerciales. </p>
+<p>218 lo podemos conseguir diréctamente con solo 1% de desviación si usamos uno de 220 ohmios. El de 233 lo podemos conseguir usando uno de 180 ohms y sumándole uno de 51 ohms esto nos dejaría con una desviación también menor a 1%.</p>
+<p>Así, después de toda esta trayectoria completamos el arreglo de resistores que queríamos armar:</p>
+<ul>
+<li>N = 3300 Ohmios</li>
+<li>R1 = 220 Ohmios</li>
+<li>R2 = 180 Ohmios + 51 Ohmios</li>
+</ul>
+<p>Hay que recordar que tenemos que armarlo tanto para la terminal A (positiva) como la terminal B (negativa) por lo que necesitaremos dos de cada uno. </p>
+<p>El último paso a tomar en esta parte es deducir una fórmula fácil de hacer rápidamente para calcular el voltaje en T a partir del voltaje en RN. Si recordamos la fase anterior de diseño, cuando usamos fuentes de voltaje independientes, obtuvimos:</p>
+<p>\[ V_{RN}(V_{T}) = V_{T} \frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} + V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
+<p>Con una fácil manipulación podemos obtener el valor del voltaje en la terminal T con respecto al voltaje de RN.</p>
+<p>\[ V_{T}(RN)  = \frac{V_{RN} - V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}}}{\frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}}}\]</p>
+<p>Para obtener un poco más de rendimiento en la computadora podemos simplificar las divisiones:</p>
+<p>\[ V_{T}(V_{RN}) = V_{RN}(\frac{R_{1} R_{2} + N R_{1} + N R_{2}}{R_{1} R_{2}}) - V_{Ref} (\frac{N R_{2}}{R_{1} R_{2}}) = \frac{V_{RN}(R_{1} R_{2} + N R_{1} + N R_{2}) - V_{Ref}(N R_{2})}{R_{1} R_{2}} \]</p>
+<h1 id="recomendaciones-a-futuro"><a class="header" href="#recomendaciones-a-futuro">Recomendaciones a futuro</a></h1>
+<p>Si ha llegado a este punto del manual le deseo toda la suerte y le transmito todo el entusiasmo del mundo. Como puede ver, el diseño está lleno de recovecos y errores que pueden surgir durante el proceso. Le agradezco muchísimo haberme seguido en este proceso de diseño.</p>
+<p>No hay mayor muestra de agradecimiento que le pueda dar que dejarle consejos con respecto al diseños posteriores que quiera hacer como modificaciones a este proyecto así como proyectos personales de otra índole. </p>
+<ol>
+<li>No lo haga.</li>
+<li>De verdad, no lo haga.</li>
+<li>Lo digo con toda la sinceridad del mundo, utilice diseños de otras personas en las que confíe, esto resulta más un proceso de crecimiento personal que algo de verdadera utilidad. </li>
+</ol>
+<p>Si en verdad quiere hacerlo o lo necesita:</p>
+<ol start="4">
+<li>El proceso de diseño es arduo y lleno de errores, para llegar a este último diseño se tuvo que pasar por al menos otras dies propuestas de diseño, todas revisadas con gente con más experiencia que yo. </li>
+<li>Siempre consulte cada paso que de con alguien más, mientras más fácil de explicar más fácil será de diseñar también.</li>
+<li>Si puede, pregúntele a profesores o gente con más experiencia que usted sobre la tecnología que conocen y la que han usado. Eso puede orientar mucho la fase de diseño además de tener cerca una persona que podrá entender los diseños propuestos sin necesidad de demasiado contexto.</li>
+</ol>
+<h2 id="con-respecto-al-osciloscopio"><a class="header" href="#con-respecto-al-osciloscopio">Con respecto al osciloscopio</a></h2>
+<p>Hay muchos sitios en donde se podrían agregar soluciones más complejas según el uso que usted usuario le quiera dar: </p>
+<ul>
+<li>Convertirlo en un dispositivo autónomo (no dependiente de un cable para alimentación)</li>
+<li>Realisar análisis únicamente de voltajes en corriente alterna para análisis de señales</li>
+<li>Obviar el análisis de señales para convertir este dispositivo en un multímetro</li>
+<li>Agregar capacidad de medición de corriente</li>
+</ul>
+<p>Existen muchas cosas que no se contemplaron en el diseño de este osciloscopio, sin embargo, queda en usted lector, en su entusiasmo el desarrollo de mejoras. Este proyecto no es bajo ninguna definición perfecto. </p>
+<p>El diseño de electrónica analógica es difícil, intente usar los componentes que mejor conoce:</p>
+<ul>
+<li>Resistores</li>
+<li>Condensadores </li>
+<li>Amplificadores operacionales sencillos</li>
+</ul>
+<p>Intente resolver el problema que quiere resolver con esos componentes antes de comenzar a usar piezas más complejas. </p>
+<p>El único verdadero requisito en esta parte de diseño es haga &quot;embonar&quot; un voltaje de -Vmax a Vmax en el intervalo de 0[V] a 3.3[V]. Mi recomendación es que se pueda hacer con una función tan sencilla como lo hicimos en esta solución:</p>
+<p>\[ V_{RN}(V_{T}) = V_{T} * K_{Atenuación} + C_{Ajuste} \]</p>
+<p>Si decidiera realizar un diseño en el cual ya se comtemple desde el acondicionamiento de señal la resta de los voltajes entre las terminales de lectura A positiva y B negativa tendrá que tener un poco de cuidado nada más con la parte del proyecto subescuente, la programación de la tarjeta ESP-32 ya que el código como está explicado y construido en este proyecto contempla la entrada del voltaje por dos diferentes pines realizando la resta de voltaje de manera digital, no analógica. </p>
+<p>Le deseo la mejor de las suertes; este es sin lugar a duda el lugar donde más oportunidad existe para el diseño, sin embargo, también considero que es el lugar donde más dificultades encuentra uno.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../cap_03_avanzado/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../cap_03_avanzado/02_programacion.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../cap_03_avanzado/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../cap_03_avanzado/02_programacion.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
