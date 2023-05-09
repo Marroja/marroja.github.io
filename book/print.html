@@ -163,6 +163,12 @@ Posteriormente se agregó como meta el desarrollo de compatibilidad con Android 
 </ul>
 <p>-Marroja (AMR)</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="manual-de-usuario"><a class="header" href="#manual-de-usuario">Manual de usuario</a></h1>
+<p>En el siguiente capítulo mostraremos paso a paso el uso y la preparación de los diferentes componentes del osciloscopio. Existen tres componentes principales:</p>
+<ul>
+<li>Armado físico (alambrado en la tarjeta proto-board)</li>
+<li>Programación de la tarjeta de desarrollo (por medio de Arduino)</li>
+<li>Programa graficador y generador de señales (ejecutables en una computadora personal)</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cómo-armarlo"><a class="header" href="#cómo-armarlo">Cómo armarlo</a></h1>
 <p>Para armar el osciloscopio necesitaremos:</p>
 <ul>
@@ -210,7 +216,7 @@ Posteriormente se agregó como meta el desarrollo de compatibilidad con Android 
 <p>Una vez presionado el botón &quot;OK&quot; comenzará la descarga de las bibliotecas necesarias de Espressif para la compilación del código de Arduino a nuestra tarjeta ESP-32. </p>
 <p>Posteriormente únicamente será necesario subir a la tarjeta ESP-32 el código <a href="cap_01_manual_usuario/../cap_99_extras/programa_arduino.html">aquí</a> proporcionado.</p>
 <p>Para cualquier referencia posterior sobre cómo subir un programa a una tarjeta de desarrollo recomiendo este video.</p>
-<p>https://www.youtube.com/watch?v=L18nta4pRv8</p>
+<p><a href="https://www.youtube.com/watch?v=L18nta4pRv8">Guía Arduino</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cómo-usarlo"><a class="header" href="#cómo-usarlo">Cómo usarlo</a></h1>
 <p>Aquí veremos cómo utilizar la aplicación del osciloscopio. En realidad existen tres aplicaciones presentadas en este proyecto, existe un generador de funciones sinusoidales, una aplicación que actúa como intermediario (o traductor) entre el puerto serial al que está conectado el ESP-32 y por último, una aplicación en la cual se grafican las señales leídas. </p>
 <h2 id="graficador"><a class="header" href="#graficador">Graficador</a></h2>
@@ -284,9 +290,35 @@ Nota: Podemos estar seguros de que el cambio se realizó si al presionar Enter n
   <img src="cap_01_manual_usuario/../../capturas/1_manual/uso/captura11.png?raw=true" />
 </p>
 <p>Cuando esto suceda, cierre la ventana, actualice el puerto COMPORT y vuelva a presionar el botón de &quot;Apagado&quot; para encender.</p>
+<h2 id="controles-del-graficador"><a class="header" href="#controles-del-graficador">Controles del graficador</a></h2>
+<p>Todos los controles son accesibles desde el teclado, sin embargo, se pueden realizar los mismos cambios desde la interfaz gráfica al presionar F1. </p>
+<p>Las unidades son un poco extrañas al momento de trabajar en la GUI por lo que requieren un poco de explicación. Al presionar F1 obtendremos esta pequeña interfaz:</p>
+<p align="center">
+  <img src="cap_01_manual_usuario/../../capturas/1_manual/uso/captura12.png?raw=true" />
+</p>
+<p>Las unidades en la sección de Escala X son los nanosegundos representados en cada pixel en la escala original de la ventana.
+Las unidades en la sección de Escala Y son los voltios representados en cada pixel en la escala original de la ventana en el eje Y. Al modificar este valor también se modifica el valor de voltaje en el eje Y al realizar graficaciones en modo Lissajous.</p>
+<p>El desplazamiento en X y Y están marcados con un % ya que se pueden realizar desplazamientos de 1% de la ventana en los ejes izquierda-derecha o arriba-abajo. 
+Al presionar el modo Lissajous se entra en modo de graficación de figuras Lissajous. </p>
+<p>Para realizar los cambios en las celdas es necesario presionar el botón Enter al igual que en el resto de las aplicaciones.</p>
+<h3 id="atajos-de-teclado-recomendados"><a class="header" href="#atajos-de-teclado-recomendados">Atajos de teclado (RECOMENDADOS)</a></h3>
+<p>Los mismos cambios que se pueden realizar en la interfaz de usuario se pueden realizar desde el teclado. Además, se puede pausar la graficación desde el teclado. </p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Incremento</th><th>Decremento</th></tr></thead><tbody>
+<tr><td>Escala Y</td><td>Q</td><td>A</td></tr>
+<tr><td>Escala X</td><td>W</td><td>S</td></tr>
+<tr><td>Despl. X</td><td>Z</td><td>X</td></tr>
+<tr><td>%Despl. Y1</td><td>U</td><td>J</td></tr>
+<tr><td>%Despl. Y2</td><td>I</td><td>K</td></tr>
+<tr><td>Pausa</td><td>Barra</td><td>espaciadora</td></tr>
+<tr><td>Modo Lissajous</td><td>L</td><td>L</td></tr>
+</tbody></table>
+</div>
+<p>Los atajos tienen un poquito de lógica una vez uno empieza a usarlos. Es más rápida la navegación por medio de teclado por lo que es recomendable para todos los usuarios. </p>
+<p>NOTA: El uso de la interfaz gráfica o del teclado ambos realizarán los cambios aún cuando la graficación esté pausada. Para realizar el análisis de señales con cuidado se recomienda presionar la barra espaciadora para pausar la lectura de señales y posteriormente manipularlas ya sea con teclado o con la interfaz gráfica. </p>
+<p>NOTA: La ventana de graficación se puede escalar a placer, el tamaño de las etiquetas escalará de acuerdo al tamaño de la ventana en el eje horizontal.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="decisiones-de-diseño"><a class="header" href="#decisiones-de-diseño">Decisiones de diseño</a></h1>
 <p>En este capítulo le dedicaré una sección a las decisiones finales del diseño. Tras explorar múltiples alternativas de diseño (tratadas en el capítulo anterior) se estableció que la mejor manera de construir el osciloscopio sería por medio de:</p>
-<p>Dado que únicamente se tratará el diseño de la implementación final no entraré demasiado en detalle de los diseños descartados ni de los valores concretos de resistores, voltajes etc. todo esto se trata en el capítulo de <a href="cap_02_disenno/cap_03_avanzado/README.html">usuario avanzado</a> donde se explican patrones de diseño así como fallas encontradas durante el proceso.</p>
+<p>Dado que únicamente se tratará el diseño de la implementación final no entraré demasiado en detalle de los diseños descartados ni de los valores concretos de resistores, voltajes etc. todo esto se trata en el capítulo de <a href="cap_02_disenno/../cap_03_avanzado/index.html">usuario avanzado</a> donde se explican patrones de diseño así como fallas encontradas durante el proceso.</p>
 <p>¡¡Atención, esta sección explica a detalle la lógica utilizada para el diseño del osciloscopio, se recomienda un conocimiento intermedio de electrónica!!</p>
 <ul>
 <li><a href="cap_02_disenno/00_ideas_disenno.html">Diseños decartados</a></li>
@@ -665,7 +697,7 @@ ciclo(){
 <h2 id="programa-esp-32"><a class="header" href="#programa-esp-32">Programa ESP-32</a></h2>
 <p>Veremos el proceso de optimización del código que cargamos a la ESP-32 para dar introspección del diseño del código así como el uso de funciones de bajo nivel de C para obtener el comportamiento deseado de la tarjeta. </p>
 <ul>
-<li><a href="cap_03_avanzado/">Código final</a></li>
+<li><a href="cap_03_avanzado/../cap_99_extras/programa_arduino.html">Código final</a></li>
 </ul>
 <h2 id="java"><a class="header" href="#java">Java</a></h2>
 <p>Diseñaremos primero unos programas basados en consola a partir de los cuales crearemos tres programas con interfaz de usuario. Programaremos un generador de funciones sinusoidales, un traductor del puerto serial y un graficador. Todos ellos funcionarán por medio del protocolo UDP.</p>
@@ -696,7 +728,7 @@ ciclo(){
 <h2 id="implementación-con-solo-resistores"><a class="header" href="#implementación-con-solo-resistores">Implementación con solo resistores</a></h2>
 <p>La implementación recomendada para el dispositivo más sencillo fue la que se propuso en los capítulos anteriores: </p>
 <p align="center">
-  <img src="cap_03_avanzado/../../capturas/2_disenno/captura06.png" />
+  <img src="cap_03_avanzado/../../capturas/3_avanzado/alambrado/captura00.png?raw=true" />
 </p>
 <p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3ETFEPKnuBo0oomlWzR6VGdARsATtwy8ww5bxTjRYeIo3dtg7NkI69AcwMmzxwnlGQ2Vm3wn23jtgHcD-EK7+TkpghAJGKoYyyHBsAB7ckEiCWsTKSCJaIAByAPoAhvHcxA5gxGampaS0hiAASgW57Am4ECjEItgYbWQ1WQ35uShFCHhp7SKECOO9mSINAEZDI3hmZWZTa9Vz9blLzbTE9IIIXel9InkL+sIOWlQIYVHmsb6PVP6EWUHOIF8in0enhkv3eAVMFCelS8SjB90hEghVF0sVhTzUIjh2mRei4YP8YIxjloEikxJg8iAA">Circuito interactivo</a></p>
 <p>En el capítulo de diseño únicamente platicamos el proceso de diseño pero no entramos a detalle en el cálculo de los resistores necesarios. </p>
@@ -705,11 +737,11 @@ Como por diseño sabemos que el resistor de tierra va a tierra, no es necesario 
 <p>Para los otros dos tenemos</p>
 <p>Para la fuente linealmente independiente en R1 (V_Ref) tenemos:</p>
 <p align="center">
-  <img src="cap_03_avanzado/../../capturas/2_disenno/captura06.png" />
+  <img src="cap_03_avanzado/../../capturas/3_avanzado/alambrado/captura01.png?raw=true" />
 </p>
 <p>Para la fuente linealmente independiente en N (V_T) tenemos:</p>
 <p align="center">
-  <img src="cap_03_avanzado/../../capturas/2_disenno/captura06.png" />
+ <img src="cap_03_avanzado/../../capturas/3_avanzado/alambrado/captura02.png?raw=true" />
 </p>
 <p>Esquemas realizados en <a href="https://www.onenote.com/Download">OneNote</a></p>
 <p>Así, que podemos caracterizar el voltaje presente en el nodo RN (tanto para la terminal positiva como para la negativa, en el diseño llamados terminal A y B):</p>
@@ -800,15 +832,15 @@ En realidad, con este conocimiento ya explícito podemos simplifcar toda la expr
 <p>Ya que R1 y R2 serán mucho más chiquitos que el resistor N, podemos considerarlos de buenas a primeras resistores de 330 ohmios ya que además van a ser resistores de valores más o menos semejantes y únicamente preocuparnos por la discipación en el resistor N. Esto nos dará un valor propuesta para el resistor N, el cual podemos multiplicar por algún factor de seguridad y posteriormente cambiar el valor de R1 y R2 siguiendo la formulación que realizamos previamente donde R1 y R2 dependen de N. Ya que el voltaje de V_T es mucho mucho más grande que V_Ref podemos incluso considerar que V_Ref es una fuente apagada.</p>
 <p>Suponiendo un resistor inicial de:</p>
 <p align="center">
-  <img src="cap_03_avanzado/../../capturas/2_disenno/captura06.png" />
+ <img src="cap_03_avanzado/../../capturas/3_avanzado/alambrado/captura03.png?raw=true" />
 </p>
 <p>Y una simplificación haciendo análisis por fuentes independientes:</p>
 <p align="center">
-  <img src="cap_03_avanzado/../../capturas/2_disenno/captura06.png" />
+ <img src="cap_03_avanzado/../../capturas/3_avanzado/alambrado/captura04.png?raw=true" />
 </p>
 <p>Obtenemos una vez más un divisor de voltaje, el cual podemos caracterizar con:</p>
 <p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3ENPEQm7vnApeVKjSrZo9MVGgI2AJ0G8wIldxQDJuJRpRaN2NFBDZdAcyMmeZhClOQ2VzA-5nIA92LYB3De6ufNp6xISaArYG2iCkcWwAHuA0ECgI4WAIvGnEtNwCAHKJ+eRgWNzlYHji+SAASuxJaVSYuSItBHmGdSjFhFngGLkYNEhVDpECDQA6AM4APvNzPcX22Qj0CKPc6V2FejTVGgjEDrZUYPDOfHjZQoS3EY56J2f3j+fg-cV0mkh45AMvEmIAAagB9AAqPzAkTUtAGKEyezBULYQA">Circuito interactivo</a></p>
-<p>Entonces, el voltaje en RN queda caracterizado en este primer modelo propuesta:
+<p>Entonces, el voltaje en RN queda caracterizado en este primer modelo propuesto:
 \[ V_{RN} = V_{T} \frac{R_{1} || R_{2}}{R_{N} + R1||R2} \]</p>
 <p>Ahora necesitamos nuestro valor propuesta de V_T. Este valor a proponer, como ya dijimos, tiene que ser el valor de voltaje máximo que esperemos encontrar en nuestros escenarios de lectura. Por el bien del ejemplo y únicamente para ser congruente con los valores propuestos en la parte del armado, usaremos un valor de 50[V]. Esto quiere decir, nuesto osciloscopio será capaz de medir valores de voltaje de +50[V] y -50[V] con respecto a su tierra de manera segura y bastante exacta.</p>
 <p>\[ 3.3 = 50 \frac{165}{R_{N} + 165} \]</p>
@@ -822,7 +854,7 @@ En realidad, con este conocimiento ya explícito podemos simplifcar toda la expr
 <p>En efecto, obtuvimos resultados más o menos como lo esperábamos.</p>
 <p>Ahora probemos el dispositivo que acabamos de diseñar únicamente para revisar su validés, una vez más haciendo uso de un simulador.</p>
 <p align="center">
-  <img src="cap_03_avanzado/../../capturas/2_disenno/captura06.png" />
+ <img src="cap_03_avanzado/../../capturas/3_avanzado/alambrado/captura05.png?raw=true" />
 </p>
 <p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3EFFGkFwt1608UMTSrZo9KrOgI2AJyF8wNPjw0SxKbFLDElKkcbV8qKMBmgZDAc2O8LwzCjGQ2DlHlECQ2NH4wQVk2AHdjP29fYKgjVjczU3UxPTg2AA9wBHIrQStVW1puPgA5TO4CZAhsMETIPi0QACV2LO9E4lFatzQIJuaUCppiZCo6+jBIeiaANQB9AFkAQwzPf0SU8a24rgDwFISD83EqSncoeU4Rbb4EQluL7SZz2UuFBxo8R-VRJNCsiNcnAKIQkFMZiUQAtFgBLAB2FRw4y6IAwD24kH6UMGSNw1TRGKmjRxbRAD3B6PJPHARSa5WU90ehAwmxOaQ8ERZbj8OEEfg8Dj5QUE6JiITiDm5JSo0tc7iM0q+5NZxx0VhshmU0qScu0Fj00AM12lfiVoje2ikMncVwADskNKqkhBQg6MA01RgEGzwAqIh7VCkdVs2EA">Circuito interactivo</a></p>
 <p>¡Lo logramos!</p>
