@@ -147,6 +147,78 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="cómo-usarlo"><a class="header" href="#cómo-usarlo">Cómo usarlo</a></h1>
+<p>Aquí veremos cómo utilizar la aplicación del osciloscopio. En realidad existen tres aplicaciones presentadas en este proyecto, existe un generador de funciones sinusoidales, una aplicación que actúa como intermediario (o traductor) entre el puerto serial al que está conectado el ESP-32 y por último, una aplicación en la cual se grafican las señales leídas. </p>
+<h2 id="graficador"><a class="header" href="#graficador">Graficador</a></h2>
+<p>La interfaz al abrir el programa llamado &quot;graficador-multicanal-udp.jar&quot; debería de ser como la siguiente aquí mostrada. En caso de no poder ver la ventana secundaria (En la que se muestra la escala X, escala Y etc) presione la tecla F1 de su teclado.</p>
+<p align="center">
+  <img src="../../capturas/1_manual/uso/captura01.png?raw=true" />
+</p>
+<p>En esta aplicación es en donde podremos ver las señales que leamos con nuestro osciloscopio o las señales que simulemos con el generador de señales sinusoidales. Estas tres aplicaciones estarán conectadas por puertos UDP (un protocolo de transferencia de datos que tiene la propia computadora) por defecto, el programa para la graficación estará conectado a los puertos 8080 y 8081. Esto vale la pena tenerlo presente. </p>
+<p>En este momento no podemos visualizar nada en esta aplicación ya que no estamos enviando ningún valor para que se grafique, para ello deberemos iniciar los otros programas. </p>
+<p>Exploraremos más adelante cómo manipular la imagen que estamos viendo, por el momento nos enfocaremos en obtener una lectura de voltaje en pantalla.</p>
+<h2 id="generador-de-función-seno"><a class="header" href="#generador-de-función-seno">Generador de función seno</a></h2>
+<p>Podemos arrancar entonces el programa llamado &quot;generador-seno-udp.jar&quot; y deberíamos ver una ventana como la siguiente: </p>
+<p align="center">
+  <img src="../../capturas/1_manual/uso/captura02.png?raw=true" />
+</p>
+<p>Por defecto, esta aplicación siempre se abrirá con los valores ahí marcados, hagamos una breve revisión de qué significa cada uno de ellos:</p>
+<ul>
+<li>PUERTO -&gt; Es el puerto UDP al cual se encuentra conectado (recordar que el graficador solo puede leer dos puertos, el 8080 y el 8081 por defecto).</li>
+<li>PERIODO -&gt; Es el periodo de la señal sinusoidal que generaremos, este tiempo siempre estará en nanosegundos. El valor escrito por defecto (1000_000_000) es equivalente a un segundo. Al momento de introducir números se puede usar el guión bajo &quot;_&quot; como separador. </li>
+<li>AMPLITUD -&gt; Será la amplitud de la señal que generaremos en Volts.</li>
+<li>DESFASE -&gt; La señal sinusoidal aquí generada se genera a partir de la función matemática Math.sin() y usamos el argumento usado es siempre el tiempo en nanosegundos. Esto significa que si abrimos dos generadores de sinusoidales y a los dos les damos el mismo desfase, estarán en fase entre ellas. </li>
+</ul>
+<p>NOTA: Para aplicar los cambios de los valores es importante SIEMPRE presionar la tecla Enter en las celdas que hayan sido modificadas.</p>
+<p>Podemos comenzar encendiendo nuestro generador de senos mientras tengamos ya abierto el graficador. Deberíamos de obtener algo como lo siguiente:</p>
+<p align="center">
+  <img src="../../capturas/1_manual/uso/captura03.png?raw=true" />
+</p>
+<p>Parecería que únicamente apareció una línea amarilla, sin embargo, si observamos con detalle podremos ver que esa línea está en movimiento. Podemos cambiar la amplitud de la señal que generamos seleccionando la celda de AMPLITUD y escribiendo un número, como 100. No es necesario pero se puede agregar el punto decimal. Presionamos Enter y deberíamos observar los cambios en el graficador. </p>
+<p align="center">
+  <img src="../../capturas/1_manual/uso/captura04.png?raw=true" />
+</p>
+<p>Podríamos agregar un segundo generador de señales sinusoidales y manipular el periodo, el desfase y la amplitud a voluntad. Intentémoslo:</p>
+<p align="center">
+  <img src="../../capturas/1_manual/uso/captura05.png?raw=true" />
+</p>
+<p>Podemos observar que cláramente hay un error en la representación de las señales que estamos mandando. Este error es muy común y por ello es importante tener cuidado; en este caso se están mandando las lecturas de ambos generadores de señal por medio de los puertos 8080. Tenemos que cambiar uno de los dos para que se envíen por medio de otro puerto (el 8081). Así, si cambiamos el puerto de uno de los dos generadores obtendremos lo siguiente:</p>
+<p align="center">
+  <img src="../../capturas/1_manual/uso/captura06.png?raw=true" />
+</p>
+<p>Tal y como esperábamos.</p>
+<p>Podemos cerrar las aplicaciones de generación de señal en cualquier momento y no habrá ningún problema en cuanto al graficador de señales se refiere. Podríamos abrir y cerrar tantos generadores de señales como quisiéramos. Igualmente, si llegáramos a cerrar el graficador por error, podríamos volverlo a abrir e inmediatamente comenzaría a graficar los valores en caso de que un generador de señales ya se encontrara encendido.</p>
+<h2 id="traductor-monitor-serial---udp"><a class="header" href="#traductor-monitor-serial---udp">Traductor Monitor Serial - UDP</a></h2>
+<p>Este programa tiene la función de actuar como intermediario entre la conexión de la ESP-32 con la computadora y así poder manipular los valores brindados por la tarjeta de una manera útil. </p>
+<p>Podemos arrancar la aplicación al igual que con las otras abriendo el archivo &quot;traductor-serial-udp.jar&quot; con el cual deberíamos ver una ventanita de este estilo:</p>
+<p align="center">
+  <img src="../../capturas/1_manual/uso/captura07.png?raw=true" />
+</p>
+<p>En esta ventanita tenemos más opciones que en el generador de funciones seno ya que hay una serie de cosas adicionales que tenemos que contemplar al momento de traducir los valores que nos suministra la ESP-32. De manera general, si el circuito que usted armó es excatamente igual al propuesto en el capítulo anterior, lo único que deberá cambiar es el valor del PUERTO cuando quiera conectar dos señales (sinusoidales o incluso dos traductores de la ESP-32) tal y como lo hicimos en el ejemplo pasado. Además, también deberá cambiar la celda que está marcada como COMPORT. Esta celda sirve para seleccionar el puerto serial al que queremos que nuestro programa se conecte.</p>
+<p>Si quisiera utilizar un arreglo diferente de resistores (por ejemplo, para tener una menor atenuación de los voltajes o tener una mayor atenuación para lectura de voltaje más elevados a los 50V de diseño, tendrá que registrar los valores de los resistores tal y como se indica en la sección del diseño avanzado) <a href="../cap_03_avanzado/01_alambrado.html">Aquí</a></p>
+<p>Para el grueso de los usuarios, se espera que se pueda conectar directamente al conectar nuestro dispositivo armado con los resistores y la tarjeta ESP-32. </p>
+<p>Comencemos entonces con un ejemplo. Se sugiere ya tener conectada la tarjeta ESP-32 al momento de arrancar el programa traductor, sin embargo, no es indispensable. </p>
+<p align="center">
+  <img src="../../capturas/1_manual/uso/captura08.png?raw=true" />
+</p>
+<p>Es necesario picar la celda marcada con COMPORT. Presionar esta celda abrirá una pequeña ventana donde estarán listados todos los dispositivos conectados por medio de comunicación serial. El número a la izquierda es el índice que ocupan, el nombre a la derecha es el nombre que les asigna el sistema operativo. De no abrirse con el primer clic, vuelva a presionar la celda.</p>
+<p>Debería abrirse una pequeña ventana como ésta:</p>
+<p align="center">
+  <img src="../../capturas/1_manual/uso/captura09.png?raw=true" />
+</p>
+<p>Identifique el índice del dispositivo que desea conectar. En Windows generalmente buscaremos conectarnos al dispositivo COM0, sin embargo, esto puede cambiar de equipo en equipo. En el caso de Mac y Linux buscaremos conectarnos al dispositivo de nombre tty.usbserial-####. En la presentación realizada aquí con Mac nos conectaremos entonces al índice 7. El el ejemplo en Windows nos conectaremos al índice 0.</p>
+<p>Cambiamos el valor en COMPORT y presionamos Enter. 
+Nota: Podemos estar seguros de que el cambio se realizó si al presionar Enter nos cambia a la celda siguiente.</p>
+<p>Tras asegurarnos que la celda COMPORT y la celda PUERTO estén en los valores que deseamos podemos presionar el botón de &quot;Encender&quot;. En el caso de esta presentación, dado que no se está aplicando ningún voltaje y la conexión con el COMPORT fue exitosa, podemos observar la línea amarilla de voltaje en el voltaje de 0V.</p>
+<p align="center">
+  <img src="../../capturas/1_manual/uso/captura10.png?raw=true" />
+</p>
+<p>Podemos asegurarnos que ya existe lectura de voltaje si tocamos las conexiones de la ESP-32 con la mano y ocasionamos ruido. No es la mejor manera de asegurarnos de la conexión pero es una manera rápida y efectiva en campo. </p>
+<h3 id="error-de-conexión"><a class="header" href="#error-de-conexión">Error de conexión</a></h3>
+<p>Al presionar el botón de encendido o actualizar la celda COMPORT existe la posibilidad de que la conexión no se realice de manera correcta. Si esto llegara a pasar aparecerá una ventanita como la siguiente:</p>
+<p align="center">
+  <img src="../../capturas/1_manual/uso/captura11.png?raw=true" />
+</p>
+<p>Cuando esto suceda, cierre la ventana, actualice el puerto COMPORT y vuelva a presionar el botón de &quot;Apagado&quot; para encender.</p>
 
                     </main>
 
