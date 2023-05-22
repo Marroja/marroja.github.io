@@ -150,10 +150,10 @@
 <p>En este capítulo diseñaremos un programa sin omitir un solo paso con el cual podremos visualizar los valores del protocolo de cifrado implementado el capítulo pasado. </p>
 <p>Se necesita un nivel intermedio de programación para seguir esta guía. No se requiere conocimiento de diseño. </p>
 <h2 id="lector-de-voltaje"><a class="header" href="#lector-de-voltaje">Lector de voltaje</a></h2>
-<p>Primero haremos una pequeñísima aplicación, la cual calibraremos usando un generador de señal. Esta aplicación la llamaremos el &quot;mini-calibrador&quot; ya que esa será su única función; Calibrar el voltaje cuando las terminales del osciloscopio estén ambos conectados al mismo punto y después funcionar como un lector de voltaje.</p>
+<p>Primero haremos una pequeñísima aplicación, la cual calibraremos usando un generador de señal. Esta aplicación la llamaremos el &quot;mini-multímetro&quot; ya que lo único que hará será imprimir el voltaje leído en consola.</p>
 <p>Sería prácticamente imposible plasmar en este manual todas las mañas y trucos de programación que se tuvieron que usar al momento de programar la aplicación final, sin embargo, podemos hacer un intento en programar una versión más chiquita de esta aplicación para intentar transmitir el proceso de diseño.</p>
-<p>Como ya dijimos, comenzaremos creando una aplicación chiquta, el mini-calibrador.</p>
-<h3 id="mini-calibrador"><a class="header" href="#mini-calibrador">mini-calibrador</a></h3>
+<p>Como ya dijimos, comenzaremos creando una aplicación chiquta, el mini-multímetro.</p>
+<h3 id="mini-multímetro"><a class="header" href="#mini-multímetro">mini-multímetro</a></h3>
 <p>Toda la programación la realizaré en el IDE <a href="https://www.jetbrains.com/idea/">IntelliJ Idea Community</a> (por preferencia personal, no por otra razón).</p>
 <p>Este ejemplo ni siquiera va a depender de una interfaz gráfica, será todo por medio de consola. Introduciremos más adelante el desarrollo con interfaces gráficas.</p>
 <ol>
@@ -293,8 +293,7 @@ comPort.closePort();
                 }
 </code></pre>
 <p>Podemos agregar una arreglo con valores de prueba para hacer pruebas y verificar que los valores obtenidos sean los correctos:</p>
-<p>qph</p>
-<p>Con el código como lo tenemos ahora, deberíamos obtener una lista de valores de este estilo:</p>
+<p>Por ejemplo, si en el arreglo introdujéramos los valores [0, 10, 1000, 4095, -1, -10, -100, -1000, -4096] obtendremos los valores como esperaríamos obtenerlos.</p>
 <pre><code>cu.wlan-debug
 tty.wlan-debug
 cu.ESP32_LED_Control
@@ -326,19 +325,21 @@ Voltaje V_RN: -12.20774432488208
 Lectura ADC : -4096
 Voltaje V_RN: -50.0
 </code></pre>
-<p>Podemos ver que los valores que obtuvimos coinciden con la predicción que habíamos realizado. Al tener la lectura del ADC más baja obtuvimos el valor de voltaje que deseábamos desde la fase de diseño, -50[V]. Al obtener el valor más alto, obtuvimos +50, que era el máximo valor que queríamos medir.</p>
+<p>Los que son realmente importantes son los valores 0, 4095 y -4096 ya que estos valores son los que señalarán los valores de V_cero, V_Max, V_Min.</p>
+<p>Podemos ver que los valores que obtuvimos coinciden con la predicción que habíamos realizado. Al tener la lectura del ADC más baja obtuvimos el valor de voltaje que deseábamos desde la fase de diseño, -50[V]. Al obtener el valor más alto, obtuvimos +50, que era el máximo valor que queríamos medir. Lo mismo sucede con el valor cuando el valor del ADC es 0, obtenemos un valor pequeñísimo muy muy cercano a cero.</p>
+<p>Hay que recordar, aquí no estamos recibiendo los valores del ADC directamente sino que estamos recibiendo el valor de la resta de las lecturas de los dos ADCs.</p>
 <p>Con este pequeño programa podríamos enviar el flujo de datos a cualquier aplicación gráfica por medio de protocolos del sistema operativo, sin embargo, por facilidad de programación, ya que estamos trabajando en un programa de Java, podremos agregar esa interfaz gráfica a este mismo programa.</p>
 <h2 id="cómo-haremos-el-proyecto"><a class="header" href="#cómo-haremos-el-proyecto">Cómo haremos el proyecto</a></h2>
-<p>Que la aplicación se utilizará principalmente en computadoras personales (por diversas cuestiones convenientes como el uso de múltiples puertos USB y por extensión la posibilidad de usar varias tarjetas ESP-32) podemos pensar que en realidad el diseño del código que implementamos previamente es únicamente para interpretar los valores de un dispositivo cualquiera. </p>
+<p>Ya que la aplicación se utilizará principalmente en computadoras personales (por diversas cuestiones convenientes como el uso de múltiples puertos USB y por extensión la posibilidad de usar varias tarjetas ESP-32) podemos pensar que en realidad el diseño del código que implementamos previamente es únicamente para interpretar los valores de un dispositivo cualquiera. </p>
 <p>Podemos considerar que existen varios puertos USB en una computadora de la misma forma que existen otros puertos por los cuales podemos interpretar un valor de voltaje (por ejemplo la entrada de audio auxiliar). Pensemos que existen varios dispositivos conectados a la computadora. Inlcuso podríamos considerar la existencia de un &quot;generador de señal&quot; virtual, el cual genere una onda perfecta sinusoidal, una señal de escalón o simplemente un impulso cada determinado tiempo.</p>
 <p>La solución que propongo yo para el manejo de todos estos dispositivos, y dejar abierta la posibilidad al desarrollo de dispositivos posteriores (como el uso de tarjetas integradas distintas a futuro así como generadores de señal personalizados) es manejar todos los valores que se introduzcan al osciloscopio por medio del protocolo UDP.</p>
 <p>En este sentido, el osciloscopio, el intérprete de señal desde la ESP-32 así como cualquier dispositivo adicional posterior será una especia de aplicación independiente por sí sola. Esto nos dará ciertas ventajas a posteriori, no estaremos sujetos al desarrollo de ninguna aplicación por medio de ningún lenguaje de programación en específico. Además esto nos permitirá desarrollar incluso otros programas sustituto al osciloscopio así como de cada uno de los orígenes de señal que aquí hemos propuesto.</p>
 <h2 id="implementación-final"><a class="header" href="#implementación-final">Implementación final</a></h2>
 <p>Los programas en los que se muestra el funcionamiento básico son los siguientes tres:</p>
 <ul>
-<li><a href="">Intérprete ESP-32</a></li>
-<li><a href="">Generador función seno</a></li>
-<li><a href="">Aplicación graficadora dos canales</a></li>
+<li><a href="https://github.com/Marroja/traductor-serial-udp">Intérprete/Traductor ESP-32</a></li>
+<li><a href="https://github.com/Marroja/generador-seno-udp">Generador función seno</a></li>
+<li><a href="https://github.com/Marroja/graficador-multicanal-udp">Aplicación graficadora dos canales</a></li>
 </ul>
 <p>La arquitectura final de diseño será como en el siguiente diagrama: </p>
 <p align="center">

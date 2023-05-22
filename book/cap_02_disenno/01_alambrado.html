@@ -148,9 +148,9 @@
                     <main>
                         <h1 id="circuito"><a class="header" href="#circuito">Circuito</a></h1>
 <p>En esta sección se tratará muy brevemente el circuito final que se utilizó para acondicionar la señal leída.</p>
-<p>Después de las muchas consideraciones que se tomaron en la sección anterior, ya que la gran mayoría de las cosas ideas terminaron en fallo, el diseño se fue reduciendo más y más hasta únicamente poder trabajar con resistores y la tarjeta de desarrollo ESP-32. </p>
-<p>Entonces, todo el diseño del osciloscopio se vio reducido a una máquina lineal (la cual iremos descubriendo a lo largo de este capítulo) la cual consta únicamente de resistores.</p>
-<p>Esto quiere decir que tenemos una función lineal que relaciona el voltaje que queremos leer (sin procesamiento) y el voltaje que va a leer la tarjeta ESP-32 (con procesamiento). Esta función la podremos expresar como:</p>
+<p>Después de las muchas consideraciones que se tomaron en la sección anterior, ya que la gran mayoría de las cosas ideas terminaron en fallo, el diseño se fue reduciendo más y más hasta poder trabajar únicamente con resistores y la tarjeta de desarrollo ESP-32. </p>
+<p>Entonces, todo el diseño del osciloscopio se vio reducido a una máquina lineal (la cual iremos descubriendo a lo largo de este capítulo) la cual consta únicamente de resistores y un convertidor analógico digital (ADC).</p>
+<p>Esto quiere decir que tenemos una función lineal que relaciona el voltaje que queremos leer (previo al acondicionamiento) y el voltaje que va a leer la tarjeta ESP-32 (posterior al acondicionamiento). Esta función la podremos expresar como:</p>
 <p>\[ V_{ESP-32}(V_{Real}) = V_{Real} * K_{Atenuación}\]</p>
 <p>Lo que tendremos que hacer es diseñar un circuito tal que conozcamos la atenuación de nuestros resistores <em>a priori</em> además de poder aprovechar el rango de voltajes disponibles en el ADC de nuestro ESP-32. Esto sugiere que tendremos que hacer un centrado posterior a la atenuación de nuestra señal eléctrica:</p>
 <p>\[ V_{ESP-32}(V_{Real}) = V_{Real} * K_{Atenuación} + C_{Ajuste}\]</p>
@@ -158,46 +158,47 @@
 De la misma manera, podemos solicitar que el voltaje máximo sea el voltaje máximo disponible para el ADC de la ESP-32.</p>
 <p>\[  V_{ESP-32}(V_{Min}) = 0[V] = V_{Min} * K_{Atenuación} + C_{Ajuste} \]
 \[ V_{ESP-32}(V_{Max}) = 3.3[V] = V_{Max} * K_{Atenuación} + C_{Ajuste} \]</p>
-<p>Por último, resulta más o menos obvio (pero podemos explicitarlo) que el voltaje central (voltaje &quot;real cero&quot; de ahora en adelante). </p>
+<p>Por último, resulta más o menos obvio (pero podemos explicitarlo) que el voltaje central (el voltaje de 1.65[V]) será el voltaje en el cual estaremos leyendo 0[V] previos al acondicionamiento. Por eso lo llamaremos &quot;real cero&quot; o V_cero. </p>
 <p>\[ V_{ESP-32}(V_{cero}) = 1.65[V] = V_{cero} * K_{Atenuación} + C_{Ajuste} \]</p>
-<p>El volaje mínimo entonces será el voltaje negativo al voltaje máximo. Lo que nos garantizará que en el intervalo de operación para Vreal
+<p>El volaje mínimo entonces será el voltaje de misma dimensión pero signo opuesto al voltaje máximo. Lo que nos garantizará que en el intervalo de operación para V_real (V_real siendo el voltaje previo al acondicionamiento)
 \[ V_{real} \in (V_{min}, V_{max})\] 
-Así, tendremos valores siempre positivos entre 0[V] y 3.3[V] en la lectura del ESP-32 y así evitaremos darle voltajes superiores a 3.3[V] o inferiores a 0[V] con respecto a su tierra, (respetando así nuestro intervalo de operación seguro en todo momento).</p>
+Así, tendremos valores siempre positivos entre 0[V] y 3.3[V] en la lectura del ESP-32 y así evitaremos darle voltajes superiores a 3.3[V] o inferiores a 0[V] con respecto a la tierra de la tarjeta o a la computadora a la que se encuentre conectada, (respetando así nuestro intervalo de operación seguro en todo momento).</p>
 <p>Esto nos deja con la siguiente tarea de diseño: 
-Diseñar un circuito con resistores tal que funcione como un circuito de atenuación de factor K, donde además podamos centrar el voltaje. Solo por el bien de hacer una gráfica descriptiva en los ejes X, Y, con X siendo &quot;Voltaje real&quot; y Y siendo &quot;Voltaje ESP-32&quot;, sugeriremos un Vmax de 20[V], un Vmin de -20[V] y un voltaje &quot;cero&quot; de 1.65[V].</p>
+Diseñar un circuito con resistores tal que funcione como un circuito de atenuación de factor K, donde además podamos centrar el voltaje. </p>
+<p>Solo por el bien de hacer una gráfica descriptiva en los ejes X, Y, con X siendo &quot;Voltaje real&quot; y Y siendo &quot;Voltaje ESP-32&quot;, sugeriremos un Vmax de 20[V], un Vmin de -20[V] y un voltaje &quot;cero&quot; de 1.65[V].</p>
 <p align="center">
   <img src="../../capturas/2_disenno/circuito/captura00.png?raw=true" />
 </p>
 <p>Graficado en <a href="https://www.desmos.com/calculator?lang=es">Desmos</a></p>
-<p>Existen muchas muchas maneras de obtener un comportamiento semejante a este haciendo uso únicamente de resistores ya que hay una infinidad de arreglos que pueden proporcionar este comportamiento. En Este caso en concreto, el arreglo de resisores que se decidió usar fue uno de cuatro resistores.</p>
+<p>Existen muchas muchas maneras de obtener un comportamiento semejante a este haciendo uso únicamente de resistores ya que hay una infinidad de arreglos que pueden proporcionar este comportamiento. En este caso en concreto, se decidió partir de un divisor de voltaje.</p>
 <p>La idea fue:</p>
 <ol>
-<li>Supongamos que tenemos un arreglo de dos resistores en serie (también llamado divisor de voltaje)</li>
+<li>Supongamos que tenemos un arreglo de dos resistores en serie (el circuito llamado divisor de voltaje)</li>
 </ol>
 <p align="center">
   <img src="../../capturas/2_disenno/circuito/captura01.png?raw=true" />
 </p>
 <ol start="2">
-<li>Ese divisor de voltaje lo podemos diseñar de manera que quede exactamente en 1.65[V] en el nodo central.</li>
+<li>Ese divisor de voltaje lo podemos diseñar de manera que queden exactamente en 1.65[V] en el nodo central.</li>
 </ol>
 <p align="center">
   <img src="../../capturas/2_disenno/circuito/captura02.png?raw=true" />
 </p>
 <ol start="3">
-<li>Si agregamos un tercer resistor a este nodo, podremos &quot;desviar&quot; el voltaje hacia valores más altos o más bajos. En este ejemplo, el voltaje cambia 1/3 del voltaje original ya que está conectado a tierra pero no es difícil de ver que si el nuevo resistor estuviera conectado a un voltaje igual al generador inicial el nuevo resultado sería 2/3 del voltaje original. </li>
+<li>Si agregamos un tercer resistor a este nodo, podremos &quot;desviar&quot; el voltaje hacia valores más altos o más bajos. En este ejemplo, el voltaje cambia 1/3 del voltaje original ya que está conectado a tierra pero no es difícil de ver que si el nuevo resistor estuviera conectado a un voltaje igual al generador inicial el nuevo resultado sería 2/3 del voltaje original (en vez de 1/2, como cuando había solo una entrada y una salida). </li>
 </ol>
 <p align="center">
   <img src="../../capturas/2_disenno/circuito/captura03.png?raw=true" />
 </p>
 <ol start="4">
 <li>
-<p>Este resistor nuevo lo podemos llamar N. si los dos resistores originales los llamamos R1 y R2 quedaría un nodo central conectado en paralelo a tres resistores, R1 con voltaje, R2 con tierra y N con un voltaje variable. En ese nodo compartido por R1, R2 y N podremos realizar mediciones con el ADC del ESP-32.</p>
+<p>Este resistor nuevo lo podemos llamar N. Si los dos resistores originales los llamamos R1 y R2 quedaría un nodo central conectado en paralelo a tres resistores, R1 con voltaje, R2 con tierra y N con un voltaje variable. En ese nodo compartido por R1, R2 y N podremos realizar mediciones con el ADC del ESP-32. Este nodo, será tan importante que lo podremos bautizar de una vez como el nodo &quot;RN&quot;.</p>
 </li>
 <li>
-<p>Pensemos que el voltaje variable dependiera no de nosotros sino del fenómeno que estamos intentando medir. Ya que todo nuestro modelado es lineal, sería bastante fácil saber qué voltaje está ocurriendo del lado opuesto de N. N es de alguna manera nuestro &quot;termómetro de voltaje&quot; ya que lo podemos colocar en otro lugar y obtendremos una medición. Esta medición ya será bastante interesante ya que podremos determinar el voltaje de el dispositivo al que se conecte N con respecto al voltaje de tierra y el voltaje de operación del ESP-32. Esto está bien PERO nosotros somos un poco más ambiciosos, estamos buscando medir el voltaje entre dos puntos, no importa cuáles sean. </p>
+<p>Pensemos que el voltaje variable dependiera no de nosotros sino del fenómeno que estamos intentando medir. Ya que todo nuestro modelado es lineal, sería bastante fácil saber qué voltaje está ocurriendo del lado opuesto de N. N es de alguna manera nuestro &quot;termómetro de voltaje&quot; ya que lo podemos colocar en otro lugar y obtendremos una medición. Esta medición ya será bastante interesante puesto que podremos determinar el voltaje de el dispositivo al que se conecte N con respecto al voltaje de tierra y el voltaje de operación de la ESP-32. Esto está bien PERO nosotros somos un poco más ambiciosos, estamos buscando medir el voltaje entre dos puntos, no importa cuáles sean. Esto quiere decir, no nos interesa realmente el voltaje del punto con respecto a la tarjeta ESP-32 sino, nos interesa la relación del voltaje entre dos puntos del mundo externo, no su relación con la tarjeta ESP-32.</p>
 </li>
 </ol>
-<p>Ahora, recordemos brevemente el divisor de voltaje, el divisor de voltaje divide \[ \frac{V1 - V2}{R1 - R2} \]</p>
+<p>Ahora, recordemos brevemente el divisor de voltaje, el divisor de voltaje divide \[ V = \frac{V1 - V2}{R1 - R2} \]</p>
 <p>Supongamos que la manipulación del voltaje de N la realizáramos por medio de esa división de voltaje en un nuevo divisor de voltaje paralelo. </p>
 <p align="center">
   <img src="../../capturas/2_disenno/circuito/captura04.png?raw=true" />
@@ -213,12 +214,11 @@ Diseñar un circuito con resistores tal que funcione como un circuito de atenuac
 <ul>
 <li>Pensamos en el divisor de voltaje de dos resistores como nuestra base. (resistores R1, R2)</li>
 <li>Le agregamos un tercer resistor por medio del cual introduciríamos una variación en el voltaje del nodo central del divisor de voltaje. (resistor N)</li>
-<li>Agregamos un segundo divisor de voltaje por medio del cual obtendríamos la diferencia de voltajes entre las dos terminales de medición del osciloscopio. (resistores S1 y S2) Con este divisor de voltaje obtendríamos un gradiente de voltaje entre S1 y S2 con el cual afecteríamos de manera predecible el voltaje en el nodo central de R1, R2 y N. </li>
+<li>Agregamos un segundo divisor de voltaje por medio del cual obtendríamos la diferencia de voltajes entre las dos terminales de medición del osciloscopio (resistores S1 y S2). Con este divisor de voltaje obtendríamos un gradiente de voltaje entre S1 y S2 con el cual afecteríamos de manera predecible el voltaje en el nodo central de R1, R2 y N. </li>
 </ul>
 <p>Aquí es donde algo se nos está pasando, un error que tomó mucho rato encontrar y resolver.</p>
 <p>El nodo R1, R2, N no está desacoplado del nodo S1, S2, N. Este es el verdadero problema. El hecho de que no estén desacoplados puede parecer una nimiedad, sin embargo, este pequeño detalle destruye nuestro diseño.  (O al menos nos obliga a replantear algunas cosas).</p>
 <p>Llamemos a los nodos S1, S2, N el nodo SN y a R1, R2, N el nodo RN.</p>
-<p>Veámoslo en una simulación rápidamente: </p>
 <p>Supongamos</p>
 <ul>
 <li>El voltaje de tierra se encuentra en el resistor R2. </li>
@@ -226,10 +226,10 @@ Diseñar un circuito con resistores tal que funcione como un circuito de atenuac
 <li>Algún voltaje (solo por esta vez, pensemos que 3.3V) se encuentra en el resistor S1</li>
 <li>Algún voltaje (solo por esta vez, pensemos que 0V) se encuentra en el resistor S2. </li>
 </ul>
-<p>Esperaríamos que el voltaje en el nodo SN se encuentre en alguna vecindad que nuestro osciloscopio pueda manejar. Se generaría una desviación de voltaje en el nodo RN y podríamos calcular el voltaje en el nodo SN. La realidad es que en este escenario no tendríamos ningún cambio de voltaje en el nodo RN. Además los resultados obtenidos serían un sinsentido, ¿qué voltaje se mostraría si en S1 tuviéramos un voltaje altísimo y en S2 un voltaje negativo de un enorme valor absoluto? Sería impredecible y sería dependiente del valor de N. Si N fuera muy grande podríamos casi lograr un desacoplo, si N fuera muy chica la influencia del voltaje SN en el voltaje RN sería enorme. Pensemos también en el escenario ¿y si tanto el voltaje de S1 como el voltaje de S2 fueran altísimos? Quizá no obtendríamos una real diferencia de voltaje en el divisor SN pero sí veríamos una influencia muy grande en el nodo RN. </p>
+<p>Esperaríamos que el voltaje en el nodo SN se encuentre en alguna vecindad que nuestro osciloscopio pueda manejar. Este voltaje en SN generaría una desviación de voltaje en el nodo RN y podríamos calcular el voltaje en el nodo SN y a partir de éste podríamos calcular el voltaje en S1 y S2 (los dos verdadores valores de interés). La realidad es que en este escenario (0V y 3.3V) no tendríamos ningún cambio de voltaje en el nodo RN. Además los resultados obtenidos serían un sinsentido, ¿qué voltaje se mostraría si en S1 tuviéramos un voltaje altísimo y en S2 un voltaje negativo de un enorme valor absoluto? Sería impredecible y sería dependiente del valor de N. Si N fuera muy grande podríamos casi lograr un desacoplo, si N fuera muy chica la influencia del voltaje SN en el voltaje RN sería enorme. Pensemos también en el escenario ¿y si tanto el voltaje de S1 como el voltaje de S2 fueran altísimos? Quizá no obtendríamos una real diferencia de voltaje en el divisor SN pero sí veríamos una influencia muy grande en el nodo RN. </p>
 <p>Está mal, falla por todos lados y solo funcionaría nuestro circuito en un puñado muy muy selecto de escenarios. Es por eso que tenemos que cambiar nuestro modelo.</p>
 <p>Regresemos al paso en que agregamos N.</p>
-<p>Venga, una vez más, paso 4</p>
+<p>Venga, una vez más, paso 4. Esta vez hagamos una consideración adicional; vamos a medir el voltaje de un solo punto, no la diferencia de voltajes.</p>
 <p align="center">
   <img src="../../capturas/2_disenno/circuito/captura05.png?raw=true" />
 </p>
@@ -251,12 +251,13 @@ Tres resistores, tres fuentes de voltaje, conocemos el valor de dos fuentes, con
 <p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3ETFEPKnuBo0oomlWzR6VGdARsATtwy8ww5bxTjRYeIo3dtg7NkI69AcwMmzxwnlGQ2Vm3wn23jtgHcD-EK7+TkpghAJGKoYyyHBsAB7ckEiCWsTKSCJaIAByAPoAhvHcxA5gxGampaS0hiAASgW57Am4ECjEItgYbWQ1WQ35uShFCHhp7SKECOO9mSINAEZDI3hmZWZTa9Vz9blLzbTE9IIIXel9InkL+sIOWlQIYVHmsb6PVP6EWUHOIF8in0enhkv3eAVMFCelS8SjB90hEghVF0sVhTzUIjh2mRei4YP8YIxjloEikxJg8iAA">Circuito interactivo</a></p>
 <p>Así ya tendremos el arreglo A y el arreglo B. Con el arreglo A realizaremos la medición de un voltaje con una punta de terminal (podemos definir que el arreglo A lleve a la terminal roja &quot;positiva&quot;) y con la otra terminal podemos realizar la otra medición (el arreglo B lleva a la terminal negra &quot;negativa&quot;). </p>
 <ol start="7">
-<li>Aquí termina la perte del diseño del circuito, realizaremos la medición del nodo RNA y del nodo RNB de manera simultánea con el ESP-32 ya que esta tarjeta cuenta con dos ADCs. Esta es una más de las razones por las cuales resulta tan conveniente esta tarjeta. </li>
+<li>Aquí termina la perte del diseño del circuito, realizaremos la medición del nodo RN_A y del nodo RN_B de manera simultánea con el ESP-32 ya que esta tarjeta cuenta con dos ADCs. Esta es una más de las razones por las cuales resulta tan conveniente esta tarjeta. </li>
 </ol>
 <p>Leídos los dos voltajes de manera individual podremos realizar una resta entre ellos y hacer todas las manipulaciones posteriores por medio de herramental lógico (software).</p>
 <h1 id="conclusión"><a class="header" href="#conclusión">Conclusión</a></h1>
 <p>En la parte de usuario avanzado explicaré a más detalle cómo calcular los valores de los resistores a usar, cómo determinar los voltajes máximos seguros así como explorar los múltiples diseños que se llevaron antes de llegar a este último arreglo que resultó aparentemente tan sencillo al final.</p>
 <p>Del diseño podemos concluir que muchas veces lo mejor es delegar la responsabilidad de realizar operaciones lógicas a la programación y a las capas más abstractas del proyecto. Es por esto que siempre se intenta delegar responsabilidad a &quot;una capa superior&quot;. Lo mismo ocurrirá cuando trabajemos con el ESP-32, le delegaremos responsabilidades a aplicación de Java ya que ahí tendremos todavía más holgura en cuanto a capacidad de procesamiento. </p>
+<p><a href="../cap_03_avanzado/01_alambrado.html">Usuario Avanzado: diseño del circuito</a></p>
 
                     </main>
 

@@ -187,7 +187,7 @@ Posteriormente se agregó como meta el desarrollo de compatibilidad con Android 
 </p>
 <p><a href="https://crcit.net/c/1a4219bcc6354a459e49a6513dffca10">Editor utilizado</a></p>
 <h2 id="notas"><a class="header" href="#notas">Notas</a></h2>
-<p>Tenemos que tener cuidado con que todo esté correctamente conectado para asegurar el correcto funcionamiento del dispositivo. No dude en usar un multímetro para comprobar la conectividad entre los componentes de acuerdo al diagrama. También, considere que que los resistores y el cable son los componentes más baratos de este dispositivo, merece la pena sacrificar esos componentes para un solo uso y asegurar que se coloquen de la mejor manera posible para garantizar la seguridad de la tarjeta ESP-32. </p>
+<p>Tenemos que tener cuidado con que todo esté correctamente conectado para asegurar el correcto funcionamiento del dispositivo. No dude en usar un multímetro para comprobar la conectividad entre los componentes de acuerdo al diagrama. También, considere que los resistores y el cable son los componentes más baratos de este dispositivo, merece la pena sacrificar esos componentes para un solo uso y asegurar que se coloquen de la mejor manera posible para garantizar la seguridad de la tarjeta ESP-32. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cómo-programarlo"><a class="header" href="#cómo-programarlo">Cómo programarlo</a></h1>
 <p>Para programar la tarjeta ESP-32 necesitaremos una computadora personal (puede tener tanto Windows como OSX o Linux).</p>
 <ol>
@@ -211,7 +211,7 @@ Posteriormente se agregó como meta el desarrollo de compatibilidad con Android 
   <img src="cap_01_manual_usuario/../../capturas/1_manual/programacion_arduino/captura01.png?raw=true" />
 </p>
 <p>Una vez presionado el botón &quot;OK&quot; comenzará la descarga de las bibliotecas necesarias de Espressif para la compilación del código de Arduino a nuestra tarjeta ESP-32. </p>
-<p>Posteriormente únicamente será necesario subir a la tarjeta ESP-32 el código <a href="cap_01_manual_usuario/../cap_99_extras/programa_arduino.html">aquí</a> proporcionado.</p>
+<p>Posteriormente, únicamente será necesario subir a la tarjeta ESP-32 el código <a href="cap_01_manual_usuario/../cap_99_extras/programa_arduino.html">aquí</a> proporcionado.</p>
 <p>Para cualquier referencia posterior sobre cómo subir un programa a una tarjeta de desarrollo recomiendo este video.</p>
 <p><a href="https://www.youtube.com/watch?v=L18nta4pRv8">Guía Arduino</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cómo-usarlo"><a class="header" href="#cómo-usarlo">Cómo usarlo</a></h1>
@@ -261,7 +261,7 @@ Posteriormente se agregó como meta el desarrollo de compatibilidad con Android 
 <p align="center">
   <img src="cap_01_manual_usuario/../../capturas/1_manual/uso/captura07.png?raw=true" />
 </p>
-<p>En esta ventanita tenemos más opciones que en el generador de funciones seno ya que hay una serie de cosas adicionales que tenemos que contemplar al momento de traducir los valores que nos suministra la ESP-32. De manera general, si el circuito que usted armó es excatamente igual al propuesto en el capítulo anterior, lo único que deberá cambiar es el valor del PUERTO cuando quiera conectar dos señales (sinusoidales o incluso dos traductores de la ESP-32) tal y como lo hicimos en el ejemplo pasado. Además, también deberá cambiar la celda que está marcada como COMPORT. Esta celda sirve para seleccionar el puerto serial al que queremos que nuestro programa se conecte.</p>
+<p>En esta ventanita tenemos más opciones que en el generador de funciones seno ya que hay una serie de cosas adicionales que tenemos que contemplar al momento de traducir los valores que nos suministra la ESP-32. De manera general, si el circuito que usted armó es exactamente igual al propuesto en el capítulo anterior, lo único que deberá cambiar es el valor del PUERTO cuando quiera conectar dos señales (sinusoidales o incluso dos traductores de la ESP-32) tal y como lo hicimos en el ejemplo pasado. Además, también deberá cambiar la celda que está marcada como COMPORT. Esta celda sirve para seleccionar el puerto serial al que queremos que nuestro programa se conecte.</p>
 <p>Si quisiera utilizar un arreglo diferente de resistores (por ejemplo, para tener una menor atenuación de los voltajes o tener una mayor atenuación para lectura de voltaje más elevados a los 50V de diseño, tendrá que registrar los valores de los resistores tal y como se indica en la sección del diseño avanzado) <a href="cap_01_manual_usuario/../cap_03_avanzado/01_alambrado.html">Aquí</a></p>
 <p>Para el grueso de los usuarios, se espera que se pueda conectar directamente al conectar nuestro dispositivo armado con los resistores y la tarjeta ESP-32. </p>
 <p>Comencemos entonces con un ejemplo. Se sugiere ya tener conectada la tarjeta ESP-32 al momento de arrancar el programa traductor, sin embargo, no es indispensable. </p>
@@ -273,7 +273,7 @@ Posteriormente se agregó como meta el desarrollo de compatibilidad con Android 
 <p align="center">
   <img src="cap_01_manual_usuario/../../capturas/1_manual/uso/captura09.png?raw=true" />
 </p>
-<p>Identifique el índice del dispositivo que desea conectar. En Windows generalmente buscaremos conectarnos al dispositivo COM0, sin embargo, esto puede cambiar de equipo en equipo. En el caso de Mac y Linux buscaremos conectarnos al dispositivo de nombre tty.usbserial-####. En la presentación realizada aquí con Mac nos conectaremos entonces al índice 7. El el ejemplo en Windows nos conectaremos al índice 0.</p>
+<p>Identifique el índice del dispositivo que desea conectar. En Windows generalmente buscaremos conectarnos al dispositivo COM0, sin embargo, esto puede cambiar de equipo en equipo. En el caso de Mac y Linux buscaremos conectarnos al dispositivo de nombre tty.usbserial-####. En la presentación realizada aquí con Mac nos conectaremos entonces al índice 7. En el ejemplo en Windows nos conectaremos al índice 0.</p>
 <p>Cambiamos el valor en COMPORT y presionamos Enter. 
 Nota: Podemos estar seguros de que el cambio se realizó si al presionar Enter nos cambia a la celda siguiente.</p>
 <p>Tras asegurarnos que la celda COMPORT y la celda PUERTO estén en los valores que deseamos podemos presionar el botón de &quot;Encender&quot;. En el caso de esta presentación, dado que no se está aplicando ningún voltaje y la conexión con el COMPORT fue exitosa, podemos observar la línea amarilla de voltaje en el voltaje de 0V.</p>
@@ -315,15 +315,15 @@ Al presionar el modo Lissajous se entra en modo de graficación de figuras Lissa
 <p>NOTA: La ventana de graficación se puede escalar a placer, el tamaño de las etiquetas escalará de acuerdo al tamaño de la ventana en el eje horizontal.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="decisiones-de-diseño"><a class="header" href="#decisiones-de-diseño">Decisiones de diseño</a></h1>
 <p>En este capítulo le dedicaré una sección a las decisiones finales del diseño. Tras explorar múltiples alternativas de diseño (tratadas en el capítulo anterior) se estableció que la mejor manera de construir el osciloscopio sería por medio de:</p>
-<p>Dado que únicamente se tratará el diseño de la implementación final no entraré demasiado en detalle de los diseños descartados ni de los valores concretos de resistores, voltajes etc. todo esto se trata en el capítulo de <a href="cap_02_disenno/../cap_03_avanzado/index.html">usuario avanzado</a> donde se explican patrones de diseño así como fallas encontradas durante el proceso.</p>
+<p>Dado que únicamente se tratará el diseño de la implementación final, no entraré demasiado en detalle de los diseños descartados ni de los valores concretos de resistores, voltajes etc. todo esto se trata en el capítulo de <a href="cap_02_disenno/../cap_03_avanzado/index.html">usuario avanzado</a> donde se explican patrones de diseño así como fallas encontradas durante el proceso.</p>
 <p>¡¡Atención, esta sección explica a detalle la lógica utilizada para el diseño del osciloscopio, se recomienda un conocimiento intermedio de electrónica!!</p>
 <ul>
-<li><a href="cap_02_disenno/00_ideas_disenno.html">Diseños decartados</a></li>
+<li><a href="cap_02_disenno/00_ideas_disenno.html">Diseños descartados</a></li>
 <li><a href="cap_02_disenno/01_alambrado.html">Diseño del circuito</a></li>
 <li><a href="cap_02_disenno/02_esp32.html">Diseño de código ESP-32</a></li>
 <li><a href="cap_02_disenno/03_aplicacion_java.html">Diseño de la aplicación</a></li>
 </ul>
-<p>Así, en cada capítulo proseguiré a explicar qué hace cada parte del osciloscopio parte intentando transferir la lógica detrás de cada desición que sí se quedó en el diseño final, no el comportamiento de manera tan detallada o minuciosa.</p>
+<p>Así, en cada capítulo proseguiré a explicar qué hace cada parte del osciloscopio, intentando transferir la lógica detrás de cada decisión que sí se quedó en el diseño final, no el comportamiento de manera tan detallada o minuciosa.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ideas-de-diseño"><a class="header" href="#ideas-de-diseño">Ideas de diseño</a></h1>
 <p>El diseño de un nuevo dispositivo se parece a la exploración de un nuevo mar, se parece en el sentido de que a pesar de que hay muchas manera de llegar a nuestro destino, habrá unas con el mar más quebrado, unas que requerirán de un barco más equipado, unas que requerirán de una tripulación más grande.</p>
 <p>Siguiendo esta analogía, yo soy un barquero en una chalupa que le promete llegar al otro lado del Atlántico por solo 300 pesos. Quizá resulte difícil de creer pero quizá con eso me haya ganado su atención con este pequeño cuento. Además, no lo vea como comprar un viaje, yo aquí únicamente le estoy dando un panfleto de viajes &quot;¡Llegue a América con 300mxn!&quot;.</p>
@@ -432,9 +432,9 @@ Al presionar el modo Lissajous se entra en modo de graficación de figuras Lissa
     </ul>
 </span><div style="break-before: page; page-break-before: always;"></div><h1 id="circuito"><a class="header" href="#circuito">Circuito</a></h1>
 <p>En esta sección se tratará muy brevemente el circuito final que se utilizó para acondicionar la señal leída.</p>
-<p>Después de las muchas consideraciones que se tomaron en la sección anterior, ya que la gran mayoría de las cosas ideas terminaron en fallo, el diseño se fue reduciendo más y más hasta únicamente poder trabajar con resistores y la tarjeta de desarrollo ESP-32. </p>
-<p>Entonces, todo el diseño del osciloscopio se vio reducido a una máquina lineal (la cual iremos descubriendo a lo largo de este capítulo) la cual consta únicamente de resistores.</p>
-<p>Esto quiere decir que tenemos una función lineal que relaciona el voltaje que queremos leer (sin procesamiento) y el voltaje que va a leer la tarjeta ESP-32 (con procesamiento). Esta función la podremos expresar como:</p>
+<p>Después de las muchas consideraciones que se tomaron en la sección anterior, ya que la gran mayoría de las cosas ideas terminaron en fallo, el diseño se fue reduciendo más y más hasta poder trabajar únicamente con resistores y la tarjeta de desarrollo ESP-32. </p>
+<p>Entonces, todo el diseño del osciloscopio se vio reducido a una máquina lineal (la cual iremos descubriendo a lo largo de este capítulo) la cual consta únicamente de resistores y un convertidor analógico digital (ADC).</p>
+<p>Esto quiere decir que tenemos una función lineal que relaciona el voltaje que queremos leer (previo al acondicionamiento) y el voltaje que va a leer la tarjeta ESP-32 (posterior al acondicionamiento). Esta función la podremos expresar como:</p>
 <p>\[ V_{ESP-32}(V_{Real}) = V_{Real} * K_{Atenuación}\]</p>
 <p>Lo que tendremos que hacer es diseñar un circuito tal que conozcamos la atenuación de nuestros resistores <em>a priori</em> además de poder aprovechar el rango de voltajes disponibles en el ADC de nuestro ESP-32. Esto sugiere que tendremos que hacer un centrado posterior a la atenuación de nuestra señal eléctrica:</p>
 <p>\[ V_{ESP-32}(V_{Real}) = V_{Real} * K_{Atenuación} + C_{Ajuste}\]</p>
@@ -442,46 +442,47 @@ Al presionar el modo Lissajous se entra en modo de graficación de figuras Lissa
 De la misma manera, podemos solicitar que el voltaje máximo sea el voltaje máximo disponible para el ADC de la ESP-32.</p>
 <p>\[  V_{ESP-32}(V_{Min}) = 0[V] = V_{Min} * K_{Atenuación} + C_{Ajuste} \]
 \[ V_{ESP-32}(V_{Max}) = 3.3[V] = V_{Max} * K_{Atenuación} + C_{Ajuste} \]</p>
-<p>Por último, resulta más o menos obvio (pero podemos explicitarlo) que el voltaje central (voltaje &quot;real cero&quot; de ahora en adelante). </p>
+<p>Por último, resulta más o menos obvio (pero podemos explicitarlo) que el voltaje central (el voltaje de 1.65[V]) será el voltaje en el cual estaremos leyendo 0[V] previos al acondicionamiento. Por eso lo llamaremos &quot;real cero&quot; o V_cero. </p>
 <p>\[ V_{ESP-32}(V_{cero}) = 1.65[V] = V_{cero} * K_{Atenuación} + C_{Ajuste} \]</p>
-<p>El volaje mínimo entonces será el voltaje negativo al voltaje máximo. Lo que nos garantizará que en el intervalo de operación para Vreal
+<p>El volaje mínimo entonces será el voltaje de misma dimensión pero signo opuesto al voltaje máximo. Lo que nos garantizará que en el intervalo de operación para V_real (V_real siendo el voltaje previo al acondicionamiento)
 \[ V_{real} \in (V_{min}, V_{max})\] 
-Así, tendremos valores siempre positivos entre 0[V] y 3.3[V] en la lectura del ESP-32 y así evitaremos darle voltajes superiores a 3.3[V] o inferiores a 0[V] con respecto a su tierra, (respetando así nuestro intervalo de operación seguro en todo momento).</p>
+Así, tendremos valores siempre positivos entre 0[V] y 3.3[V] en la lectura del ESP-32 y así evitaremos darle voltajes superiores a 3.3[V] o inferiores a 0[V] con respecto a la tierra de la tarjeta o a la computadora a la que se encuentre conectada, (respetando así nuestro intervalo de operación seguro en todo momento).</p>
 <p>Esto nos deja con la siguiente tarea de diseño: 
-Diseñar un circuito con resistores tal que funcione como un circuito de atenuación de factor K, donde además podamos centrar el voltaje. Solo por el bien de hacer una gráfica descriptiva en los ejes X, Y, con X siendo &quot;Voltaje real&quot; y Y siendo &quot;Voltaje ESP-32&quot;, sugeriremos un Vmax de 20[V], un Vmin de -20[V] y un voltaje &quot;cero&quot; de 1.65[V].</p>
+Diseñar un circuito con resistores tal que funcione como un circuito de atenuación de factor K, donde además podamos centrar el voltaje. </p>
+<p>Solo por el bien de hacer una gráfica descriptiva en los ejes X, Y, con X siendo &quot;Voltaje real&quot; y Y siendo &quot;Voltaje ESP-32&quot;, sugeriremos un Vmax de 20[V], un Vmin de -20[V] y un voltaje &quot;cero&quot; de 1.65[V].</p>
 <p align="center">
   <img src="cap_02_disenno/../../capturas/2_disenno/circuito/captura00.png?raw=true" />
 </p>
 <p>Graficado en <a href="https://www.desmos.com/calculator?lang=es">Desmos</a></p>
-<p>Existen muchas muchas maneras de obtener un comportamiento semejante a este haciendo uso únicamente de resistores ya que hay una infinidad de arreglos que pueden proporcionar este comportamiento. En Este caso en concreto, el arreglo de resisores que se decidió usar fue uno de cuatro resistores.</p>
+<p>Existen muchas muchas maneras de obtener un comportamiento semejante a este haciendo uso únicamente de resistores ya que hay una infinidad de arreglos que pueden proporcionar este comportamiento. En este caso en concreto, se decidió partir de un divisor de voltaje.</p>
 <p>La idea fue:</p>
 <ol>
-<li>Supongamos que tenemos un arreglo de dos resistores en serie (también llamado divisor de voltaje)</li>
+<li>Supongamos que tenemos un arreglo de dos resistores en serie (el circuito llamado divisor de voltaje)</li>
 </ol>
 <p align="center">
   <img src="cap_02_disenno/../../capturas/2_disenno/circuito/captura01.png?raw=true" />
 </p>
 <ol start="2">
-<li>Ese divisor de voltaje lo podemos diseñar de manera que quede exactamente en 1.65[V] en el nodo central.</li>
+<li>Ese divisor de voltaje lo podemos diseñar de manera que queden exactamente en 1.65[V] en el nodo central.</li>
 </ol>
 <p align="center">
   <img src="cap_02_disenno/../../capturas/2_disenno/circuito/captura02.png?raw=true" />
 </p>
 <ol start="3">
-<li>Si agregamos un tercer resistor a este nodo, podremos &quot;desviar&quot; el voltaje hacia valores más altos o más bajos. En este ejemplo, el voltaje cambia 1/3 del voltaje original ya que está conectado a tierra pero no es difícil de ver que si el nuevo resistor estuviera conectado a un voltaje igual al generador inicial el nuevo resultado sería 2/3 del voltaje original. </li>
+<li>Si agregamos un tercer resistor a este nodo, podremos &quot;desviar&quot; el voltaje hacia valores más altos o más bajos. En este ejemplo, el voltaje cambia 1/3 del voltaje original ya que está conectado a tierra pero no es difícil de ver que si el nuevo resistor estuviera conectado a un voltaje igual al generador inicial el nuevo resultado sería 2/3 del voltaje original (en vez de 1/2, como cuando había solo una entrada y una salida). </li>
 </ol>
 <p align="center">
   <img src="cap_02_disenno/../../capturas/2_disenno/circuito/captura03.png?raw=true" />
 </p>
 <ol start="4">
 <li>
-<p>Este resistor nuevo lo podemos llamar N. si los dos resistores originales los llamamos R1 y R2 quedaría un nodo central conectado en paralelo a tres resistores, R1 con voltaje, R2 con tierra y N con un voltaje variable. En ese nodo compartido por R1, R2 y N podremos realizar mediciones con el ADC del ESP-32.</p>
+<p>Este resistor nuevo lo podemos llamar N. Si los dos resistores originales los llamamos R1 y R2 quedaría un nodo central conectado en paralelo a tres resistores, R1 con voltaje, R2 con tierra y N con un voltaje variable. En ese nodo compartido por R1, R2 y N podremos realizar mediciones con el ADC del ESP-32. Este nodo, será tan importante que lo podremos bautizar de una vez como el nodo &quot;RN&quot;.</p>
 </li>
 <li>
-<p>Pensemos que el voltaje variable dependiera no de nosotros sino del fenómeno que estamos intentando medir. Ya que todo nuestro modelado es lineal, sería bastante fácil saber qué voltaje está ocurriendo del lado opuesto de N. N es de alguna manera nuestro &quot;termómetro de voltaje&quot; ya que lo podemos colocar en otro lugar y obtendremos una medición. Esta medición ya será bastante interesante ya que podremos determinar el voltaje de el dispositivo al que se conecte N con respecto al voltaje de tierra y el voltaje de operación del ESP-32. Esto está bien PERO nosotros somos un poco más ambiciosos, estamos buscando medir el voltaje entre dos puntos, no importa cuáles sean. </p>
+<p>Pensemos que el voltaje variable dependiera no de nosotros sino del fenómeno que estamos intentando medir. Ya que todo nuestro modelado es lineal, sería bastante fácil saber qué voltaje está ocurriendo del lado opuesto de N. N es de alguna manera nuestro &quot;termómetro de voltaje&quot; ya que lo podemos colocar en otro lugar y obtendremos una medición. Esta medición ya será bastante interesante puesto que podremos determinar el voltaje de el dispositivo al que se conecte N con respecto al voltaje de tierra y el voltaje de operación de la ESP-32. Esto está bien PERO nosotros somos un poco más ambiciosos, estamos buscando medir el voltaje entre dos puntos, no importa cuáles sean. Esto quiere decir, no nos interesa realmente el voltaje del punto con respecto a la tarjeta ESP-32 sino, nos interesa la relación del voltaje entre dos puntos del mundo externo, no su relación con la tarjeta ESP-32.</p>
 </li>
 </ol>
-<p>Ahora, recordemos brevemente el divisor de voltaje, el divisor de voltaje divide \[ \frac{V1 - V2}{R1 - R2} \]</p>
+<p>Ahora, recordemos brevemente el divisor de voltaje, el divisor de voltaje divide \[ V = \frac{V1 - V2}{R1 - R2} \]</p>
 <p>Supongamos que la manipulación del voltaje de N la realizáramos por medio de esa división de voltaje en un nuevo divisor de voltaje paralelo. </p>
 <p align="center">
   <img src="cap_02_disenno/../../capturas/2_disenno/circuito/captura04.png?raw=true" />
@@ -497,12 +498,11 @@ Diseñar un circuito con resistores tal que funcione como un circuito de atenuac
 <ul>
 <li>Pensamos en el divisor de voltaje de dos resistores como nuestra base. (resistores R1, R2)</li>
 <li>Le agregamos un tercer resistor por medio del cual introduciríamos una variación en el voltaje del nodo central del divisor de voltaje. (resistor N)</li>
-<li>Agregamos un segundo divisor de voltaje por medio del cual obtendríamos la diferencia de voltajes entre las dos terminales de medición del osciloscopio. (resistores S1 y S2) Con este divisor de voltaje obtendríamos un gradiente de voltaje entre S1 y S2 con el cual afecteríamos de manera predecible el voltaje en el nodo central de R1, R2 y N. </li>
+<li>Agregamos un segundo divisor de voltaje por medio del cual obtendríamos la diferencia de voltajes entre las dos terminales de medición del osciloscopio (resistores S1 y S2). Con este divisor de voltaje obtendríamos un gradiente de voltaje entre S1 y S2 con el cual afecteríamos de manera predecible el voltaje en el nodo central de R1, R2 y N. </li>
 </ul>
 <p>Aquí es donde algo se nos está pasando, un error que tomó mucho rato encontrar y resolver.</p>
 <p>El nodo R1, R2, N no está desacoplado del nodo S1, S2, N. Este es el verdadero problema. El hecho de que no estén desacoplados puede parecer una nimiedad, sin embargo, este pequeño detalle destruye nuestro diseño.  (O al menos nos obliga a replantear algunas cosas).</p>
 <p>Llamemos a los nodos S1, S2, N el nodo SN y a R1, R2, N el nodo RN.</p>
-<p>Veámoslo en una simulación rápidamente: </p>
 <p>Supongamos</p>
 <ul>
 <li>El voltaje de tierra se encuentra en el resistor R2. </li>
@@ -510,10 +510,10 @@ Diseñar un circuito con resistores tal que funcione como un circuito de atenuac
 <li>Algún voltaje (solo por esta vez, pensemos que 3.3V) se encuentra en el resistor S1</li>
 <li>Algún voltaje (solo por esta vez, pensemos que 0V) se encuentra en el resistor S2. </li>
 </ul>
-<p>Esperaríamos que el voltaje en el nodo SN se encuentre en alguna vecindad que nuestro osciloscopio pueda manejar. Se generaría una desviación de voltaje en el nodo RN y podríamos calcular el voltaje en el nodo SN. La realidad es que en este escenario no tendríamos ningún cambio de voltaje en el nodo RN. Además los resultados obtenidos serían un sinsentido, ¿qué voltaje se mostraría si en S1 tuviéramos un voltaje altísimo y en S2 un voltaje negativo de un enorme valor absoluto? Sería impredecible y sería dependiente del valor de N. Si N fuera muy grande podríamos casi lograr un desacoplo, si N fuera muy chica la influencia del voltaje SN en el voltaje RN sería enorme. Pensemos también en el escenario ¿y si tanto el voltaje de S1 como el voltaje de S2 fueran altísimos? Quizá no obtendríamos una real diferencia de voltaje en el divisor SN pero sí veríamos una influencia muy grande en el nodo RN. </p>
+<p>Esperaríamos que el voltaje en el nodo SN se encuentre en alguna vecindad que nuestro osciloscopio pueda manejar. Este voltaje en SN generaría una desviación de voltaje en el nodo RN y podríamos calcular el voltaje en el nodo SN y a partir de éste podríamos calcular el voltaje en S1 y S2 (los dos verdadores valores de interés). La realidad es que en este escenario (0V y 3.3V) no tendríamos ningún cambio de voltaje en el nodo RN. Además los resultados obtenidos serían un sinsentido, ¿qué voltaje se mostraría si en S1 tuviéramos un voltaje altísimo y en S2 un voltaje negativo de un enorme valor absoluto? Sería impredecible y sería dependiente del valor de N. Si N fuera muy grande podríamos casi lograr un desacoplo, si N fuera muy chica la influencia del voltaje SN en el voltaje RN sería enorme. Pensemos también en el escenario ¿y si tanto el voltaje de S1 como el voltaje de S2 fueran altísimos? Quizá no obtendríamos una real diferencia de voltaje en el divisor SN pero sí veríamos una influencia muy grande en el nodo RN. </p>
 <p>Está mal, falla por todos lados y solo funcionaría nuestro circuito en un puñado muy muy selecto de escenarios. Es por eso que tenemos que cambiar nuestro modelo.</p>
 <p>Regresemos al paso en que agregamos N.</p>
-<p>Venga, una vez más, paso 4</p>
+<p>Venga, una vez más, paso 4. Esta vez hagamos una consideración adicional; vamos a medir el voltaje de un solo punto, no la diferencia de voltajes.</p>
 <p align="center">
   <img src="cap_02_disenno/../../capturas/2_disenno/circuito/captura05.png?raw=true" />
 </p>
@@ -535,16 +535,17 @@ Tres resistores, tres fuentes de voltaje, conocemos el valor de dos fuentes, con
 <p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3ETFEPKnuBo0oomlWzR6VGdARsATtwy8ww5bxTjRYeIo3dtg7NkI69AcwMmzxwnlGQ2Vm3wn23jtgHcD-EK7+TkpghAJGKoYyyHBsAB7ckEiCWsTKSCJaIAByAPoAhvHcxA5gxGampaS0hiAASgW57Am4ECjEItgYbWQ1WQ35uShFCHhp7SKECOO9mSINAEZDI3hmZWZTa9Vz9blLzbTE9IIIXel9InkL+sIOWlQIYVHmsb6PVP6EWUHOIF8in0enhkv3eAVMFCelS8SjB90hEghVF0sVhTzUIjh2mRei4YP8YIxjloEikxJg8iAA">Circuito interactivo</a></p>
 <p>Así ya tendremos el arreglo A y el arreglo B. Con el arreglo A realizaremos la medición de un voltaje con una punta de terminal (podemos definir que el arreglo A lleve a la terminal roja &quot;positiva&quot;) y con la otra terminal podemos realizar la otra medición (el arreglo B lleva a la terminal negra &quot;negativa&quot;). </p>
 <ol start="7">
-<li>Aquí termina la perte del diseño del circuito, realizaremos la medición del nodo RNA y del nodo RNB de manera simultánea con el ESP-32 ya que esta tarjeta cuenta con dos ADCs. Esta es una más de las razones por las cuales resulta tan conveniente esta tarjeta. </li>
+<li>Aquí termina la perte del diseño del circuito, realizaremos la medición del nodo RN_A y del nodo RN_B de manera simultánea con el ESP-32 ya que esta tarjeta cuenta con dos ADCs. Esta es una más de las razones por las cuales resulta tan conveniente esta tarjeta. </li>
 </ol>
 <p>Leídos los dos voltajes de manera individual podremos realizar una resta entre ellos y hacer todas las manipulaciones posteriores por medio de herramental lógico (software).</p>
 <h1 id="conclusión"><a class="header" href="#conclusión">Conclusión</a></h1>
 <p>En la parte de usuario avanzado explicaré a más detalle cómo calcular los valores de los resistores a usar, cómo determinar los voltajes máximos seguros así como explorar los múltiples diseños que se llevaron antes de llegar a este último arreglo que resultó aparentemente tan sencillo al final.</p>
 <p>Del diseño podemos concluir que muchas veces lo mejor es delegar la responsabilidad de realizar operaciones lógicas a la programación y a las capas más abstractas del proyecto. Es por esto que siempre se intenta delegar responsabilidad a &quot;una capa superior&quot;. Lo mismo ocurrirá cuando trabajemos con el ESP-32, le delegaremos responsabilidades a aplicación de Java ya que ahí tendremos todavía más holgura en cuanto a capacidad de procesamiento. </p>
+<p><a href="cap_02_disenno/../cap_03_avanzado/01_alambrado.html">Usuario Avanzado: diseño del circuito</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="esp-32"><a class="header" href="#esp-32">ESP-32</a></h1>
-<p>La tarjeta de desarollo ESP-32 fue la que quedó como la mejor alternativa a en cuanto a tarjetas con un circuito integrado se refiere. Existen alternativas que son ligeramente más sencillas de conseguir por precios no muy diferentes, sin embargo, la ESP-32 presenta una serie de ventajas que estas laternativas no. </p>
-<p>Las tarjetas de Arduino, la Nano y la Uno, eran los principales contenientes junto con la otra ESP, ESP-8266.</p>
-<p>Ninguna de estas tarjetas es tan mala como para quedar inmediatamente descartada pero hay una razón final por la que la ESP-32 quedó como la única tarjeta recomendada para elaborar este osciloscopio (aunque también se podría elaborar con estas otras tarjetas).</p>
+<p>La tarjeta de desarollo ESP-32 fue la que quedó como la mejor alternativa a en cuanto a tarjetas con un circuito integrado se refiere. Existen alternativas que son ligeramente más sencillas de conseguir por precios no muy diferentes, sin embargo, la ESP-32 presenta una serie de ventajas que estas alternativas no. </p>
+<p>Las tarjetas de Arduino, la Nano y la Uno así como la ESP-8266 fueron también contempladas.</p>
+<p>Ninguna de estas tarjetas es tan mala como para quedar inmediatamente descartada pero hay una razón final por la que la ESP-32 quedó como la única tarjeta recomendada para elaborar este osciloscopio (aunque también se podría armar el osciloscopio con cualquierade  estas otras tarjetas).</p>
 <p><span  style="color:teal"> RECOMENDACIÓN </span></p>
 <ul>
 <li>La tarjeta ESP-32 tiene una velocidad de reloj de 240MHz, un ADC con resolución de 12 bits (0-&gt;4095) y un precio de 160 mxn <a href="https://sandorobotics.com/producto/hs0204/">SandoRobotics</a>.</li>
@@ -556,7 +557,7 @@ Tres resistores, tres fuentes de voltaje, conocemos el valor de dos fuentes, con
 <p>Arduino Nano: Las dimensiones y los casos de uso son semejantes a las de la ESP-32, el ADC igualmente tiene una resolución de 12-bits, la única diferencia real para el usuario está en la velocidad de reloj. La tarjeta de Arduino Nano tiene una velocidad de reloj de 80MHz mientras que la ESP-32 tiene 240MHz por cada núcleo. No es una mala tarjeta ni una mala alternativa pero de ser posible, es mejor adquirir la ESP-32 por el mismo precio. <a href="https://sandorobotics.com/producto/hr0072-1/">SandoRobotics</a> </p>
 </li>
 <li>
-<p>ESP-8266: Es la tarjeta &quot;anterior&quot; en diseño a la ESP-32, en general también es una buena alternativa. Tiene una velocidad de 80MHz, lo que la sitúa en el mismo lugar que la Arduino Nano, sin embargo, su resolución de ADC es de 10 bits en vez de 12 bits. Esto nos daría un cuarto de los valores posibles a adquirir de voltaje si la comparáramos con la ESP-32 o la Arduino Nano, es por eos que, aunque no es mala tarjeta en caso de emergencias, no la podemos recomendar tanto como las otras dos. <a href="https://sandorobotics.com/producto/hr0128/">SandoRobotics</a></p>
+<p>ESP-8266: Es la tarjeta &quot;anterior&quot; en diseño a la ESP-32, en general también es una buena alternativa. Tiene una velocidad de 80MHz, lo que la sitúa en el mismo lugar que la Arduino Nano, sin embargo, su resolución de ADC es de 10 bits en vez de 12 bits. Esto nos daría un cuarto de los valores posibles a adquirir de voltaje si la comparáramos con la ESP-32 o la Arduino Nano, es por eso que, aunque no es mala tarjeta en caso de emergencias, no la podemos recomendar tanto como las otras dos. <a href="https://sandorobotics.com/producto/hr0128/">SandoRobotics</a></p>
 </li>
 <li>
 <p>Arduino Uno: De las tres alternativas, esta es la que menos recomendamos ya que tiene una velocidad de reloj de 16MHz, una resolución de 10 bits (y solo en algunos modelos dependiendod el fabricante y la revisión de 12 bits) además de ser por mucho la más cara de las tres tarjetas alternativas. Es por eso que no la podemos recomendar como las otras. Más bien es un &quot;último recurso&quot;.</p>
@@ -564,13 +565,13 @@ Tres resistores, tres fuentes de voltaje, conocemos el valor de dos fuentes, con
 </ol>
 <h2 id="consideraciones"><a class="header" href="#consideraciones">Consideraciones</a></h2>
 <p>Para seguir este proceso de diseño se espera un conocimiento de programación moderado así como previa experiencia trabajando con tarjetas de desarollo, haber armado este circuito ya es suficiente fuente de conocimiento.</p>
-<p>Dado que el objetivo de nuestro dispositivo es conseguir la mayor cantidad de mediciones por segundo, tenemos que tener un código optimizado para ciclarse lo más más rápido posible, sin espacio a repeticiones e intentar pre-calcular la mayor cantidad de valores sin dejar que el compilador de Arduino haga magia detrás. </p>
+<p>Dado que el objetivo de nuestro dispositivo es conseguir la mayor cantidad de mediciones por segundo, tenemos que tener un código optimizado para ciclarse lo más rápido posible, sin espacio a repeticiones e intentar pre-calcular la mayor cantidad de valores sin dejar que el compilador de Arduino haga magia detrás. </p>
 <p>Se consideró el IDE de Arduino como la herramienta correcta para realizar este proyecto por la facilidad de instalación, compatilibidad en múltiples plataformas y facilidad de uso. </p>
 <p>La tarjeta ESP-32 necesita de una biblioteca externa para su compilación, sin embargo, dado que existen mucho fabricantes de tarjetas de desarrollo ESP32-WROOM así como diferentes submodelos y revisiones intentaremos también apegarnos lo más posible a los comandos más utilizados del lenguaje de programación Arduino/C. </p>
 <p>Se puede programar la tarjeta haciendo uso de diferentes compiladores así como de su lenguaje ensamblador, sin embargo, como ya se dijo, por facilidad de programación así como la implementación en general esto se tratará hasta el capítulo de diseño para usuario avanzado. </p>
 <h1 id="diseño"><a class="header" href="#diseño">Diseño</a></h1>
 <h2 id="herramientas-de-depuración"><a class="header" href="#herramientas-de-depuración">Herramientas de depuración</a></h2>
-<p>El IDE de Arduino es ya suficientemente amable en el sentido de que ya incluye un visor para el monitor serial. El monitor serial es un canal de comunicación que existe para muchos dispositivos por medio del cual se envían señales (bytes de información) desde un dispositivo externo hacia la computadora. Estos bytes se envían uno tras otro (en serie) de ahí el nombre &quot;serial&quot;. En el monitor serial de Arduino podemos visualizar texto y texto interpretado como un número. </p>
+<p>El IDE de Arduino es ya suficientemente amable en el sentido de que ya incluye un visor para el monitor serial. El monitor serial es un canal de comunicación que existe para muchos dispositivos por medio del cual se envían señales (bytes de información) desde un dispositivo externo hacia la computadora. Estos bytes se envían uno tras otro (en serie) de ahí el nombre &quot;serial&quot;. En el monitor serial de Arduino podemos visualizar texto así como el texto interpretado como un número (i.e. un String a un Entero). </p>
 <p>Ojo, no podemos interpretar diréctamente el valor de los bytes enviados en el IDE de Arduino sino que necesitaremos una herramienta adicional para visualizar los valores que se envíen. Existen muchas herramientas por medio de las cuales se pueden visualizar los valores entrantes en el monitor serial así como muchos otros que permiten la comunicación en ambos sentidos. </p>
 <p>ATENCIÓN: Los siguientes programas utilizados son únicamente una recomendación, ambas aplicaciones las he usado sin ningún problema aparente en cuanto seguridad. Mi recomendación es únicamente basada en la experiencia.</p>
 <p>Para Linux y Windows, por mucho la mejor herramienta que encontré fue <a href="https://www.der-hammer.info/pages/terminal.html">HTerm</a> por su estabilidad y facilidad de visualización. </p>
@@ -585,7 +586,7 @@ void loop() {
 }
 
 </code></pre>
-<p>El código previo al método &quot;setup&quot; generalmente se usa para la creación de variables globales y constantes (las cuales usaremos bastante), en la sección de &quot;setup&quot; irá el código necesario para inicializar nuestras variables, establecer funcionalidad de los pines de nuestra ESP-32 y demás configuraciones iniciales.</p>
+<p>En el espacio de código previo el método &quot;setup&quot; generalmente se usa para la definición de variables globales y constantes (las cuales usaremos bastante), en la sección de &quot;setup&quot; irá el código necesario para inicializar nuestras variables, establecer funcionalidad de los pines de nuestra ESP-32 y demás configuraciones iniciales.</p>
 <p>En &quot;loop&quot; estará el grueso de nuestro código, aquí es donde tendremos que tener suma precaución al momento de programar ya que este es el código que se ejecutará de manera cíclica una y otra vez. </p>
 <p>Hay que recordar, la ESP-32 únicamente la usaremos como un medio de comunicación entre los convertidores analógico-digitales (ADC) a la computadora (en la aplicación de Java). Es por esto que en realidad el código será bastante conciso. </p>
 <p>Un pseudocódigo más o menos funcional que represente lo que buscamos hacer sería:</p>
@@ -624,17 +625,18 @@ ciclo(){
 
 </code></pre>
 <p>Este pseudocódigo describe mayormente el funcionamiento del código final. En realidad, este fue el primer código que se utilizó para intentar hacer funcionar el osciloscopio. Hay ciertos detalles que hacen que sea ineficiente, lento, variable y poco predecible. Es por eso que se tuvieron que realizar bastantes cambios a este código.</p>
-<p>El osciloscopio con este código puede obtener aproximadamente doscientas muestras por segundo pero es muy variable y poco confiable. Es por ello que se requirieron de múltiples optimizaciones en el código para lograr un desempeño mejor del dispositivo. Ya con las mejoras en este código se pueden lograr mucho mayores frecuencias de muestreo, en buena medida gracias a estas mejoras en el código se pueden lograr velocidades bastante mayores. En las últimas pruebas realizadas antes de la elaboración de este manual se lograron velocidades de muestreo de 2kHz; lo que significa que podremos obtener un muestreo más o menos bueno de señales de 1kHz o señales de frecuencia inferior.</p>
+<p>El osciloscopio con este código puede obtener aproximadamente doscientas muestras por segundo pero es muy variable y poco confiable. Es por ello que se requirieron de múltiples optimizaciones en el código para lograr un desempeño mejor del dispositivo. Ya con las mejoras en este código se pueden lograr mucho mayores frecuencias de muestreo. En las últimas pruebas realizadas antes de la elaboración de este manual se lograron velocidades de muestreo de 8kHz; lo que significa que podremos obtener un muestreo más o menos bueno de señales de 4kHz o señales de frecuencia inferior. En realidad, para tener una señal descrita por suficientes puntos como para poderla visualizar correctamente (unos 4 o 5 puntos por cada ciclo) se recomineda leer señales de <em>hasta</em> 1kHz. Sin embargo, en teoría se podrían interpretar señales de hasta 4kHz.</p>
 <p>Desafortunadamente, las optimizaciones que se realizaron en este rubro del diseño superan muy rápidamente el nivel básico de usuario por lo que en realidad se recomienda que no se manipule el código a menos que uno realmente sepa lo que está haciendo. </p>
+<p><a href="cap_02_disenno/../cap_03_avanzado/02_programacion.html">Usuario avanzado: Diseño código Arduino</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="diseño-interfaz-usuario"><a class="header" href="#diseño-interfaz-usuario">Diseño interfaz usuario</a></h1>
-<p>Como se mencionó en la sección <a href="cap_02_disenno/02_esp32.html">anterior</a> existen varias aplicaciones que se pueden utilizar para leer los valores del monitor serial. En realidad, dado que por diseño el ESP-32 no tuvo ningún código con el que pudiéramos interacturar, únicamente vamos a trabajar con la lectura del puerto serial en la aplicación.</p>
+<p>Como se mencionó en la sección <a href="cap_02_disenno/02_esp32.html">anterior</a> existen varias aplicaciones que se pueden utilizar para leer los valores del monitor serial. En realidad, dado que hemos programado la ESP-32 de la manera más eficiente posible, nos hemos quedado sin ninguna forma de interactuar con ella. Es por ello que tendremos que realizar toda la manipulación de las señales que envía por medio de otra aplicación que se ejecutará en una computadora personal.</p>
 <h2 id="lectura-de-los-valores-del-monitor-serial"><a class="header" href="#lectura-de-los-valores-del-monitor-serial">Lectura de los valores del monitor serial</a></h2>
-<p>En los sistemas operativos más utilizados el día de hoy (Window, Mac, Linux y Android) es bastante fácil manipular los puertos seriales por medio del propio sistema operativo por lo que no tenemos que hacer una implementación de cero. Dicho esto, es muy latosa la implementación según el lenguaje de programación ya que a pesar de que es sencillo, habría que realizar la implementación para cada sistema operativo de manera diferente. En este sentido es muy amable el uso de Java y la biblioteca que usa el IDE de Arduino para manipular el monitor serial: <a href="https://fazecast.github.io/jSerialComm/">JSerialComm</a></p>
+<p>En los sistemas operativos más utilizados el día de hoy (Window, Mac, Linux y Android) es bastante fácil manipular los puertos seriales por medio del propio sistema operativo por lo que no tenemos que hacer una implementación de cero. Dicho esto, es muy latosa la implementación según el lenguaje de programación ya que a pesar de que es sencillo, habría que realizar la implementación distinta para cada sistema operativo de manera diferente. En este sentido es muy amable el uso de Java y la biblioteca que usa el IDE de Arduino para manipular el monitor serial: <a href="https://fazecast.github.io/jSerialComm/">JSerialComm</a></p>
 <p>Esta será la única biblioteca externa que usaremos para la implementación de nuestro osciloscopio. </p>
 <p>La mejor solución que encontré para el diseño, puesto en pseudocódigo una vez más:</p>
 <pre><code>    //Creamos una lista o un arreglo grande en el cual guardaremos los voltajes
-    lista entero lista_lecturas_adc
-    lista flotante lista_voltajes
+    lista&lt;entero&gt; lista_lecturas_adc
+    lista&lt;flotante&gt; lista_voltajes
 
     inicialización(){
         //Abrimos el puerto serial y lo configuramos para poder
@@ -665,14 +667,14 @@ ciclo(){
 </code></pre>
 <p>El pseudocódigo es muy elemental pero ese es el esquema general del proyecto que se siguió al momento de diseñar el programa final. Obviamente la implementación es sustancialmente más compleja que el pseudocódigo pero la realidad es que lo subsecuente fue un tema más de ingeniería de implementación que de diseño.</p>
 <h2 id="diseño-de-la-interfaz-gráfica-de-usuario"><a class="header" href="#diseño-de-la-interfaz-gráfica-de-usuario">Diseño de la interfaz gráfica de usuario</a></h2>
-<p>Entre los diseños comerciales existen múltiples diseños de osciloscopio pero todos respetan una serie de lineamientos más o menos univerales, en los primeros osciloscopios analógicos ya se incluía:</p>
+<p>Entre los diseños comerciales existen múltiples diseños de osciloscopio pero todos respetan una serie de lineamientos más o menos univerales. En los primeros osciloscopios analógicos ya se incluían:</p>
 <ul>
 <li>Pantalla rectangular dividida en 10 ó 12 secciones en horizontal, en 8 ó 10 secciones en vertical. </li>
 <li>Capacidad de modificar la escala en el eje X, en el eje Y. </li>
 <li>La positibilidad de mover los valores graficados tanto en el eje X como Y. </li>
-<li>Manejo de múltiples (generalmente dos) canales de lectura</li>
+<li>Manejo de múltiples canales de lectura(generalmente dos) </li>
 </ul>
-<p>En los osciloscopios digitales modernos existen una serie de ventajas adicionales que en los osciloscopios más clásicos no aprovechando las capacidades de los procesadores más y más modernos con los que se fabrican.</p>
+<p>En los osciloscopios digitales modernos existen una serie de ventajas adicionales que en los osciloscopios más clásicos no,  esto es gracias al aprovechamiento de las capacidades de los procesadores más y más modernos con los que se diseñan.</p>
 <ul>
 <li>Detección de frecuencia</li>
 <li>Cálculo automático de voltaje de corriente directa</li>
@@ -680,24 +682,28 @@ ciclo(){
 <li>Centrado automático de los picos en señales con oscilación (i.e. centrado de una sinusoidal)</li>
 <li>Dibujo de líneas de referencia</li>
 </ul>
-<p>La funcionalidad &quot;fundamental&quot; que es la funcionalidad que se le podía dar a un osciloscopio analógico fue la parte del diseño a la que se le dio más énfasis al momento de desarrollar el código. Las capacidades más complejas que se encuentran en los osciloscopios modernos fueron considerados ganancia adicional.</p>
+<p>La funcionalidad &quot;fundamental&quot; es aquella que podríamos asociar con un osciloscopio analógico clásico. Las capacidades más complejas que se encuentran en los osciloscopios modernos fueron considerados ganancia adicional.</p>
 <p>Ya con los lineamientos básicos establecidos comenzó el desarrollo de la aplicación usando la biblioteca de &quot;swing&quot; en Java, con la cual es muy fácil programar aplicaciones gráficas. </p>
-<p>Después de múltiples diseños determiné que quizá el mejor para una experiencia de usuario sencilla sería el siguiente:</p>
+<p>Después de múltiples diseños se determinó que quizá el mejor para una experiencia de usuario sencilla sería el siguiente:</p>
 <p align="center">
   <img src="cap_02_disenno/../../capturas/2_disenno/programa_java/captura00.png?raw=true" />
 </p>
 <p>Entrar en detalle con respecto al funcionamiento preciso de la graficación así como los detalles de manejo del puerto serial etc. estaría fuera de enfoque ya que, una vez más, estaríamos trabajando con temas muy específicos de código y no de diseño. </p>
 <p>Se tratarán más adelante los detalles con respecto a todas estas minucias. </p>
+<p><a href="cap_02_disenno/../cap_03_avanzado/03_java.html">Usuario avanzado: Diseño código Java</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="usuario-avanzado"><a class="header" href="#usuario-avanzado">Usuario avanzado</a></h1>
 <h2 id="circuito-1"><a class="header" href="#circuito-1">Circuito</a></h2>
-<p>Aquí veremos con todo detalle y minucia el diseño del circuito así como el proceso de diseño que llevó al modelo final.</p>
+<p>Aquí veremos con todo detalle y minucia el diseño del circuito así como el proceso de diseño que llevó al modelo final. Determinaremos el valor de los resistores paso a paso. Demostraremos cada paso con rigor y también agregaremos simulaciones de circuitos para su manipulación y revisión.</p>
 <h2 id="programa-esp-32"><a class="header" href="#programa-esp-32">Programa ESP-32</a></h2>
-<p>Veremos el proceso de optimización del código que cargamos a la ESP-32 para dar introspección del diseño del código así como el uso de funciones de bajo nivel de C para obtener el comportamiento deseado de la tarjeta. </p>
+<p>Veremos el proceso de optimización del código que cargamos a la ESP-32 para dar introspección del diseño del código así como el uso de funciones de bajo nivel de C para obtener el comportamiento deseado de la tarjeta. El código aquí usado se creó pensando en un protocolo de transmisión serial en el que se envían dos bytes conteniendo 12 bits de resolución del ADC. Para realizar modificaciones a este código se necesitará saber muy bien lo que se está haciendo. Igualmente, al modificar este código es muy probable que se tenga que modificar el código de las aplicaciones de java también. </p>
 <ul>
 <li><a href="cap_03_avanzado/../cap_99_extras/programa_arduino.html">Código final</a></li>
 </ul>
 <h2 id="java"><a class="header" href="#java">Java</a></h2>
 <p>Diseñaremos primero unos programas basados en consola a partir de los cuales crearemos tres programas con interfaz de usuario. Programaremos un generador de funciones sinusoidales, un traductor del puerto serial y un graficador. Todos ellos funcionarán por medio del protocolo UDP.</p>
+<p>El programa llamado &quot;traductor&quot; será un programa por medio del cual interpretaremos los valores enviados en el puerto serial. Estos valores los enviaremos a un puerto UDP. Solo este programa será el que interactuará con el mundo externo a la computadora.</p>
+<p>El programa llamado &quot;graficador&quot; será un programa por medio del cual podremos visualizar los valores de voltaje que lleguen por medio de un puerto UDP. No importará si estos valores vienen de un &quot;traductor&quot; o de un &quot;generador&quot;. </p>
+<p>Los programas llamados &quot;generador&quot; será programas por medio de los cuales podremos simular señales dentro de la propia computadora. Crearemos una señal imaginaria y la enviaremos al puerto UDP de forma que se interpretará igual que cualquier señal recibida en un &quot;traductor&quot;.</p>
 <p>El código trabajado aquí todo se encuentra en los siguientes repositorios públicos:</p>
 <ul>
 <li><a href="https://github.com/Marroja/graficador-multicanal-udp">Graficador</a></li>
@@ -723,15 +729,15 @@ ciclo(){
 <li>El dispositivo no puede poner en riezgo la integridad de la tarjeta ESP-32 al momento de encendido o apagado inesperado. Esto quiere decir, todos los estados transitorios tienen que estar contemplados y corregidos. Esto es especialmente importante al momento de considerar diseño con baterías.</li>
 </ol>
 <h2 id="implementación-con-solo-resistores"><a class="header" href="#implementación-con-solo-resistores">Implementación con solo resistores</a></h2>
-<p>La implementación recomendada para el dispositivo más sencillo fue la que se propuso en los capítulos anteriores: </p>
+<p>Podemos partir de la implementación que habíamos propuesto previamente. Habíamos propuesto un sistema partiendo de un divisor de voltaje (los resistores R1 y R2) al cual introducimos una desviación de voltaje por medio de un tercer resistor (resistor N). Determinamos que necesitaremos de dos arreglos de estos tres resistores, un sistema A (R1_A, R2_A, RN_A) y un sistema B (R2_A, R2_B, RN_B). </p>
+<p>Para realizar el modelado matemático de estos sistemas de resistores podemos trabajar con los esquemas siguientes; partiendo del diseño original crearemos una descomposición de los voltajes en el nodo RN a partir de el análisis por fuentes independientes. Podemos también realizar simplificaciones por resistores paralelos.</p>
 <p align="center">
   <img src="cap_03_avanzado/../../capturas/3_avanzado/alambrado/captura00.png?raw=true" />
 </p>
 <p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3ETFEPKnuBo0oomlWzR6VGdARsATtwy8ww5bxTjRYeIo3dtg7NkI69AcwMmzxwnlGQ2Vm3wn23jtgHcD-EK7+TkpghAJGKoYyyHBsAB7ckEiCWsTKSCJaIAByAPoAhvHcxA5gxGampaS0hiAASgW57Am4ECjEItgYbWQ1WQ35uShFCHhp7SKECOO9mSINAEZDI3hmZWZTa9Vz9blLzbTE9IIIXel9InkL+sIOWlQIYVHmsb6PVP6EWUHOIF8in0enhkv3eAVMFCelS8SjB90hEghVF0sVhTzUIjh2mRei4YP8YIxjloEikxJg8iAA">Circuito interactivo</a></p>
-<p>En el capítulo de diseño únicamente platicamos el proceso de diseño pero no entramos a detalle en el cálculo de los resistores necesarios. </p>
 <p>Para calcular el valor de los resistores hicimos uso del método de fuentes de voltaje linealmente independientes.
 Como por diseño sabemos que el resistor de tierra va a tierra, no es necesario realizar el análisis con este resistor.</p>
-<p>Para los otros dos tenemos</p>
+<p>A partir de estos esquemitas podemos continuar con el análisis para cada una de las fuentes independientes (el voltaje introducido en R1 y el voltaje introducido en N). El voltaje introducido en R1 será uno que llamaremos &quot;V_ref&quot; ya que es el voltaje de referencia de 3.3 V en la tarjeta ESP-32. El voltaje introducido en N lo llamaremos &quot;V_T&quot; ya que es el voltaje de la terminal de lectura del osciloscopio. &quot;V_1&quot; y &quot;V_2&quot; serán los voltajes que contribuye cada una de estas fuentes independientes.</p>
 <p>Para la fuente linealmente independiente en R1 (V_Ref) tenemos:</p>
 <p align="center">
   <img src="cap_03_avanzado/../../capturas/3_avanzado/alambrado/captura01.png?raw=true" />
@@ -742,20 +748,21 @@ Como por diseño sabemos que el resistor de tierra va a tierra, no es necesario 
 </p>
 <p>Esquemas realizados en <a href="https://www.onenote.com/Download">OneNote</a></p>
 <p>Así, que podemos caracterizar el voltaje presente en el nodo RN (tanto para la terminal positiva como para la negativa, en el diseño llamados terminal A y B):</p>
+<p>\[ V_{RN} = V_{1} + V_{2} \]</p>
 <p>\[ V_{RN} =  V_{Ref} \frac{N || R_{1}}{N||R_{2} + R_{1}} + V_{T} \frac{R_{1}||R_{2}}{R_{1}||R_{2} + N} \]</p>
 <p>Donde el operador || significa &quot;resistor equivalente paralelo&quot;.</p>
 <p>Podemos simplificar estas expresiones para convertirlo en una expresión únicamente dependiente de sumas y multiplicaciones:</p>
 <p>\[ V_{RN} = V_{Ref} \frac{N R_{2}}{N R_{2} + N R_{1} + R_{1} R_{2}} + V_{T} \frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
 <p>Hay que recordar que para nuestro sistema, N, R1 y R2 estarán todos determinados, el valor de V_ref es conocido (3.3V) y el valor de V_RN es el valor que leeremos con el ESP-32 por lo que el único valor que tendremos que determinar será el valor de V_T. Para conseguir esto únicamente hay que despejar:</p>
 <p>\[ (V_{RN} - V_{Ref} \frac{N R_{2}}{N R_{2} + N R_{1} + R_{1} R_{2}}) \frac{R_{1} R_{2} + N R_{1} + N R_{2}}{R_{1} R_{2}} = V_{T}(V_{RN})  \]</p>
-<p>Parece un poco aparatoso pero la realidad es que como todos los valores son constantes todo se podrá simplificar a un par de números reales. De hecho, a simple vista se puede ver que ya existen ciertos factores que se pueden simplificar sin demasiados trucos algebráicos.</p>
-<p>Ya que tenemos la definición de un modelo para determinar el voltaje de las terminales donde aplicaremos el voltaje externo, hay que determinar los resistores para que se cumplan los requisitos que necesitábamos cumplir desde la fase de diseño:</p>
+<p>Parece un poco aparatoso pero la realidad es que como todos los valores son constantes, por esto, todo se podrá simplificar a un par de números reales. De hecho, a simple vista se puede ver que ya existen ciertos factores que se pueden simplificar sin demasiados trucos algebráicos.</p>
+<p>Ya que tenemos un modelo para describir el voltaje de la terminal T a partir del voltaje del nodo RN, que recordar, ya tenemos una serie de lineamientos que tenemos que cumplir para que nuestro osciloscopio se comporte como queremos; habíamos establecido qué comportamiento queríamos en los puntos límite del voltaje que consideramos operativo &quot;V_Max&quot; y &quot;V_Min&quot; de los cuales también deducíamos un voltaje &quot;V_cero&quot;.</p>
 <p>Recordando rápidamente:</p>
 <p>\[ V_{RN}(V_{Min}) = 0[V] = V_{Min} * K_{Atenuación} + C_{Ajuste} \]
 \[ V_{RN}(V_{Max}) = 3.3[V] = V_{Max} * K_{Atenuación} + C_{Ajuste} \]
 \[ V_{RN}(V_{cero}) = 1.65[V] = V_{cero} * K_{Atenuación} + C_{Ajuste} \]
 \[ V_{Terminal} \in (V_{min}, V_{max})\] </p>
-<p>Aquí tenemos una serie de solicitudes a cumplir y por diseño tenemos que determinar varias de ellas para poder determinar el sistema. En realidad, no es difícil ver que la parte de </p>
+<p>Aquí tenemos una serie de requerimientos por cumplir y, por diseño, tenemos que determinar varias de ellas para poder determinar el sistema. En realidad, no es difícil ver que la parte de </p>
 <p>\[ V_{Min/Max} * K_{Atenuación} + C_{Ajuste} \] </p>
 <p>la vamos a tener que sustituir por la definición que ahorita obtuvimos para el voltaje en RN en función del voltaje de la terminal T en el resistor N. </p>
 <p>Por facilidad de diseño se decidió que el voltaje mínimo fuera el mismo voltaje pero con signo negativo que el voltaje máximo:</p>
@@ -780,7 +787,7 @@ Como por diseño sabemos que el resistor de tierra va a tierra, no es necesario 
 <p>En este sentido, podríamos crear un sistema de resistores para atenuación de grandes voltajes (como el voltaje suministrado por un enchufe). Al mismo tiempo tendríamos que crear un sistema que nos diera atenuación para voltajes de uso de laboratorio (voltajes entre -20[V] y +20[V], por ejemplo). </p>
 <p>Así tendríamos dos pequeños arreglos de resistores con los cuales podríamos medir prácticamente cualquier voltaje a nuestro alcance sin tener que sufrir una atenuación excesiva en voltajes pequeños.</p>
 <p>Entonces, determinemos los resistores necesarios:</p>
-<p>Personalmente me gusta comenzar con la ecuación que describe el voltaje &quot;cero&quot; ya que por medio de ese podemos rápidamente poner rápidamente un resistor en función de los otros dos. Esto es gracias a que podemos obviar la influencia del voltaje de la terminal T. </p>
+<p>Personalmente me gusta comenzar con la ecuación que describe el voltaje &quot;cero&quot; ya que por medio de ese podemos poner rápidamente un resistor en función de los otros dos. Esto es gracias a que podemos obviar la influencia del voltaje de la terminal T. </p>
 <p>\[ V_{RN}(V_{T}) = V_{T} \frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} + V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
 <p>Sustituyendo el voltaje en la terminal T por cero (ya que asumimos que en este punto no estamos dando ningún voltaje) esperamos obtener un voltaje en RN de 1.65[V]:</p>
 <p>\[ V_{RN}(0) = 1.65 = V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
@@ -793,40 +800,40 @@ Como por diseño sabemos que el resistor de tierra va a tierra, no es necesario 
 <p>¡Nada mal!</p>
 <p>Hagamos brevemente un análisis del resultado aquí obtenido. Si nos fijamos, el valor de R1 lo acabamos de determinar como el circuito paralelo entre R2 y N. Revisemos rápidamente si esto tiene sentido.</p>
 <p>Dado que estamos anticipando que cuando el voltaje sumistrado en T sea de 0[V] esperaríamos que el voltaje en el nodo RN sea exactamente el voltaje que se le está suministrando al Resistor 1 por medio del nodo del VRef. Es decir, el resistor equivalente entre R2 y N debería de ser igual a la resistencia en R1. Parece ser que en efecto, tiene sentido al menos en este escenario.</p>
-<p>Ahora podemos sustituir el Resitor 1 en alguna otra de nuestras ecuaciones y deberíamos obtener alguna otra caracterización; pensemos en describir R2 a partir de N en la ecuación usada para el voltaje máximo:</p>
+<p>Ahora podemos sustituir el Resistor 1 en alguna otra de nuestras ecuaciones y deberíamos obtener alguna otra caracterización; pensemos en describir R2 a partir de N en la ecuación usada para el voltaje máximo:</p>
 <p>\[ V_{RN}(V_{Max}) = V_{Max} \frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} + V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
 <p>Sustituimos el valor del Resistor 1 por su equivalente descrito en términos de R2 y N:</p>
 <p>\[ R_{1} = \frac{N R_{2}}{R_{2} + N}\]</p>
 <p>\[ V_{RN}(V_{Max}) = V_{Max} \frac{\frac{N R_{2}}{R_{2} + N} R_{2}}{\frac{N R_{2}}{R_{2} + N} R_{2} + N \frac{N R_{2}}{R_{2} + N} + N R_{2}} + V_{Ref} \frac{N R_{2}}{\frac{N R_{2}}{R_{2} + N} R_{2} + N \frac{N R_{2}}{R_{2} + N} + N R_{2}} \]</p>
-<p>Ahora intentaremos poner R2 en términos de N, V_Rn(V_max), V_ref y V_Max, haciendo algo de álgebra obtenemos que:</p>
+<p>Ahora intentaremos poner R2 en términos de N, V_Rn(V_max), V_ref y V_Max. Haciendo algo de álgebra obtenemos que:</p>
 <p>\[ N = \frac{R_{2}(2 V_{RN} - V_{Max} - V_{Ref})}{V_{Ref} - 2 V_{RN}}\]</p>
 <p>Es difícil identificar de manera inmediata algo que nos revele que la información que obtuvimos aquí sea la correcta, sin embargo, podemos convencernos ligeramente con el análisis dimensional del resultado obtenido. Tenemos que:</p>
 <p>\[ Resistencia = Resistencia * \frac{Voltaje}{Voltaje} \]</p>
 <p>Esto nos puede dar al menos cierto nivel de garantía que nuestro análisis no está tan mal.</p>
-<p>Podemos hacer unos pocos cambios para intentar dejar los números resultantes de las restas como positovos ya que quizá eso nos ayude a interpretar los valores obtenidos:</p>
+<p>Podemos hacer unos pocos cambios para intentar dejar los números resultantes de las restas como positivos ya que quizá eso nos ayude a interpretar los valores obtenidos:</p>
 <p>\[ N = R_{2} \frac{-(2 V_{RN} - V_{Max} - V_{Ref})}{-(V_{Ref} - 2 V_{RN})} = R_{2} (\frac{V_{Max} + V_{Ref} - 2 V_{RN}}{ 2 V_{RN} - V_{Ref}}) \]</p>
-<p>Tampoco es demasiado visible pero parecería que podemos asumir que el valor de del factor entre paréntesis será un número positivo siempre en nuestro intervalo de uso. Si este número resultara negativo estaríamos metidos en un tremendo problema ya que no existen resistores con valor negativo.</p>
+<p>Tampoco es demasiado visible pero parecería que podemos asumir que el valor del factor entre paréntesis será un número positivo siempre que nos encontremos dentro de nuestro intervalo de voltaje. Si este número resultara negativo estaríamos metidos en un tremendo problema ya que no existen resistores con valor negativo.</p>
 <p>Analisemos por partes, nominador y denominador:</p>
-<p>En el nominador, por diseño V_Max es siempre más grande que V_RN y V_Ref también lo es durante todo nuestro intervalo de voltajes de operación así que, por esta parte vamos bien, esto es sin importar el valor de V_RN (el cual, hay que recordar que depende de V_T). El único valor en el que V_RN y V_Ref pueden ser iguales es cuando estemos aplicando en V_T un voltaje igual a V_Max.</p>
+<p>En el nominador, por diseño V_Max es siempre más grande que V_RN, V_Ref también lo es durante todo nuestro intervalo de voltajes de operación así que, por esta parte vamos bien, esto es sin importar el valor de V_RN (el cual, hay que recordar que depende de V_T). El único valor en el que V_RN y V_Ref pueden ser iguales es cuando estemos aplicando en V_T un voltaje igual a V_Max.</p>
 <p>Es importante recordar, V_RN es siempre función del voltaje en la terminal T (V_T) ya que V_T es el valor que hace que oscile el valor en RN, el voltaje de V_Ref es siempre constante.</p>
 <p>\[ V_{Max} &gt;&gt; V_{RN} \]
 \[ V_{Ref} &gt;= V_{RN} \]</p>
 <p>Así que en el nominador todos los valores son positivos.</p>
-<p>En el denominador tenemos que hacer uso del hecho que estamos trabajando con V_Max en la terminal T. Hay que recordar que este sistema de ecuasiones lo resolvimos simbólicamente pero en realidad:</p>
+<p>En el denominador tenemos que hacer uso del hecho que estamos trabajando con V_Max en la terminal T. Hay que recordar que este sistema de ecuaciones lo resolvimos simbólicamente pero en realidad:</p>
 <p>\[ V_{RN}(V_{Max}) = V_{Ref}\]</p>
-<p>Esto lo establecimos por diseño, de lo que se sigue:</p>
+<p>Esto lo establecimos por diseño. De lo mismo se sigue:</p>
 <p>\[ 2V_{RN} - V_{Ref} = 2V_{Ref} - V_{Ref} \]</p>
 <p>Como el valor de voltaje de referencia es positivo (en nuestro caso es de 3.3[V]) igualmente tenemos un valor positivo.
 En realidad, con este conocimiento ya explícito podemos simplifcar toda la expresión de N en función de R2.</p>
 <p>\[ N = R_{2} \frac{V_{Max} + V_{Ref} - 2 V_{RN}}{ 2 V_{RN} - V_{Ref}} = R_{2} \frac{V_{Max} + V_{Ref} - 2V_{Ref}}{2V_{Ref} - V_{Ref}} = R_{2} \frac{V_{Max} - V_{Ref}}{V_{Ref}}\]</p>
 <p>¡Lindo!</p>
-<p>Ahora ponemos rápidamente R2 en términos de N (que era la intención todo este tiempo):</p>
+<p>Ahora ponemos rápidamente R2 en términos de N (que era la intención todo esto):</p>
 <p>\[ R_{2} = N \frac{V_{Ref}}{V_{Max} - V_{Ref}}\]</p>
 <p>Aquí tenemos que tomar una nueva decisión de diseño ¿Cómo determinaremos el primer resistor N de nuestro sistema?</p>
-<p>La decisión que yo considero más prudente es determinar el resistor N a partir del voltaje máximo que se aplicará en la terminal T. Esto es porque, a pesar de que tengamos una idea más o menos buena de cuánto es el voltaje máximo que le vamos a aplicar a nuestro osciloscopio, es indispensable agregar un pámetro de seguridad adicional. En especial, con las mediciones en el mundo real, es muy muy común que el componente de tierra no el mismo para nuestra computadora (y por extensión en nuestra ESP-32) y la tierra del fenómeno que estamo intentando medir. Pensemos en que nuestra computadora funcionara por medio de una batería (como es el caso de las computadora portátiles), no tenemos ninguna garantía que la tierra de la batería de la pila sea la misma que la tierra de un generador se señales conectado a la corriente de un enchufe. En realidad, dado que están desacopladas ambas fuentes de voltaje, existe garantía que de que la tierra no sea la misma. Lo más probable es que el voltaje de diferencia entre tierras de la batería y la red eléctrica no sea de demasiados voltios, pero sí puede ser de unos cinco o diez voltios ante condiciones más o menos anómalas (apagones, generadores de emergencia, baterías de coche, etc.) Es por eso que recomiendo darle un parámetro de seguridad a nuestro diseño de al menos 20%. Tendremos una sobre-atenuación, sin embargo, nuestro modelo lo contemplará de la manera correcta.</p>
+<p>La decisión que yo considero más prudente es determinar el resistor N a partir del voltaje máximo que se aplicará en la terminal T. Esto es porque, a pesar de que tengamos una idea más o menos buena de cuánto es el voltaje máximo que le vamos a aplicar a nuestro osciloscopio, es indispensable agregar un pámetro de seguridad adicional. En especial, con las mediciones en el mundo real, es muy muy común que el componente de tierra no sea el mismo para nuestra computadora (y por extensión en nuestra ESP-32) y la tierra del fenómeno que estamos intentando medir. Pensemos en que nuestra computadora funcionara por medio de una batería (como es el caso de las computadora portátiles), no tenemos ninguna garantía que la tierra de la batería de la pila sea la misma que la tierra de un generador se señales conectado a la corriente de un enchufe. En realidad, dado que están desacopladas ambas fuentes de voltaje, existe garantía que de que la tierra no sea la misma. Lo más probable es que el voltaje de diferencia entre tierras de la batería y la red eléctrica no sea de demasiados voltios, pero sí puede ser de unos cinco o diez voltios en condiciones no tan anómalas (apagones, generadores de emergencia, baterías de coche, etc.) Es por eso que recomiendo darle un parámetro de seguridad a nuestro diseño de al menos 20%. Tendremos una sobre-atenuación, sin embargo, nuestro modelo lo contemplará de la manera correcta.</p>
 <p>Recordemos que es indisepensable garantizar la seguridad de la ESP-32, eso quiere decir, el voltaje presente en RN no puede ser mayor a 3.3[V] ni menor a 0[V]. </p>
-<p>Correremos riesgo de exceder los 3.3[V] cuando sea máximo y de irnos por debajo de los 0[V] cuando sea mínimo. Podemos plantear un circuito de ejemplo para determinar entonces nuestro primer resistor N. </p>
-<p>Ya que R1 y R2 serán mucho más chiquitos que el resistor N, podemos considerarlos de buenas a primeras resistores de 330 ohmios ya que además van a ser resistores de valores más o menos semejantes y únicamente preocuparnos por la discipación en el resistor N. Esto nos dará un valor propuesta para el resistor N, el cual podemos multiplicar por algún factor de seguridad y posteriormente cambiar el valor de R1 y R2 siguiendo la formulación que realizamos previamente donde R1 y R2 dependen de N. Ya que el voltaje de V_T es mucho mucho más grande que V_Ref podemos incluso considerar que V_Ref es una fuente apagada.</p>
+<p>Correremos riesgo de exceder los 3.3[V] cuando V_T sea máximo y de irnos por debajo de los 0[V] cuando V_T sea mínimo. Podemos plantear un circuito de ejemplo para determinar entonces nuestro primer resistor N. </p>
+<p>Ya que R1 y R2 serán mucho más chiquitos que el resistor N, podemos considerarlos de buenas a primeras resistores de 330 ohmios ya que además van a ser resistores de valores más o menos semejantes y únicamente preocuparnos por la disipación en el resistor N. Esto nos dará un valor propuesta para el resistor N, el cual podemos multiplicar por algún factor de seguridad y, así, posteriormente cambiar el valor de R1 y R2 siguiendo la formulación que realizamos previamente donde R1 y R2 dependen de N. Ya que el voltaje de V_T es mucho mucho más grande que V_Ref podemos incluso considerar que V_Ref es una fuente apagada.</p>
 <p>Suponiendo un resistor inicial de:</p>
 <p align="center">
  <img src="cap_03_avanzado/../../capturas/3_avanzado/alambrado/captura03.png?raw=true" />
@@ -835,7 +842,6 @@ En realidad, con este conocimiento ya explícito podemos simplifcar toda la expr
 <p align="center">
  <img src="cap_03_avanzado/../../capturas/3_avanzado/alambrado/captura04.png?raw=true" />
 </p>
-<p>Obtenemos una vez más un divisor de voltaje, el cual podemos caracterizar con:</p>
 <p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3ENPEQm7vnApeVKjSrZo9MVGgI2AJ0G8wIldxQDJuJRpRaN2NFBDZdAcyMmeZhClOQ2VzA-5nIA92LYB3De6ufNp6xISaArYG2iCkcWwAHuA0ECgI4WAIvGnEtNwCAHKJ+eRgWNzlYHji+SAASuxJaVSYuSItBHmGdSjFhFngGLkYNEhVDpECDQA6AM4APvNzPcX22Qj0CKPc6V2FejTVGgjEDrZUYPDOfHjZQoS3EY56J2f3j+fg-cV0mkh45AMvEmIAAagB9AAqPzAkTUtAGKEyezBULYQA">Circuito interactivo</a></p>
 <p>Entonces, el voltaje en RN queda caracterizado en este primer modelo propuesto:
 \[ V_{RN} = V_{T} \frac{R_{1} || R_{2}}{R_{N} + R1||R2} \]</p>
@@ -865,7 +871,7 @@ En realidad, con este conocimiento ya explícito podemos simplifcar toda la expr
 <li>R2 = 180 Ohmios + 51 Ohmios</li>
 </ul>
 <p>Hay que recordar que tenemos que armarlo tanto para la terminal A (positiva) como la terminal B (negativa) por lo que necesitaremos dos de cada uno. </p>
-<p>El último paso a tomar en esta parte es deducir una fórmula fácil de hacer rápidamente para calcular el voltaje en T a partir del voltaje en RN. Si recordamos la fase anterior de diseño, cuando usamos fuentes de voltaje independientes, obtuvimos:</p>
+<p>El último paso a tomar en esta parte es deducir una fórmula fácil de calcular rápidamente para calcular el voltaje en T a partir del voltaje en RN. Si recordamos la fase anterior de diseño, cuando usamos fuentes de voltaje independientes, obtuvimos:</p>
 <p>\[ V_{RN}(V_{T}) = V_{T} \frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} + V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
 <p>Con una fácil manipulación podemos obtener el valor del voltaje en la terminal T con respecto al voltaje de RN.</p>
 <p>\[ V_{T}(RN)  = \frac{V_{RN} - V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}}}{\frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}}}\]</p>
@@ -877,38 +883,38 @@ En realidad, con este conocimiento ya explícito podemos simplifcar toda la expr
 <ol>
 <li>No lo haga.</li>
 <li>De verdad, no lo haga.</li>
-<li>Lo digo con toda la sinceridad del mundo, utilice diseños de otras personas en las que confíe, esto resulta más un proceso de crecimiento personal que algo de verdadera utilidad. </li>
+<li>Lo digo con toda la sinceridad del mundo, utilice diseños de otras personas en las que confíe, diseñar las cosas desde cero resulta más un proceso de crecimiento personal que algo de verdadera utilidad. </li>
 </ol>
 <p>Si en verdad quiere hacerlo o lo necesita:</p>
 <ol start="4">
-<li>El proceso de diseño es arduo y lleno de errores, para llegar a este último diseño se tuvo que pasar por al menos otras dies propuestas de diseño, todas revisadas con gente con más experiencia que yo. </li>
-<li>Siempre consulte cada paso que de con alguien más, mientras más fácil de explicar más fácil será de diseñar también.</li>
+<li>El proceso de diseño es arduo y lleno de errores, para llegar a este último diseño se tuvo que pasar por al menos otras dies propuestas de diseño, todas revisadas acompañado de gente con más experiencia que yo. </li>
+<li>Siempre consulte cada paso que dé con alguien más, mientras más fácil de explicar más fácil será de diseñar también.</li>
 <li>Si puede, pregúntele a profesores o gente con más experiencia que usted sobre la tecnología que conocen y la que han usado. Eso puede orientar mucho la fase de diseño además de tener cerca una persona que podrá entender los diseños propuestos sin necesidad de demasiado contexto.</li>
 </ol>
 <h2 id="con-respecto-al-osciloscopio"><a class="header" href="#con-respecto-al-osciloscopio">Con respecto al osciloscopio</a></h2>
-<p>Hay muchos sitios en donde se podrían agregar soluciones más complejas según el uso que usted usuario le quiera dar: </p>
+<p>Existen muchos sitios en donde se podrían agregar soluciones más complejas según el uso que usted usuario le quiera dar: </p>
 <ul>
 <li>Convertirlo en un dispositivo autónomo (no dependiente de un cable para alimentación)</li>
 <li>Realisar análisis únicamente de voltajes en corriente alterna para análisis de señales</li>
 <li>Obviar el análisis de señales para convertir este dispositivo en un multímetro</li>
 <li>Agregar capacidad de medición de corriente</li>
 </ul>
-<p>Existen muchas cosas que no se contemplaron en el diseño de este osciloscopio, sin embargo, queda en usted lector, en su entusiasmo el desarrollo de mejoras. Este proyecto no es bajo ninguna definición perfecto. </p>
+<p>Hay muchas cosas que no se contemplaron en el diseño de este osciloscopio, sin embargo, queda en usted lector. Este proyecto no es bajo ninguna definición perfecto. </p>
 <p>El diseño de electrónica analógica es difícil, intente usar los componentes que mejor conoce:</p>
 <ul>
 <li>Resistores</li>
 <li>Condensadores </li>
 <li>Amplificadores operacionales sencillos</li>
 </ul>
-<p>Intente resolver el problema que quiere resolver con esos componentes antes de comenzar a usar piezas más complejas. </p>
-<p>El único verdadero requisito en esta parte de diseño es haga &quot;embonar&quot; un voltaje de -Vmax a Vmax en el intervalo de 0[V] a 3.3[V]. Mi recomendación es que se pueda hacer con una función tan sencilla como lo hicimos en esta solución:</p>
+<p>Intente reducir el problema que quiere resolver a estos componentes antes de comenzar a usar piezas más complejas. </p>
+<p>El único verdadero requisito en esta parte de diseño es haga &quot;embonar&quot; un voltaje de -Vmax a Vmax en el intervalo de 0[V] a 3.3[V]. Mi recomendación es que lo logre con una función tan sencilla como lo hicimos en esta solución:</p>
 <p>\[ V_{RN}(V_{T}) = V_{T} * K_{Atenuación} + C_{Ajuste} \]</p>
-<p>Si decidiera realizar un diseño en el cual ya se comtemple desde el acondicionamiento de señal la resta de los voltajes entre las terminales de lectura A positiva y B negativa tendrá que tener un poco de cuidado nada más con la parte del proyecto subescuente, la programación de la tarjeta ESP-32 ya que el código como está explicado y construido en este proyecto contempla la entrada del voltaje por dos diferentes pines realizando la resta de voltaje de manera digital, no analógica. </p>
+<p>Si decidiera realizar un diseño en el cual ya se contemple desde el acondicionamiento de señal la resta de los voltajes entre las terminales de lectura A positiva y B negativa tendrá que tener un poco de cuidado nada más con la parte del proyecto subsecuente La programación de la tarjeta ESP-32 ya está programada contemplando la resta de voltajes entrantes por dos diferentes terminales, por lo que tendrá que realizar modificaciones ahí también.</p>
 <p>Le deseo la mejor de las suertes; este es sin lugar a duda el lugar donde más oportunidad existe para el diseño, sin embargo, también considero que es el lugar donde más dificultades encuentra uno.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="diseño-a-profundidad-esp-32"><a class="header" href="#diseño-a-profundidad-esp-32">Diseño a profundidad (ESP-32)</a></h1>
 <p>Para el correcto seguimiento de esta sección del libro se espera un conocimiento moderadamente avanzado del lenguaje de programación C así como un conocimiento básico de señales.</p>
 <p>Dada la naturaleza de nuestro proyecto, la tarjeta ESP-32 únicamente funciona como una interfaz entre el mundo real y el mundo digital en el cual queremos representar las gráficas del voltaje de nuestro osciloscopio. </p>
-<p>En el capítulo de diseño habíamos mencionado un pseudocódigo a partir del cual nos vamos a basar para programar, ahora sí con código optimizado la tarjeta ESP-32 para obtener la mayor velocidad de muestreo posible así como el comportamiento más homogéneo a lo largo del tiempo que podamos conseguir.</p>
+<p>En el capítulo de diseño habíamos mencionado un pseudocódigo a partir del cual nos vamos a basar para programar, ahora sí, con código optimizado la tarjeta ESP-32 para obtener la mayor velocidad de muestreo posible así como el comportamiento más homogéneo a lo largo del tiempo que podamos conseguir.</p>
 <p>Comencemos con el pseudocódigo original, convirtámoslo en código de Arduino y comencemos a optimizar:</p>
 <pre><code>int lectura_ADC_A
 int lectura_ADC_B
@@ -1006,9 +1012,8 @@ void loop() {
   Serial.println(resta_ADC_A_B);
 }
 </code></pre>
-<p>Hay que utilizar la <a href="https://dl.espressif.com/dl/package_esp32_index.json">biblioteca</a> oficial de Espressif para poder utilizar el IDE de Arduino y subir el código.</p>
-<p>[Aquí] el pequeño manual de cómo instalarlo.</p>
-<p>Ya preparado esto y subiendo el código a la tarjeta, si hacemos pruebas con nuestro osciloscopio ya armado (tal y como lo armamos en la fase de manual de usuario) podemos abrir la ventana del monitor serial y visualizar los valores desde el propio IDE de Arduino.</p>
+<p>Hay que utilizar la <a href="https://dl.espressif.com/dl/package_esp32_index.json">biblioteca</a> oficial de Espressif para poder utilizar el IDE de Arduino y subir el código. Recordar que en la sección de Manual de Usuario &quot;Cómo programarlo&quot; se trató este tema.</p>
+<p>Ya preparado esto y subiendo el código a la tarjeta, si hacemos pruebas con nuestro osciloscopio armado (tal y como lo armamos en la fase de manual de usuario) podemos abrir la ventana del monitor serial y visualizar los valores desde el propio IDE de Arduino.</p>
 <p>Aquí es donde surge la importancia de las herramientas que habíamos propuesto en la fase de diseño:</p>
 <p>Windows y Linux <a href="https://www.der-hammer.info/pages/terminal.html">HTerm</a></p>
 <p>Para Mac <a href="https://freeware.the-meiers.org/">CoolTerm</a></p>
@@ -1020,8 +1025,7 @@ void loop() {
 <p align="center">
   <img src="cap_03_avanzado/../../capturas/3_avanzado/programa_arduino/captura02.png?raw=true" />
 </p>
-<p>Ahora, le pediré que confíe en mi cuando le digo, el código está mal y es muy lento. Las pruebas realizadas fueron extensas por lo que las colocaré en un documento a parte porque escapan de la fase de diseño y son más bien cuestión de la fase de pruebas. </p>
-<p><a href="cap_03_avanzado/DocuentoPruebasESP-32">Pruebas</a></p>
+<p>Ahora, le pediré que confíe en mi cuando le digo, el código está mal y es muy lento. Las pruebas realizadas fueron extensas pero escapan de la fase de diseño y son más bien cuestión de la fase de pruebas. </p>
 <p>Para no entrar en demasiado detalle, hay una serie de problemas:</p>
 <ul>
 <li>El código es muy lento por la conversión que realiza la ESP-32 del valor leído del ADC.</li>
@@ -1032,26 +1036,26 @@ void loop() {
 <li>Se imprime el número como caracters ASCII en el monitor serial</li>
 </ol>
 <ul>
-<li>Esto supone una conversión adicional de número decimal a número de caracter ASCII lo que implica enviar dos bytes de datos ¡POR CADA CIFRA DE NUESTRO NÚMERO!</li>
+<li>Esto supone una conversión adicional de número decimal a número de caracter ASCII lo que implica enviar dos bytes de datos ¡PARA CADA CIFRA DE NUESTRO NÚMERO!</li>
 </ul>
 <ul>
-<li>Ese último punto revela que nuestro código además de ser lento es inconsistente, esto porque los números leídos de una sola cifra (0-&gt;9) se imprimirán en un solo caracter lo que significa dos bytes, los números de dos cifras (-9 -&gt; 99) se imprimirán como dos caracteres, lo que significan cuatro bytes. ¡Ni siquiera podemos obtener un comportamiento consistente entre números positivos y negativos. Comparando con el número -4095 (pensando que el voltaje en B es de 4095 y el voltaje en A es de 0) tendríamos que enviar cinco caracteres de la ESP-32 hacia la computadora; en comparación con los valores de un solo caracter (0-&gt;9) estaríamos enviando cinco veces más información, haciendo de este protocolo terriblemente ineficiente. </li>
+<li>Ese último punto revela que nuestro código además de ser lento es inconsistente, esto porque los números leídos de una sola cifra (0-&gt;9) se imprimirán en un solo caracter lo que significa dos bytes; los números de dos cifras (-9 -&gt; 99) se imprimirán como dos caracteres, lo que significan cuatro bytes. ¡Ni siquiera podemos obtener un comportamiento consistente entre números positivos y negativos. Comparando con el número -4096 (pensando que el voltaje en B es de 4095 y el voltaje en A es de 0) tendríamos que enviar cinco caracteres de la ESP-32 hacia la computadora; en comparación con los valores de un solo caracter (0-&gt;9) estaríamos enviando cinco veces más información haciendo de este protocolo terriblemente ineficiente. </li>
 </ul>
 <h2 id="nuevo-protocolo-de-cifrado"><a class="header" href="#nuevo-protocolo-de-cifrado">Nuevo protocolo de cifrado</a></h2>
-<p>Para arreglar este problema, es necesario proponer un nuevo protocolo de cifrado de nuestros números enteros (-4095 -&gt; 4095) de manera que quepan todos en un tamaño constante de bytes para poder reinterpretarlos en la computadora (en el programa de Java).</p>
+<p>Para arreglar este problema, es necesario proponer un nuevo protocolo de cifrado de nuestros números enteros (-4096 -&gt; 4095) de manera que quepan todos en un tamaño constante de bytes para poder reinterpretarlos en la computadora (en el programa de Java).</p>
 <p>Hay múltiples posibilidades para lograr esto, sin embargo, aprovechando que el protocolo serial siempre funciona con el envío de bytes, podemos inmediatamente pensar que dos bytes por número es un tamaño suficiente e incluso sobrante. </p>
 <p>Pensemos en el valor binario de 4095 (1111_1111_1111) que es un número de doce bits. Ya que estamos intentando meterlo en dos bytes, es muy claro que en efecto podemos enviar este valor:</p>
 <pre><code>16 bits 0000_0000 0000_0000
 4095    0000_1111 1111_1111
 </code></pre>
 <p>Y tendremos una holgura de 4 bits para enviar información adicional que pueda resultar útil.</p>
-<p>Entre la información importante que podríamos querer enviar se encuentra si nuestro número leído es positivo o negativo. Después de todo, estamos trabajando con los valores de dos ADC (terminal positiva y terminal negativa) y estamos realizando una resta de valores de 12 bits. (0 -&gt; 4095) para el positivo (A) y (-0-&gt;-4095) para el negativo (B). Esto quiere decir que nuestro rango de posibles valores es en realidad -4095 a 4095, dándonos una extraña resolución de 13 bits a pesar de que nuestro ADC sea de 12 bits.</p>
+<p>Entre la información importante que podríamos querer enviar se encuentra si nuestro número leído es positivo o negativo. Después de todo, estamos trabajando con los valores de dos ADC (terminal positiva y terminal negativa) y estamos realizando una resta de valores de 12 bits. (0 -&gt; 4095) para el positivo (A) y (-0-&gt;-4095) para el negativo (B). Esto quiere decir que nuestro rango de posibles valores es en realidad -4096 a 4095, dándonos una extraña resolución de 13 bits a pesar de que nuestro ADC sea de 12 bits.</p>
 <p>Esto quiere decir que tendríamos que agregar un bit para enviar el signo:</p>
 <pre><code>16 bits 0000_0000 0000_0000
--4095   000s_1111 1111_1111
+-4096   000s_1111 1111_1111
 </code></pre>
 <p>El siguiente paso se define únicamente por practicidad de la lectura desde el programa de Java. Cuando empezamos a leer el flujo de valores, únicamente empezaremos a leer paquetes de bytes, no sabremos qué número es el inicio y cuál es el fin del número que se está enviando. Podríamos enviar un tercer byte lleno de unos a partir del cual podríamos determinar el fin del número enviado anterior, pero queda claro que aún tenemos tres bits con los cuales podemos enviar esa información.</p>
-<p>Podemos definir en nuestro protocolo que si un número inicia con cero será el inicio de un paquete de dos bytes y si inicia con cero será el final del paquete de dos bytes. Por ejemplo, si observáramos lo siguiente:</p>
+<p>Podemos definir en nuestro protocolo que si un número inicia con uno será el inicio de un paquete de dos bytes y si inicia con cero será el final del paquete de dos bytes. Por ejemplo, si observáramos lo siguiente:</p>
 <p>Sin embargo, dado que nuestro byte menos significativo puede estar lleno de unos, habrá que definir que los dos primeros bits siempre estén vacíos y nosotros los podamos manipular a voluntad para enviar los bits que signifiquen &quot;inicio de número&quot; &quot;fin de número&quot; así como el bit de &quot;número negativo&quot;.</p>
 <pre><code>0010_1110   //fin de número (lo descartamos)
 1001_1011   //inicio de número
@@ -1059,7 +1063,7 @@ void loop() {
 1001_1001   //inicio de número
 ...
 </code></pre>
-<p>Entonces, si el bit con la letra &quot;i&quot; significa &quot;inicio&quot;, &quot;f&quot; significa &quot;fin&quot; y &quot;s&quot; es de &quot;signo&quot; podríamos así fácilmente interpretar los números a partir de los paquetes señalados en ##_####.</p>
+<p>Entonces, si el bit con la letra &quot;i&quot; significa &quot;inicio&quot;, &quot;f&quot; significa &quot;fin&quot; y &quot;s&quot; es de &quot;signo&quot; podríamos así fácilmente interpretar los números a partir del paquete conformado por los bits señalados con ##_####.</p>
 <pre><code>is##_####
 fs##_####
 is##_####
@@ -1071,8 +1075,10 @@ fs##_####
 Visto en paquetes de 6 bits
 3094 -&gt; 110000_010110
 Lo partimos a la mitad y ponemos los bytes más significativos en el byte de inicio.
+Creamos el primer byte a partir del primer paquete de 6 bits
 (inicio y positivo) 10_110000
 enviamos el primer byte
+Creamos el segundo byte a partir del segundo paquete de 6 bits
 (final y positivo ) 00_010110
 enviamos el segundo byte
 </code></pre>
@@ -1093,39 +1099,39 @@ Si el número de inicio es 1 el número será negativo. Si es 0 será positivo.
 
 + 11000_010110
 
-Convertimos a decimal y aplicamos el binario:
+Convertimos a decimal:
 
 + (3094) = 3094
 </code></pre>
 <p>¡Funciona!</p>
 <p>Ya con esta información, en el programa de Java podremos interpretar cada número con únicamente dos bytes por número. ¡Mucho mejor que el protocolo inicial de cifrado!</p>
 <p>Es verdad que tendremos una redundancia con el signo, como no tenemos un uso especial para ese bit y únicamente simplificará el código del cifrado no debemos preocuparnos demasiado por él. </p>
-<p>Entonces, ¿Cómo quedaría el cifrado en código?</p>
+<p>Entonces, ¿cómo quedaría el cifrado en código?</p>
 <p>Esta parte ya no es de diseño sino de ingeniería de código. Dada la naturaleza de nuestro algoritmo (en el que vamos a jugar mucho con bits a nivel bajo) es posible que sea un poco difícil de entender qué está pasando, sin embargo, ya con el conocimiento de qué queremos hacer podemos ir paso a paso. </p>
 <p>Recordemos que hay que codificar un número binario de dos bytes a un número en nuestra codificación.</p>
-<p>Vamos a tener que hacer uso de una serie de mañanas de C ya que no tenemos la posibilidad de agregar código ensamblador con el cual hacer estas manipulaciones de bytes. </p>
+<p>Vamos a tener que hacer uso de una serie de mañas de C ya que no tenemos la posibilidad de agregar código ensamblador con el cual hacer estas manipulaciones de bytes. </p>
 <p>Comencemos con un ejemplo, el ESP-32 lee el valor en A de 223 y el valor en B de 3359:</p>
 <p>Tenemos que conocer el valor de la resta (el cual será negativa en este caso)</p>
-<pre><code>    223 - 3359 = -3136
+<pre><code>223 - 3359 = -3136
 </code></pre>
 <p>Para aquellos con buen ojo se habrán dado cuenta de un detalle que no hemos tocado. El número negativo se representará como un número en su complemento a dos. Yo sé que puede parecer un problema pero no lo es. Es por esto que es tan importante mandar el signo del número desde la ESP-32. Vamos a tratar en el código de Java este tema en concreto.</p>
-<p>La representación del número -3136 en binario (aunque parezca raro, justo por el complemento a dos) es en un número dos:</p>
+<p>La representación del número -3136 en binario (aunque parezca raro, justo por el complemento a dos) es la siguiente:</p>
 <pre><code>1111_0011 1100_0000
 </code></pre>
-<p>El número que nos interesa es el de los primeros 12 bits y sabemos que el número es negativo. Sabemos que el número será negativo si y solo si los primeros cuatro bits son todos 1. Esto se debe al llamado desbordamiento. Lo que vamos a hacer va a ser aprovechar este desbordamiento para encontrar y enviar el signo del número que vamos a enviar de la ESP-32 a la computadora.</p>
-<p>Entonces, ya que si vemos el número &quot;desbordado&quot; en 16 bits mientras que el número es uno de 12 bits, sabremos que el número en cuestión es un número negativo.</p>
+<p>El número que nos interesa es el de los primeros 12 bits y sabemos que el número es negativo y los primeros cuatro unos aparecen únicamente por la representación en 16 bits del número. Sabemos que el número será negativo si y solo si los primeros cuatro bits son todos 1. Esto se debe al llamado &quot;desbordamiento&quot; al momento de hacer restas que vayan por debajo del cero. Lo que vamos a hacer va a ser aprovechar este desbordamiento para encontrar el signo del número que vamos a enviar de la ESP-32 a la computadora.</p>
+<p>Entonces, si vemos el número &quot;desbordado&quot; en 16 bits dado que nuestro número es uno de 12 bits, sabremos que el número en cuestión es un número negativo.</p>
 <pre><code class="language-c">if (x &gt; 4096){
     //El número es negativo
     //Por la cadena de 1111
     //1111_xxxx_xxxx_xxxx
 }
 </code></pre>
-<p>Sin embargo, ni siquiera es necesario es hacer la condicional, podemos diréctamente poner ese 1 como el valor que nos interesa en el número de 16 bits ya cifrado.</p>
+<p>Sin embargo, ni siquiera es necesario hacer la condicional, podemos diréctamente poner ese 1 como el valor que nos interesa en el número de 16 bits ya cifrado.</p>
 <p>Entonces:</p>
 <ol>
 <li>Usaremos dos bytes, vacíos, a esos dos bytes les pondremos los doce bits marcados con xxxx_xxxx_xxxx. </li>
 <li>Agregaremos el signo, que como 1 es nuestro negativo, podemos escribirlo diréctamente de los 1111 desde el desbordamiento.</li>
-<li>Limpiamos la cola de 1111 del primer byte y agregamos los 6 bits al byte que corresponden</li>
+<li>Limpiamos la cola de 1111 del primer byte y agregamos los 6 bits más significativos al primer byte del paquete y los menos significativos al segundo byte del paquete</li>
 <li>Etiquetamos con un 1 el primer bit para el primer byte</li>
 <li>Etiquetamos con un 0 el primer bit del segundo byte (cosa que podemos no hacer porque el número inicia siendo puros ceros).</li>
 <li>Imprimimos como bytes (NO COMO TEXTO) de la ESP-32 a la computadora </li>
@@ -1249,23 +1255,23 @@ void loop() {
   resta_ADC = lectura_ADC_A - lectura_ADC_B;
 
   //Recordemos que resta_ADC es un número de 16 bits
-  //Los números codificados son de un solo byte
-  //Por esto tenemos que recorrerlo un byte
-  //Para tener acceso a la cola de 1111
-  //Aquí estamos sumando el segundo 1, 0100
-  //Por eso aplicamos una máscara lógica &amp;&amp;
-  num_codificado_primero += ((resta_ADC &gt;&gt; 8) &amp;&amp; 0b01000000);
-  num_codificado_segundo += ((resta_ADC &gt;&gt; 8) &amp;&amp; 0b01000000);
+  //Nosotros trabajamos con dos bytes separados
+  //Por esto tenemos que recorrer el entero 8 bits
+  //Así tenemos acceso a la cola de desbordamiento 1111 (ó 0000)
+  //Aquí estamos sumamos el segundo bit, donde va el signo
+  //Por eso aplicamos una máscara lógica &amp; 0b0100
+  num_codificado_primero += ((resta_ADC &gt;&gt; 8) &amp; 0b01000000);
+  num_codificado_segundo += ((resta_ADC &gt;&gt; 8) &amp; 0b01000000);
 
-  //Aplicando otra máscara lógica sumamos los 6 bits
+  //Aplicando otra máscara lógica sumamos los 6 primeros bits
   //Tenemos que recorrer 6 lugares para sumar al primer byte
   //  ssss_xxxx_xxxx_xxxx  -&gt;   ssss_xxxx_xxxx_xxxx
   //            isxx_xxxx  -&gt;     is_xxxx_xx
-  num_codificado_primero += ((resta_ADC &gt;&gt; 6) &amp;&amp; 0b00111111);
+  num_codificado_primero += ((resta_ADC &gt;&gt; 6) &amp; 0b00111111);
   //Tenemos que recorrer 0 lugares para sumar al primer byte
   //  ssss_xxxx_xxxx_xxxx  -&gt;   ssss_xxxx_xxyy_yyyy
   //            isxx_xxxx  -&gt;             isxx_xxxx
-  num_codificado_segundo += (resta_ADC &amp;&amp; 0b00111111);
+  num_codificado_segundo += (resta_ADC &amp; 0b00111111);
 
 /*
   Serial.print(&quot;Resta:&quot;);
@@ -1287,19 +1293,19 @@ void loop() {
 <p>Aquí, tal como en el análisis que hicimos previamente, podemos ver que hay muchos bytes del tipo &quot;FF&quot; o sea 255 en decimal, que son casi el mismo byte que interpretamos previamente. Esta aplicación está hecha para visualizar el valor de los bytes y no interpretarlos en el cifrado que nosotros diseñamos. Es por eso que el paso subsecuente es interpretar estos valores a una alta velocidad y graficarlos.</p>
 <p>Para esto, exploraremos las posibilidades en la siguiente sección de esta capítulo.</p>
 <h2 id="diseños-subsecuentes"><a class="header" href="#diseños-subsecuentes">Diseños subsecuentes</a></h2>
-<p>Si usted lector se siente suficientemente aventurado como para realizarle cambios a este protocolo de comunicación, si por casualidad contara con una tarjeta con una resolución más alta en su ADC y quisiera aprovecharla, aquí dejaré una seried e recomendaciones, las cuales espero le sirvan de algo. </p>
+<p>Si usted lector se siente suficientemente aventurado como para realizarle cambios a este protocolo de comunicación, si por casualidad contara con una tarjeta con una resolución más alta en su ADC y quisiera aprovecharla, aquí dejaré una seried e recomendaciones las cuales espero le sirvan de algo. </p>
 <p>A manera de recapitulación, comenzamos con el código más sencillo posible (el que planteamos en el capítulo de diseño) y lo usamos como plantilla para generar este código nuevo. Es una buena idea comenzar con algo ineficiente y malo como plantilla para optimizar y optimizar hasta llegar a un resultado que uno considere suficientemente bueno. </p>
-<p>Dado que estamos trabajando con el análisis de señales le recomiendo enormemente que no le tema al trabajo con los valores binarios en los bytes. C no es el lenguaje más amable al momento de permitirnos estas manipulaciones pero es suficientemente bueno y claro si uno mantiene notas y comentarios como los fuimos haciendo durante nuestro desarrollo.</p>
-<p>En caso de tener una tarjeta de mayor resolución de ADC (pensemos que fuera de 16-bits) lo más probable es que tenga que agregar un tercer byte como bandera de inicio/fin de paquetes de datos. La realidad es que es de suma importancia escribir un protocolo de comunicación claro al momento de leerlo. Como se dio cuenta, al momento de leerlo hay ciertos datos que inmediatamente se pueden descartar porque su significado se puede interpretar solo con verlo. </p>
-<p>Evite el uso de condicionales y codificaciones externas, después de todo, nadie conoce mejor la implementación del dispositovo que el propio diseñador y el diseñador tiene que estar dispuesto a optimizar su trabajo hasta las últimas consecuencias, no importa si tiene que descartar la tecnología más usada para encontrar algo que se acople mejor a sus necesidades.</p>
+<p>Dado que estamos trabajando con el análisis de señales le recomiendo enormemente que no le tema a la manipulación de los valores binarios en los bytes. C no es el lenguaje más amable al momento de permitirnos estas manipulaciones pero es suficientemente bueno y claro si uno mantiene notas y comentarios como los fuimos haciendo durante nuestro desarrollo.</p>
+<p>En caso de tener una tarjeta de mayor resolución de ADC (pensemos que fuera de 16-bits) lo más probable es que tenga que agregar un tercer byte como bandera de inicio/fin de paquetes de datos. La realidad es que es de suma importancia escribir un protocolo de comunicación claro al momento de leerlo. Como se dio cuenta, al momento de leerlo hay ciertos datos que inmediatamente se pueden descartar porque su significado se puede interpretar solo con verlo sin requerir de manipulación posterior. </p>
+<p>Evite el uso de condicionales y codificaciones de terceros, después de todo, nadie conoce mejor la implementación del dispositivo que el propio diseñador y el diseñador tiene que estar dispuesto a optimizar su trabajo hasta las últimas consecuencias, no importa si tiene que descartar la tecnología más usada para encontrar algo que se acople mejor a sus necesidades.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="diseño-a-profundidad-aplicación-java"><a class="header" href="#diseño-a-profundidad-aplicación-java">Diseño a profundidad (aplicación Java)</a></h1>
 <p>En este capítulo diseñaremos un programa sin omitir un solo paso con el cual podremos visualizar los valores del protocolo de cifrado implementado el capítulo pasado. </p>
 <p>Se necesita un nivel intermedio de programación para seguir esta guía. No se requiere conocimiento de diseño. </p>
 <h2 id="lector-de-voltaje"><a class="header" href="#lector-de-voltaje">Lector de voltaje</a></h2>
-<p>Primero haremos una pequeñísima aplicación, la cual calibraremos usando un generador de señal. Esta aplicación la llamaremos el &quot;mini-calibrador&quot; ya que esa será su única función; Calibrar el voltaje cuando las terminales del osciloscopio estén ambos conectados al mismo punto y después funcionar como un lector de voltaje.</p>
+<p>Primero haremos una pequeñísima aplicación, la cual calibraremos usando un generador de señal. Esta aplicación la llamaremos el &quot;mini-multímetro&quot; ya que lo único que hará será imprimir el voltaje leído en consola.</p>
 <p>Sería prácticamente imposible plasmar en este manual todas las mañas y trucos de programación que se tuvieron que usar al momento de programar la aplicación final, sin embargo, podemos hacer un intento en programar una versión más chiquita de esta aplicación para intentar transmitir el proceso de diseño.</p>
-<p>Como ya dijimos, comenzaremos creando una aplicación chiquta, el mini-calibrador.</p>
-<h3 id="mini-calibrador"><a class="header" href="#mini-calibrador">mini-calibrador</a></h3>
+<p>Como ya dijimos, comenzaremos creando una aplicación chiquta, el mini-multímetro.</p>
+<h3 id="mini-multímetro"><a class="header" href="#mini-multímetro">mini-multímetro</a></h3>
 <p>Toda la programación la realizaré en el IDE <a href="https://www.jetbrains.com/idea/">IntelliJ Idea Community</a> (por preferencia personal, no por otra razón).</p>
 <p>Este ejemplo ni siquiera va a depender de una interfaz gráfica, será todo por medio de consola. Introduciremos más adelante el desarrollo con interfaces gráficas.</p>
 <ol>
@@ -1439,8 +1445,7 @@ comPort.closePort();
                 }
 </code></pre>
 <p>Podemos agregar una arreglo con valores de prueba para hacer pruebas y verificar que los valores obtenidos sean los correctos:</p>
-<p>qph</p>
-<p>Con el código como lo tenemos ahora, deberíamos obtener una lista de valores de este estilo:</p>
+<p>Por ejemplo, si en el arreglo introdujéramos los valores [0, 10, 1000, 4095, -1, -10, -100, -1000, -4096] obtendremos los valores como esperaríamos obtenerlos.</p>
 <pre><code>cu.wlan-debug
 tty.wlan-debug
 cu.ESP32_LED_Control
@@ -1472,19 +1477,21 @@ Voltaje V_RN: -12.20774432488208
 Lectura ADC : -4096
 Voltaje V_RN: -50.0
 </code></pre>
-<p>Podemos ver que los valores que obtuvimos coinciden con la predicción que habíamos realizado. Al tener la lectura del ADC más baja obtuvimos el valor de voltaje que deseábamos desde la fase de diseño, -50[V]. Al obtener el valor más alto, obtuvimos +50, que era el máximo valor que queríamos medir.</p>
+<p>Los que son realmente importantes son los valores 0, 4095 y -4096 ya que estos valores son los que señalarán los valores de V_cero, V_Max, V_Min.</p>
+<p>Podemos ver que los valores que obtuvimos coinciden con la predicción que habíamos realizado. Al tener la lectura del ADC más baja obtuvimos el valor de voltaje que deseábamos desde la fase de diseño, -50[V]. Al obtener el valor más alto, obtuvimos +50, que era el máximo valor que queríamos medir. Lo mismo sucede con el valor cuando el valor del ADC es 0, obtenemos un valor pequeñísimo muy muy cercano a cero.</p>
+<p>Hay que recordar, aquí no estamos recibiendo los valores del ADC directamente sino que estamos recibiendo el valor de la resta de las lecturas de los dos ADCs.</p>
 <p>Con este pequeño programa podríamos enviar el flujo de datos a cualquier aplicación gráfica por medio de protocolos del sistema operativo, sin embargo, por facilidad de programación, ya que estamos trabajando en un programa de Java, podremos agregar esa interfaz gráfica a este mismo programa.</p>
 <h2 id="cómo-haremos-el-proyecto"><a class="header" href="#cómo-haremos-el-proyecto">Cómo haremos el proyecto</a></h2>
-<p>Que la aplicación se utilizará principalmente en computadoras personales (por diversas cuestiones convenientes como el uso de múltiples puertos USB y por extensión la posibilidad de usar varias tarjetas ESP-32) podemos pensar que en realidad el diseño del código que implementamos previamente es únicamente para interpretar los valores de un dispositivo cualquiera. </p>
+<p>Ya que la aplicación se utilizará principalmente en computadoras personales (por diversas cuestiones convenientes como el uso de múltiples puertos USB y por extensión la posibilidad de usar varias tarjetas ESP-32) podemos pensar que en realidad el diseño del código que implementamos previamente es únicamente para interpretar los valores de un dispositivo cualquiera. </p>
 <p>Podemos considerar que existen varios puertos USB en una computadora de la misma forma que existen otros puertos por los cuales podemos interpretar un valor de voltaje (por ejemplo la entrada de audio auxiliar). Pensemos que existen varios dispositivos conectados a la computadora. Inlcuso podríamos considerar la existencia de un &quot;generador de señal&quot; virtual, el cual genere una onda perfecta sinusoidal, una señal de escalón o simplemente un impulso cada determinado tiempo.</p>
 <p>La solución que propongo yo para el manejo de todos estos dispositivos, y dejar abierta la posibilidad al desarrollo de dispositivos posteriores (como el uso de tarjetas integradas distintas a futuro así como generadores de señal personalizados) es manejar todos los valores que se introduzcan al osciloscopio por medio del protocolo UDP.</p>
 <p>En este sentido, el osciloscopio, el intérprete de señal desde la ESP-32 así como cualquier dispositivo adicional posterior será una especia de aplicación independiente por sí sola. Esto nos dará ciertas ventajas a posteriori, no estaremos sujetos al desarrollo de ninguna aplicación por medio de ningún lenguaje de programación en específico. Además esto nos permitirá desarrollar incluso otros programas sustituto al osciloscopio así como de cada uno de los orígenes de señal que aquí hemos propuesto.</p>
 <h2 id="implementación-final"><a class="header" href="#implementación-final">Implementación final</a></h2>
 <p>Los programas en los que se muestra el funcionamiento básico son los siguientes tres:</p>
 <ul>
-<li><a href="cap_03_avanzado/">Intérprete ESP-32</a></li>
-<li><a href="cap_03_avanzado/">Generador función seno</a></li>
-<li><a href="cap_03_avanzado/">Aplicación graficadora dos canales</a></li>
+<li><a href="https://github.com/Marroja/traductor-serial-udp">Intérprete/Traductor ESP-32</a></li>
+<li><a href="https://github.com/Marroja/generador-seno-udp">Generador función seno</a></li>
+<li><a href="https://github.com/Marroja/graficador-multicanal-udp">Aplicación graficadora dos canales</a></li>
 </ul>
 <p>La arquitectura final de diseño será como en el siguiente diagrama: </p>
 <p align="center">
@@ -1607,11 +1614,11 @@ void loop() {
   resta_ADC = lectura_ADC_A - lectura_ADC_B;
 
   //Recordemos que resta_ADC es un número de 16 bits
-  //Los números codificados son de un solo byte
-  //Por esto tenemos que recorrerlo un byte
-  //Para tener acceso a la cola de 1111
-  //Aquí estamos sumando el segundo 1, 0100
-  //Por eso aplicamos una máscara lógica &amp;&amp;
+  //Nosotros trabajamos con dos bytes separados
+  //Por esto tenemos que recorrer el entero 8 bits
+  //Así tenemos acceso a la cola de desbordamiento 1111 (ó 0000)
+  //Aquí estamos sumamos el segundo bit, donde va el signo
+  //Por eso aplicamos una máscara lógica &amp; 0b0100
   num_codificado_primero += ((resta_ADC &gt;&gt; 8) &amp; 0b01000000);
   num_codificado_segundo += ((resta_ADC &gt;&gt; 8) &amp; 0b01000000);
 

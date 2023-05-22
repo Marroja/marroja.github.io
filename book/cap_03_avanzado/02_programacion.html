@@ -149,7 +149,7 @@
                         <h1 id="diseño-a-profundidad-esp-32"><a class="header" href="#diseño-a-profundidad-esp-32">Diseño a profundidad (ESP-32)</a></h1>
 <p>Para el correcto seguimiento de esta sección del libro se espera un conocimiento moderadamente avanzado del lenguaje de programación C así como un conocimiento básico de señales.</p>
 <p>Dada la naturaleza de nuestro proyecto, la tarjeta ESP-32 únicamente funciona como una interfaz entre el mundo real y el mundo digital en el cual queremos representar las gráficas del voltaje de nuestro osciloscopio. </p>
-<p>En el capítulo de diseño habíamos mencionado un pseudocódigo a partir del cual nos vamos a basar para programar, ahora sí con código optimizado la tarjeta ESP-32 para obtener la mayor velocidad de muestreo posible así como el comportamiento más homogéneo a lo largo del tiempo que podamos conseguir.</p>
+<p>En el capítulo de diseño habíamos mencionado un pseudocódigo a partir del cual nos vamos a basar para programar, ahora sí, con código optimizado la tarjeta ESP-32 para obtener la mayor velocidad de muestreo posible así como el comportamiento más homogéneo a lo largo del tiempo que podamos conseguir.</p>
 <p>Comencemos con el pseudocódigo original, convirtámoslo en código de Arduino y comencemos a optimizar:</p>
 <pre><code>int lectura_ADC_A
 int lectura_ADC_B
@@ -247,9 +247,8 @@ void loop() {
   Serial.println(resta_ADC_A_B);
 }
 </code></pre>
-<p>Hay que utilizar la <a href="https://dl.espressif.com/dl/package_esp32_index.json">biblioteca</a> oficial de Espressif para poder utilizar el IDE de Arduino y subir el código.</p>
-<p>[Aquí] el pequeño manual de cómo instalarlo.</p>
-<p>Ya preparado esto y subiendo el código a la tarjeta, si hacemos pruebas con nuestro osciloscopio ya armado (tal y como lo armamos en la fase de manual de usuario) podemos abrir la ventana del monitor serial y visualizar los valores desde el propio IDE de Arduino.</p>
+<p>Hay que utilizar la <a href="https://dl.espressif.com/dl/package_esp32_index.json">biblioteca</a> oficial de Espressif para poder utilizar el IDE de Arduino y subir el código. Recordar que en la sección de Manual de Usuario &quot;Cómo programarlo&quot; se trató este tema.</p>
+<p>Ya preparado esto y subiendo el código a la tarjeta, si hacemos pruebas con nuestro osciloscopio armado (tal y como lo armamos en la fase de manual de usuario) podemos abrir la ventana del monitor serial y visualizar los valores desde el propio IDE de Arduino.</p>
 <p>Aquí es donde surge la importancia de las herramientas que habíamos propuesto en la fase de diseño:</p>
 <p>Windows y Linux <a href="https://www.der-hammer.info/pages/terminal.html">HTerm</a></p>
 <p>Para Mac <a href="https://freeware.the-meiers.org/">CoolTerm</a></p>
@@ -261,8 +260,7 @@ void loop() {
 <p align="center">
   <img src="../../capturas/3_avanzado/programa_arduino/captura02.png?raw=true" />
 </p>
-<p>Ahora, le pediré que confíe en mi cuando le digo, el código está mal y es muy lento. Las pruebas realizadas fueron extensas por lo que las colocaré en un documento a parte porque escapan de la fase de diseño y son más bien cuestión de la fase de pruebas. </p>
-<p><a href="DocuentoPruebasESP-32">Pruebas</a></p>
+<p>Ahora, le pediré que confíe en mi cuando le digo, el código está mal y es muy lento. Las pruebas realizadas fueron extensas pero escapan de la fase de diseño y son más bien cuestión de la fase de pruebas. </p>
 <p>Para no entrar en demasiado detalle, hay una serie de problemas:</p>
 <ul>
 <li>El código es muy lento por la conversión que realiza la ESP-32 del valor leído del ADC.</li>
@@ -273,26 +271,26 @@ void loop() {
 <li>Se imprime el número como caracters ASCII en el monitor serial</li>
 </ol>
 <ul>
-<li>Esto supone una conversión adicional de número decimal a número de caracter ASCII lo que implica enviar dos bytes de datos ¡POR CADA CIFRA DE NUESTRO NÚMERO!</li>
+<li>Esto supone una conversión adicional de número decimal a número de caracter ASCII lo que implica enviar dos bytes de datos ¡PARA CADA CIFRA DE NUESTRO NÚMERO!</li>
 </ul>
 <ul>
-<li>Ese último punto revela que nuestro código además de ser lento es inconsistente, esto porque los números leídos de una sola cifra (0-&gt;9) se imprimirán en un solo caracter lo que significa dos bytes, los números de dos cifras (-9 -&gt; 99) se imprimirán como dos caracteres, lo que significan cuatro bytes. ¡Ni siquiera podemos obtener un comportamiento consistente entre números positivos y negativos. Comparando con el número -4095 (pensando que el voltaje en B es de 4095 y el voltaje en A es de 0) tendríamos que enviar cinco caracteres de la ESP-32 hacia la computadora; en comparación con los valores de un solo caracter (0-&gt;9) estaríamos enviando cinco veces más información, haciendo de este protocolo terriblemente ineficiente. </li>
+<li>Ese último punto revela que nuestro código además de ser lento es inconsistente, esto porque los números leídos de una sola cifra (0-&gt;9) se imprimirán en un solo caracter lo que significa dos bytes; los números de dos cifras (-9 -&gt; 99) se imprimirán como dos caracteres, lo que significan cuatro bytes. ¡Ni siquiera podemos obtener un comportamiento consistente entre números positivos y negativos. Comparando con el número -4096 (pensando que el voltaje en B es de 4095 y el voltaje en A es de 0) tendríamos que enviar cinco caracteres de la ESP-32 hacia la computadora; en comparación con los valores de un solo caracter (0-&gt;9) estaríamos enviando cinco veces más información haciendo de este protocolo terriblemente ineficiente. </li>
 </ul>
 <h2 id="nuevo-protocolo-de-cifrado"><a class="header" href="#nuevo-protocolo-de-cifrado">Nuevo protocolo de cifrado</a></h2>
-<p>Para arreglar este problema, es necesario proponer un nuevo protocolo de cifrado de nuestros números enteros (-4095 -&gt; 4095) de manera que quepan todos en un tamaño constante de bytes para poder reinterpretarlos en la computadora (en el programa de Java).</p>
+<p>Para arreglar este problema, es necesario proponer un nuevo protocolo de cifrado de nuestros números enteros (-4096 -&gt; 4095) de manera que quepan todos en un tamaño constante de bytes para poder reinterpretarlos en la computadora (en el programa de Java).</p>
 <p>Hay múltiples posibilidades para lograr esto, sin embargo, aprovechando que el protocolo serial siempre funciona con el envío de bytes, podemos inmediatamente pensar que dos bytes por número es un tamaño suficiente e incluso sobrante. </p>
 <p>Pensemos en el valor binario de 4095 (1111_1111_1111) que es un número de doce bits. Ya que estamos intentando meterlo en dos bytes, es muy claro que en efecto podemos enviar este valor:</p>
 <pre><code>16 bits 0000_0000 0000_0000
 4095    0000_1111 1111_1111
 </code></pre>
 <p>Y tendremos una holgura de 4 bits para enviar información adicional que pueda resultar útil.</p>
-<p>Entre la información importante que podríamos querer enviar se encuentra si nuestro número leído es positivo o negativo. Después de todo, estamos trabajando con los valores de dos ADC (terminal positiva y terminal negativa) y estamos realizando una resta de valores de 12 bits. (0 -&gt; 4095) para el positivo (A) y (-0-&gt;-4095) para el negativo (B). Esto quiere decir que nuestro rango de posibles valores es en realidad -4095 a 4095, dándonos una extraña resolución de 13 bits a pesar de que nuestro ADC sea de 12 bits.</p>
+<p>Entre la información importante que podríamos querer enviar se encuentra si nuestro número leído es positivo o negativo. Después de todo, estamos trabajando con los valores de dos ADC (terminal positiva y terminal negativa) y estamos realizando una resta de valores de 12 bits. (0 -&gt; 4095) para el positivo (A) y (-0-&gt;-4095) para el negativo (B). Esto quiere decir que nuestro rango de posibles valores es en realidad -4096 a 4095, dándonos una extraña resolución de 13 bits a pesar de que nuestro ADC sea de 12 bits.</p>
 <p>Esto quiere decir que tendríamos que agregar un bit para enviar el signo:</p>
 <pre><code>16 bits 0000_0000 0000_0000
--4095   000s_1111 1111_1111
+-4096   000s_1111 1111_1111
 </code></pre>
 <p>El siguiente paso se define únicamente por practicidad de la lectura desde el programa de Java. Cuando empezamos a leer el flujo de valores, únicamente empezaremos a leer paquetes de bytes, no sabremos qué número es el inicio y cuál es el fin del número que se está enviando. Podríamos enviar un tercer byte lleno de unos a partir del cual podríamos determinar el fin del número enviado anterior, pero queda claro que aún tenemos tres bits con los cuales podemos enviar esa información.</p>
-<p>Podemos definir en nuestro protocolo que si un número inicia con cero será el inicio de un paquete de dos bytes y si inicia con cero será el final del paquete de dos bytes. Por ejemplo, si observáramos lo siguiente:</p>
+<p>Podemos definir en nuestro protocolo que si un número inicia con uno será el inicio de un paquete de dos bytes y si inicia con cero será el final del paquete de dos bytes. Por ejemplo, si observáramos lo siguiente:</p>
 <p>Sin embargo, dado que nuestro byte menos significativo puede estar lleno de unos, habrá que definir que los dos primeros bits siempre estén vacíos y nosotros los podamos manipular a voluntad para enviar los bits que signifiquen &quot;inicio de número&quot; &quot;fin de número&quot; así como el bit de &quot;número negativo&quot;.</p>
 <pre><code>0010_1110   //fin de número (lo descartamos)
 1001_1011   //inicio de número
@@ -300,7 +298,7 @@ void loop() {
 1001_1001   //inicio de número
 ...
 </code></pre>
-<p>Entonces, si el bit con la letra &quot;i&quot; significa &quot;inicio&quot;, &quot;f&quot; significa &quot;fin&quot; y &quot;s&quot; es de &quot;signo&quot; podríamos así fácilmente interpretar los números a partir de los paquetes señalados en ##_####.</p>
+<p>Entonces, si el bit con la letra &quot;i&quot; significa &quot;inicio&quot;, &quot;f&quot; significa &quot;fin&quot; y &quot;s&quot; es de &quot;signo&quot; podríamos así fácilmente interpretar los números a partir del paquete conformado por los bits señalados con ##_####.</p>
 <pre><code>is##_####
 fs##_####
 is##_####
@@ -312,8 +310,10 @@ fs##_####
 Visto en paquetes de 6 bits
 3094 -&gt; 110000_010110
 Lo partimos a la mitad y ponemos los bytes más significativos en el byte de inicio.
+Creamos el primer byte a partir del primer paquete de 6 bits
 (inicio y positivo) 10_110000
 enviamos el primer byte
+Creamos el segundo byte a partir del segundo paquete de 6 bits
 (final y positivo ) 00_010110
 enviamos el segundo byte
 </code></pre>
@@ -334,39 +334,39 @@ Si el número de inicio es 1 el número será negativo. Si es 0 será positivo.
 
 + 11000_010110
 
-Convertimos a decimal y aplicamos el binario:
+Convertimos a decimal:
 
 + (3094) = 3094
 </code></pre>
 <p>¡Funciona!</p>
 <p>Ya con esta información, en el programa de Java podremos interpretar cada número con únicamente dos bytes por número. ¡Mucho mejor que el protocolo inicial de cifrado!</p>
 <p>Es verdad que tendremos una redundancia con el signo, como no tenemos un uso especial para ese bit y únicamente simplificará el código del cifrado no debemos preocuparnos demasiado por él. </p>
-<p>Entonces, ¿Cómo quedaría el cifrado en código?</p>
+<p>Entonces, ¿cómo quedaría el cifrado en código?</p>
 <p>Esta parte ya no es de diseño sino de ingeniería de código. Dada la naturaleza de nuestro algoritmo (en el que vamos a jugar mucho con bits a nivel bajo) es posible que sea un poco difícil de entender qué está pasando, sin embargo, ya con el conocimiento de qué queremos hacer podemos ir paso a paso. </p>
 <p>Recordemos que hay que codificar un número binario de dos bytes a un número en nuestra codificación.</p>
-<p>Vamos a tener que hacer uso de una serie de mañanas de C ya que no tenemos la posibilidad de agregar código ensamblador con el cual hacer estas manipulaciones de bytes. </p>
+<p>Vamos a tener que hacer uso de una serie de mañas de C ya que no tenemos la posibilidad de agregar código ensamblador con el cual hacer estas manipulaciones de bytes. </p>
 <p>Comencemos con un ejemplo, el ESP-32 lee el valor en A de 223 y el valor en B de 3359:</p>
 <p>Tenemos que conocer el valor de la resta (el cual será negativa en este caso)</p>
-<pre><code>    223 - 3359 = -3136
+<pre><code>223 - 3359 = -3136
 </code></pre>
 <p>Para aquellos con buen ojo se habrán dado cuenta de un detalle que no hemos tocado. El número negativo se representará como un número en su complemento a dos. Yo sé que puede parecer un problema pero no lo es. Es por esto que es tan importante mandar el signo del número desde la ESP-32. Vamos a tratar en el código de Java este tema en concreto.</p>
-<p>La representación del número -3136 en binario (aunque parezca raro, justo por el complemento a dos) es en un número dos:</p>
+<p>La representación del número -3136 en binario (aunque parezca raro, justo por el complemento a dos) es la siguiente:</p>
 <pre><code>1111_0011 1100_0000
 </code></pre>
-<p>El número que nos interesa es el de los primeros 12 bits y sabemos que el número es negativo. Sabemos que el número será negativo si y solo si los primeros cuatro bits son todos 1. Esto se debe al llamado desbordamiento. Lo que vamos a hacer va a ser aprovechar este desbordamiento para encontrar y enviar el signo del número que vamos a enviar de la ESP-32 a la computadora.</p>
-<p>Entonces, ya que si vemos el número &quot;desbordado&quot; en 16 bits mientras que el número es uno de 12 bits, sabremos que el número en cuestión es un número negativo.</p>
+<p>El número que nos interesa es el de los primeros 12 bits y sabemos que el número es negativo y los primeros cuatro unos aparecen únicamente por la representación en 16 bits del número. Sabemos que el número será negativo si y solo si los primeros cuatro bits son todos 1. Esto se debe al llamado &quot;desbordamiento&quot; al momento de hacer restas que vayan por debajo del cero. Lo que vamos a hacer va a ser aprovechar este desbordamiento para encontrar el signo del número que vamos a enviar de la ESP-32 a la computadora.</p>
+<p>Entonces, si vemos el número &quot;desbordado&quot; en 16 bits dado que nuestro número es uno de 12 bits, sabremos que el número en cuestión es un número negativo.</p>
 <pre><code class="language-c">if (x &gt; 4096){
     //El número es negativo
     //Por la cadena de 1111
     //1111_xxxx_xxxx_xxxx
 }
 </code></pre>
-<p>Sin embargo, ni siquiera es necesario es hacer la condicional, podemos diréctamente poner ese 1 como el valor que nos interesa en el número de 16 bits ya cifrado.</p>
+<p>Sin embargo, ni siquiera es necesario hacer la condicional, podemos diréctamente poner ese 1 como el valor que nos interesa en el número de 16 bits ya cifrado.</p>
 <p>Entonces:</p>
 <ol>
 <li>Usaremos dos bytes, vacíos, a esos dos bytes les pondremos los doce bits marcados con xxxx_xxxx_xxxx. </li>
 <li>Agregaremos el signo, que como 1 es nuestro negativo, podemos escribirlo diréctamente de los 1111 desde el desbordamiento.</li>
-<li>Limpiamos la cola de 1111 del primer byte y agregamos los 6 bits al byte que corresponden</li>
+<li>Limpiamos la cola de 1111 del primer byte y agregamos los 6 bits más significativos al primer byte del paquete y los menos significativos al segundo byte del paquete</li>
 <li>Etiquetamos con un 1 el primer bit para el primer byte</li>
 <li>Etiquetamos con un 0 el primer bit del segundo byte (cosa que podemos no hacer porque el número inicia siendo puros ceros).</li>
 <li>Imprimimos como bytes (NO COMO TEXTO) de la ESP-32 a la computadora </li>
@@ -490,23 +490,23 @@ void loop() {
   resta_ADC = lectura_ADC_A - lectura_ADC_B;
 
   //Recordemos que resta_ADC es un número de 16 bits
-  //Los números codificados son de un solo byte
-  //Por esto tenemos que recorrerlo un byte
-  //Para tener acceso a la cola de 1111
-  //Aquí estamos sumando el segundo 1, 0100
-  //Por eso aplicamos una máscara lógica &amp;&amp;
-  num_codificado_primero += ((resta_ADC &gt;&gt; 8) &amp;&amp; 0b01000000);
-  num_codificado_segundo += ((resta_ADC &gt;&gt; 8) &amp;&amp; 0b01000000);
+  //Nosotros trabajamos con dos bytes separados
+  //Por esto tenemos que recorrer el entero 8 bits
+  //Así tenemos acceso a la cola de desbordamiento 1111 (ó 0000)
+  //Aquí estamos sumamos el segundo bit, donde va el signo
+  //Por eso aplicamos una máscara lógica &amp; 0b0100
+  num_codificado_primero += ((resta_ADC &gt;&gt; 8) &amp; 0b01000000);
+  num_codificado_segundo += ((resta_ADC &gt;&gt; 8) &amp; 0b01000000);
 
-  //Aplicando otra máscara lógica sumamos los 6 bits
+  //Aplicando otra máscara lógica sumamos los 6 primeros bits
   //Tenemos que recorrer 6 lugares para sumar al primer byte
   //  ssss_xxxx_xxxx_xxxx  -&gt;   ssss_xxxx_xxxx_xxxx
   //            isxx_xxxx  -&gt;     is_xxxx_xx
-  num_codificado_primero += ((resta_ADC &gt;&gt; 6) &amp;&amp; 0b00111111);
+  num_codificado_primero += ((resta_ADC &gt;&gt; 6) &amp; 0b00111111);
   //Tenemos que recorrer 0 lugares para sumar al primer byte
   //  ssss_xxxx_xxxx_xxxx  -&gt;   ssss_xxxx_xxyy_yyyy
   //            isxx_xxxx  -&gt;             isxx_xxxx
-  num_codificado_segundo += (resta_ADC &amp;&amp; 0b00111111);
+  num_codificado_segundo += (resta_ADC &amp; 0b00111111);
 
 /*
   Serial.print(&quot;Resta:&quot;);
@@ -528,11 +528,11 @@ void loop() {
 <p>Aquí, tal como en el análisis que hicimos previamente, podemos ver que hay muchos bytes del tipo &quot;FF&quot; o sea 255 en decimal, que son casi el mismo byte que interpretamos previamente. Esta aplicación está hecha para visualizar el valor de los bytes y no interpretarlos en el cifrado que nosotros diseñamos. Es por eso que el paso subsecuente es interpretar estos valores a una alta velocidad y graficarlos.</p>
 <p>Para esto, exploraremos las posibilidades en la siguiente sección de esta capítulo.</p>
 <h2 id="diseños-subsecuentes"><a class="header" href="#diseños-subsecuentes">Diseños subsecuentes</a></h2>
-<p>Si usted lector se siente suficientemente aventurado como para realizarle cambios a este protocolo de comunicación, si por casualidad contara con una tarjeta con una resolución más alta en su ADC y quisiera aprovecharla, aquí dejaré una seried e recomendaciones, las cuales espero le sirvan de algo. </p>
+<p>Si usted lector se siente suficientemente aventurado como para realizarle cambios a este protocolo de comunicación, si por casualidad contara con una tarjeta con una resolución más alta en su ADC y quisiera aprovecharla, aquí dejaré una seried e recomendaciones las cuales espero le sirvan de algo. </p>
 <p>A manera de recapitulación, comenzamos con el código más sencillo posible (el que planteamos en el capítulo de diseño) y lo usamos como plantilla para generar este código nuevo. Es una buena idea comenzar con algo ineficiente y malo como plantilla para optimizar y optimizar hasta llegar a un resultado que uno considere suficientemente bueno. </p>
-<p>Dado que estamos trabajando con el análisis de señales le recomiendo enormemente que no le tema al trabajo con los valores binarios en los bytes. C no es el lenguaje más amable al momento de permitirnos estas manipulaciones pero es suficientemente bueno y claro si uno mantiene notas y comentarios como los fuimos haciendo durante nuestro desarrollo.</p>
-<p>En caso de tener una tarjeta de mayor resolución de ADC (pensemos que fuera de 16-bits) lo más probable es que tenga que agregar un tercer byte como bandera de inicio/fin de paquetes de datos. La realidad es que es de suma importancia escribir un protocolo de comunicación claro al momento de leerlo. Como se dio cuenta, al momento de leerlo hay ciertos datos que inmediatamente se pueden descartar porque su significado se puede interpretar solo con verlo. </p>
-<p>Evite el uso de condicionales y codificaciones externas, después de todo, nadie conoce mejor la implementación del dispositovo que el propio diseñador y el diseñador tiene que estar dispuesto a optimizar su trabajo hasta las últimas consecuencias, no importa si tiene que descartar la tecnología más usada para encontrar algo que se acople mejor a sus necesidades.</p>
+<p>Dado que estamos trabajando con el análisis de señales le recomiendo enormemente que no le tema a la manipulación de los valores binarios en los bytes. C no es el lenguaje más amable al momento de permitirnos estas manipulaciones pero es suficientemente bueno y claro si uno mantiene notas y comentarios como los fuimos haciendo durante nuestro desarrollo.</p>
+<p>En caso de tener una tarjeta de mayor resolución de ADC (pensemos que fuera de 16-bits) lo más probable es que tenga que agregar un tercer byte como bandera de inicio/fin de paquetes de datos. La realidad es que es de suma importancia escribir un protocolo de comunicación claro al momento de leerlo. Como se dio cuenta, al momento de leerlo hay ciertos datos que inmediatamente se pueden descartar porque su significado se puede interpretar solo con verlo sin requerir de manipulación posterior. </p>
+<p>Evite el uso de condicionales y codificaciones de terceros, después de todo, nadie conoce mejor la implementación del dispositivo que el propio diseñador y el diseñador tiene que estar dispuesto a optimizar su trabajo hasta las últimas consecuencias, no importa si tiene que descartar la tecnología más usada para encontrar algo que se acople mejor a sus necesidades.</p>
 
                     </main>
 

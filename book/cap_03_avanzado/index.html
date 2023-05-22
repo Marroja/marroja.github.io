@@ -148,14 +148,17 @@
                     <main>
                         <h1 id="usuario-avanzado"><a class="header" href="#usuario-avanzado">Usuario avanzado</a></h1>
 <h2 id="circuito"><a class="header" href="#circuito">Circuito</a></h2>
-<p>Aquí veremos con todo detalle y minucia el diseño del circuito así como el proceso de diseño que llevó al modelo final.</p>
+<p>Aquí veremos con todo detalle y minucia el diseño del circuito así como el proceso de diseño que llevó al modelo final. Determinaremos el valor de los resistores paso a paso. Demostraremos cada paso con rigor y también agregaremos simulaciones de circuitos para su manipulación y revisión.</p>
 <h2 id="programa-esp-32"><a class="header" href="#programa-esp-32">Programa ESP-32</a></h2>
-<p>Veremos el proceso de optimización del código que cargamos a la ESP-32 para dar introspección del diseño del código así como el uso de funciones de bajo nivel de C para obtener el comportamiento deseado de la tarjeta. </p>
+<p>Veremos el proceso de optimización del código que cargamos a la ESP-32 para dar introspección del diseño del código así como el uso de funciones de bajo nivel de C para obtener el comportamiento deseado de la tarjeta. El código aquí usado se creó pensando en un protocolo de transmisión serial en el que se envían dos bytes conteniendo 12 bits de resolución del ADC. Para realizar modificaciones a este código se necesitará saber muy bien lo que se está haciendo. Igualmente, al modificar este código es muy probable que se tenga que modificar el código de las aplicaciones de java también. </p>
 <ul>
 <li><a href="../cap_99_extras/programa_arduino.html">Código final</a></li>
 </ul>
 <h2 id="java"><a class="header" href="#java">Java</a></h2>
 <p>Diseñaremos primero unos programas basados en consola a partir de los cuales crearemos tres programas con interfaz de usuario. Programaremos un generador de funciones sinusoidales, un traductor del puerto serial y un graficador. Todos ellos funcionarán por medio del protocolo UDP.</p>
+<p>El programa llamado &quot;traductor&quot; será un programa por medio del cual interpretaremos los valores enviados en el puerto serial. Estos valores los enviaremos a un puerto UDP. Solo este programa será el que interactuará con el mundo externo a la computadora.</p>
+<p>El programa llamado &quot;graficador&quot; será un programa por medio del cual podremos visualizar los valores de voltaje que lleguen por medio de un puerto UDP. No importará si estos valores vienen de un &quot;traductor&quot; o de un &quot;generador&quot;. </p>
+<p>Los programas llamados &quot;generador&quot; será programas por medio de los cuales podremos simular señales dentro de la propia computadora. Crearemos una señal imaginaria y la enviaremos al puerto UDP de forma que se interpretará igual que cualquier señal recibida en un &quot;traductor&quot;.</p>
 <p>El código trabajado aquí todo se encuentra en los siguientes repositorios públicos:</p>
 <ul>
 <li><a href="https://github.com/Marroja/graficador-multicanal-udp">Graficador</a></li>

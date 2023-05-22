@@ -178,11 +178,11 @@ void loop() {
   resta_ADC = lectura_ADC_A - lectura_ADC_B;
 
   //Recordemos que resta_ADC es un número de 16 bits
-  //Los números codificados son de un solo byte
-  //Por esto tenemos que recorrerlo un byte
-  //Para tener acceso a la cola de 1111
-  //Aquí estamos sumando el segundo 1, 0100
-  //Por eso aplicamos una máscara lógica &amp;&amp;
+  //Nosotros trabajamos con dos bytes separados
+  //Por esto tenemos que recorrer el entero 8 bits
+  //Así tenemos acceso a la cola de desbordamiento 1111 (ó 0000)
+  //Aquí estamos sumamos el segundo bit, donde va el signo
+  //Por eso aplicamos una máscara lógica &amp; 0b0100
   num_codificado_primero += ((resta_ADC &gt;&gt; 8) &amp; 0b01000000);
   num_codificado_segundo += ((resta_ADC &gt;&gt; 8) &amp; 0b01000000);
 

@@ -165,15 +165,15 @@
 <li>El dispositivo no puede poner en riezgo la integridad de la tarjeta ESP-32 al momento de encendido o apagado inesperado. Esto quiere decir, todos los estados transitorios tienen que estar contemplados y corregidos. Esto es especialmente importante al momento de considerar diseño con baterías.</li>
 </ol>
 <h2 id="implementación-con-solo-resistores"><a class="header" href="#implementación-con-solo-resistores">Implementación con solo resistores</a></h2>
-<p>La implementación recomendada para el dispositivo más sencillo fue la que se propuso en los capítulos anteriores: </p>
+<p>Podemos partir de la implementación que habíamos propuesto previamente. Habíamos propuesto un sistema partiendo de un divisor de voltaje (los resistores R1 y R2) al cual introducimos una desviación de voltaje por medio de un tercer resistor (resistor N). Determinamos que necesitaremos de dos arreglos de estos tres resistores, un sistema A (R1_A, R2_A, RN_A) y un sistema B (R2_A, R2_B, RN_B). </p>
+<p>Para realizar el modelado matemático de estos sistemas de resistores podemos trabajar con los esquemas siguientes; partiendo del diseño original crearemos una descomposición de los voltajes en el nodo RN a partir de el análisis por fuentes independientes. Podemos también realizar simplificaciones por resistores paralelos.</p>
 <p align="center">
   <img src="../../capturas/3_avanzado/alambrado/captura00.png?raw=true" />
 </p>
 <p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3ETFEPKnuBo0oomlWzR6VGdARsATtwy8ww5bxTjRYeIo3dtg7NkI69AcwMmzxwnlGQ2Vm3wn23jtgHcD-EK7+TkpghAJGKoYyyHBsAB7ckEiCWsTKSCJaIAByAPoAhvHcxA5gxGampaS0hiAASgW57Am4ECjEItgYbWQ1WQ35uShFCHhp7SKECOO9mSINAEZDI3hmZWZTa9Vz9blLzbTE9IIIXel9InkL+sIOWlQIYVHmsb6PVP6EWUHOIF8in0enhkv3eAVMFCelS8SjB90hEghVF0sVhTzUIjh2mRei4YP8YIxjloEikxJg8iAA">Circuito interactivo</a></p>
-<p>En el capítulo de diseño únicamente platicamos el proceso de diseño pero no entramos a detalle en el cálculo de los resistores necesarios. </p>
 <p>Para calcular el valor de los resistores hicimos uso del método de fuentes de voltaje linealmente independientes.
 Como por diseño sabemos que el resistor de tierra va a tierra, no es necesario realizar el análisis con este resistor.</p>
-<p>Para los otros dos tenemos</p>
+<p>A partir de estos esquemitas podemos continuar con el análisis para cada una de las fuentes independientes (el voltaje introducido en R1 y el voltaje introducido en N). El voltaje introducido en R1 será uno que llamaremos &quot;V_ref&quot; ya que es el voltaje de referencia de 3.3 V en la tarjeta ESP-32. El voltaje introducido en N lo llamaremos &quot;V_T&quot; ya que es el voltaje de la terminal de lectura del osciloscopio. &quot;V_1&quot; y &quot;V_2&quot; serán los voltajes que contribuye cada una de estas fuentes independientes.</p>
 <p>Para la fuente linealmente independiente en R1 (V_Ref) tenemos:</p>
 <p align="center">
   <img src="../../capturas/3_avanzado/alambrado/captura01.png?raw=true" />
@@ -184,20 +184,21 @@ Como por diseño sabemos que el resistor de tierra va a tierra, no es necesario 
 </p>
 <p>Esquemas realizados en <a href="https://www.onenote.com/Download">OneNote</a></p>
 <p>Así, que podemos caracterizar el voltaje presente en el nodo RN (tanto para la terminal positiva como para la negativa, en el diseño llamados terminal A y B):</p>
+<p>\[ V_{RN} = V_{1} + V_{2} \]</p>
 <p>\[ V_{RN} =  V_{Ref} \frac{N || R_{1}}{N||R_{2} + R_{1}} + V_{T} \frac{R_{1}||R_{2}}{R_{1}||R_{2} + N} \]</p>
 <p>Donde el operador || significa &quot;resistor equivalente paralelo&quot;.</p>
 <p>Podemos simplificar estas expresiones para convertirlo en una expresión únicamente dependiente de sumas y multiplicaciones:</p>
 <p>\[ V_{RN} = V_{Ref} \frac{N R_{2}}{N R_{2} + N R_{1} + R_{1} R_{2}} + V_{T} \frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
 <p>Hay que recordar que para nuestro sistema, N, R1 y R2 estarán todos determinados, el valor de V_ref es conocido (3.3V) y el valor de V_RN es el valor que leeremos con el ESP-32 por lo que el único valor que tendremos que determinar será el valor de V_T. Para conseguir esto únicamente hay que despejar:</p>
 <p>\[ (V_{RN} - V_{Ref} \frac{N R_{2}}{N R_{2} + N R_{1} + R_{1} R_{2}}) \frac{R_{1} R_{2} + N R_{1} + N R_{2}}{R_{1} R_{2}} = V_{T}(V_{RN})  \]</p>
-<p>Parece un poco aparatoso pero la realidad es que como todos los valores son constantes todo se podrá simplificar a un par de números reales. De hecho, a simple vista se puede ver que ya existen ciertos factores que se pueden simplificar sin demasiados trucos algebráicos.</p>
-<p>Ya que tenemos la definición de un modelo para determinar el voltaje de las terminales donde aplicaremos el voltaje externo, hay que determinar los resistores para que se cumplan los requisitos que necesitábamos cumplir desde la fase de diseño:</p>
+<p>Parece un poco aparatoso pero la realidad es que como todos los valores son constantes, por esto, todo se podrá simplificar a un par de números reales. De hecho, a simple vista se puede ver que ya existen ciertos factores que se pueden simplificar sin demasiados trucos algebráicos.</p>
+<p>Ya que tenemos un modelo para describir el voltaje de la terminal T a partir del voltaje del nodo RN, que recordar, ya tenemos una serie de lineamientos que tenemos que cumplir para que nuestro osciloscopio se comporte como queremos; habíamos establecido qué comportamiento queríamos en los puntos límite del voltaje que consideramos operativo &quot;V_Max&quot; y &quot;V_Min&quot; de los cuales también deducíamos un voltaje &quot;V_cero&quot;.</p>
 <p>Recordando rápidamente:</p>
 <p>\[ V_{RN}(V_{Min}) = 0[V] = V_{Min} * K_{Atenuación} + C_{Ajuste} \]
 \[ V_{RN}(V_{Max}) = 3.3[V] = V_{Max} * K_{Atenuación} + C_{Ajuste} \]
 \[ V_{RN}(V_{cero}) = 1.65[V] = V_{cero} * K_{Atenuación} + C_{Ajuste} \]
 \[ V_{Terminal} \in (V_{min}, V_{max})\] </p>
-<p>Aquí tenemos una serie de solicitudes a cumplir y por diseño tenemos que determinar varias de ellas para poder determinar el sistema. En realidad, no es difícil ver que la parte de </p>
+<p>Aquí tenemos una serie de requerimientos por cumplir y, por diseño, tenemos que determinar varias de ellas para poder determinar el sistema. En realidad, no es difícil ver que la parte de </p>
 <p>\[ V_{Min/Max} * K_{Atenuación} + C_{Ajuste} \] </p>
 <p>la vamos a tener que sustituir por la definición que ahorita obtuvimos para el voltaje en RN en función del voltaje de la terminal T en el resistor N. </p>
 <p>Por facilidad de diseño se decidió que el voltaje mínimo fuera el mismo voltaje pero con signo negativo que el voltaje máximo:</p>
@@ -222,7 +223,7 @@ Como por diseño sabemos que el resistor de tierra va a tierra, no es necesario 
 <p>En este sentido, podríamos crear un sistema de resistores para atenuación de grandes voltajes (como el voltaje suministrado por un enchufe). Al mismo tiempo tendríamos que crear un sistema que nos diera atenuación para voltajes de uso de laboratorio (voltajes entre -20[V] y +20[V], por ejemplo). </p>
 <p>Así tendríamos dos pequeños arreglos de resistores con los cuales podríamos medir prácticamente cualquier voltaje a nuestro alcance sin tener que sufrir una atenuación excesiva en voltajes pequeños.</p>
 <p>Entonces, determinemos los resistores necesarios:</p>
-<p>Personalmente me gusta comenzar con la ecuación que describe el voltaje &quot;cero&quot; ya que por medio de ese podemos rápidamente poner rápidamente un resistor en función de los otros dos. Esto es gracias a que podemos obviar la influencia del voltaje de la terminal T. </p>
+<p>Personalmente me gusta comenzar con la ecuación que describe el voltaje &quot;cero&quot; ya que por medio de ese podemos poner rápidamente un resistor en función de los otros dos. Esto es gracias a que podemos obviar la influencia del voltaje de la terminal T. </p>
 <p>\[ V_{RN}(V_{T}) = V_{T} \frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} + V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
 <p>Sustituyendo el voltaje en la terminal T por cero (ya que asumimos que en este punto no estamos dando ningún voltaje) esperamos obtener un voltaje en RN de 1.65[V]:</p>
 <p>\[ V_{RN}(0) = 1.65 = V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
@@ -235,40 +236,40 @@ Como por diseño sabemos que el resistor de tierra va a tierra, no es necesario 
 <p>¡Nada mal!</p>
 <p>Hagamos brevemente un análisis del resultado aquí obtenido. Si nos fijamos, el valor de R1 lo acabamos de determinar como el circuito paralelo entre R2 y N. Revisemos rápidamente si esto tiene sentido.</p>
 <p>Dado que estamos anticipando que cuando el voltaje sumistrado en T sea de 0[V] esperaríamos que el voltaje en el nodo RN sea exactamente el voltaje que se le está suministrando al Resistor 1 por medio del nodo del VRef. Es decir, el resistor equivalente entre R2 y N debería de ser igual a la resistencia en R1. Parece ser que en efecto, tiene sentido al menos en este escenario.</p>
-<p>Ahora podemos sustituir el Resitor 1 en alguna otra de nuestras ecuaciones y deberíamos obtener alguna otra caracterización; pensemos en describir R2 a partir de N en la ecuación usada para el voltaje máximo:</p>
+<p>Ahora podemos sustituir el Resistor 1 en alguna otra de nuestras ecuaciones y deberíamos obtener alguna otra caracterización; pensemos en describir R2 a partir de N en la ecuación usada para el voltaje máximo:</p>
 <p>\[ V_{RN}(V_{Max}) = V_{Max} \frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} + V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
 <p>Sustituimos el valor del Resistor 1 por su equivalente descrito en términos de R2 y N:</p>
 <p>\[ R_{1} = \frac{N R_{2}}{R_{2} + N}\]</p>
 <p>\[ V_{RN}(V_{Max}) = V_{Max} \frac{\frac{N R_{2}}{R_{2} + N} R_{2}}{\frac{N R_{2}}{R_{2} + N} R_{2} + N \frac{N R_{2}}{R_{2} + N} + N R_{2}} + V_{Ref} \frac{N R_{2}}{\frac{N R_{2}}{R_{2} + N} R_{2} + N \frac{N R_{2}}{R_{2} + N} + N R_{2}} \]</p>
-<p>Ahora intentaremos poner R2 en términos de N, V_Rn(V_max), V_ref y V_Max, haciendo algo de álgebra obtenemos que:</p>
+<p>Ahora intentaremos poner R2 en términos de N, V_Rn(V_max), V_ref y V_Max. Haciendo algo de álgebra obtenemos que:</p>
 <p>\[ N = \frac{R_{2}(2 V_{RN} - V_{Max} - V_{Ref})}{V_{Ref} - 2 V_{RN}}\]</p>
 <p>Es difícil identificar de manera inmediata algo que nos revele que la información que obtuvimos aquí sea la correcta, sin embargo, podemos convencernos ligeramente con el análisis dimensional del resultado obtenido. Tenemos que:</p>
 <p>\[ Resistencia = Resistencia * \frac{Voltaje}{Voltaje} \]</p>
 <p>Esto nos puede dar al menos cierto nivel de garantía que nuestro análisis no está tan mal.</p>
-<p>Podemos hacer unos pocos cambios para intentar dejar los números resultantes de las restas como positovos ya que quizá eso nos ayude a interpretar los valores obtenidos:</p>
+<p>Podemos hacer unos pocos cambios para intentar dejar los números resultantes de las restas como positivos ya que quizá eso nos ayude a interpretar los valores obtenidos:</p>
 <p>\[ N = R_{2} \frac{-(2 V_{RN} - V_{Max} - V_{Ref})}{-(V_{Ref} - 2 V_{RN})} = R_{2} (\frac{V_{Max} + V_{Ref} - 2 V_{RN}}{ 2 V_{RN} - V_{Ref}}) \]</p>
-<p>Tampoco es demasiado visible pero parecería que podemos asumir que el valor de del factor entre paréntesis será un número positivo siempre en nuestro intervalo de uso. Si este número resultara negativo estaríamos metidos en un tremendo problema ya que no existen resistores con valor negativo.</p>
+<p>Tampoco es demasiado visible pero parecería que podemos asumir que el valor del factor entre paréntesis será un número positivo siempre que nos encontremos dentro de nuestro intervalo de voltaje. Si este número resultara negativo estaríamos metidos en un tremendo problema ya que no existen resistores con valor negativo.</p>
 <p>Analisemos por partes, nominador y denominador:</p>
-<p>En el nominador, por diseño V_Max es siempre más grande que V_RN y V_Ref también lo es durante todo nuestro intervalo de voltajes de operación así que, por esta parte vamos bien, esto es sin importar el valor de V_RN (el cual, hay que recordar que depende de V_T). El único valor en el que V_RN y V_Ref pueden ser iguales es cuando estemos aplicando en V_T un voltaje igual a V_Max.</p>
+<p>En el nominador, por diseño V_Max es siempre más grande que V_RN, V_Ref también lo es durante todo nuestro intervalo de voltajes de operación así que, por esta parte vamos bien, esto es sin importar el valor de V_RN (el cual, hay que recordar que depende de V_T). El único valor en el que V_RN y V_Ref pueden ser iguales es cuando estemos aplicando en V_T un voltaje igual a V_Max.</p>
 <p>Es importante recordar, V_RN es siempre función del voltaje en la terminal T (V_T) ya que V_T es el valor que hace que oscile el valor en RN, el voltaje de V_Ref es siempre constante.</p>
 <p>\[ V_{Max} &gt;&gt; V_{RN} \]
 \[ V_{Ref} &gt;= V_{RN} \]</p>
 <p>Así que en el nominador todos los valores son positivos.</p>
-<p>En el denominador tenemos que hacer uso del hecho que estamos trabajando con V_Max en la terminal T. Hay que recordar que este sistema de ecuasiones lo resolvimos simbólicamente pero en realidad:</p>
+<p>En el denominador tenemos que hacer uso del hecho que estamos trabajando con V_Max en la terminal T. Hay que recordar que este sistema de ecuaciones lo resolvimos simbólicamente pero en realidad:</p>
 <p>\[ V_{RN}(V_{Max}) = V_{Ref}\]</p>
-<p>Esto lo establecimos por diseño, de lo que se sigue:</p>
+<p>Esto lo establecimos por diseño. De lo mismo se sigue:</p>
 <p>\[ 2V_{RN} - V_{Ref} = 2V_{Ref} - V_{Ref} \]</p>
 <p>Como el valor de voltaje de referencia es positivo (en nuestro caso es de 3.3[V]) igualmente tenemos un valor positivo.
 En realidad, con este conocimiento ya explícito podemos simplifcar toda la expresión de N en función de R2.</p>
 <p>\[ N = R_{2} \frac{V_{Max} + V_{Ref} - 2 V_{RN}}{ 2 V_{RN} - V_{Ref}} = R_{2} \frac{V_{Max} + V_{Ref} - 2V_{Ref}}{2V_{Ref} - V_{Ref}} = R_{2} \frac{V_{Max} - V_{Ref}}{V_{Ref}}\]</p>
 <p>¡Lindo!</p>
-<p>Ahora ponemos rápidamente R2 en términos de N (que era la intención todo este tiempo):</p>
+<p>Ahora ponemos rápidamente R2 en términos de N (que era la intención todo esto):</p>
 <p>\[ R_{2} = N \frac{V_{Ref}}{V_{Max} - V_{Ref}}\]</p>
 <p>Aquí tenemos que tomar una nueva decisión de diseño ¿Cómo determinaremos el primer resistor N de nuestro sistema?</p>
-<p>La decisión que yo considero más prudente es determinar el resistor N a partir del voltaje máximo que se aplicará en la terminal T. Esto es porque, a pesar de que tengamos una idea más o menos buena de cuánto es el voltaje máximo que le vamos a aplicar a nuestro osciloscopio, es indispensable agregar un pámetro de seguridad adicional. En especial, con las mediciones en el mundo real, es muy muy común que el componente de tierra no el mismo para nuestra computadora (y por extensión en nuestra ESP-32) y la tierra del fenómeno que estamo intentando medir. Pensemos en que nuestra computadora funcionara por medio de una batería (como es el caso de las computadora portátiles), no tenemos ninguna garantía que la tierra de la batería de la pila sea la misma que la tierra de un generador se señales conectado a la corriente de un enchufe. En realidad, dado que están desacopladas ambas fuentes de voltaje, existe garantía que de que la tierra no sea la misma. Lo más probable es que el voltaje de diferencia entre tierras de la batería y la red eléctrica no sea de demasiados voltios, pero sí puede ser de unos cinco o diez voltios ante condiciones más o menos anómalas (apagones, generadores de emergencia, baterías de coche, etc.) Es por eso que recomiendo darle un parámetro de seguridad a nuestro diseño de al menos 20%. Tendremos una sobre-atenuación, sin embargo, nuestro modelo lo contemplará de la manera correcta.</p>
+<p>La decisión que yo considero más prudente es determinar el resistor N a partir del voltaje máximo que se aplicará en la terminal T. Esto es porque, a pesar de que tengamos una idea más o menos buena de cuánto es el voltaje máximo que le vamos a aplicar a nuestro osciloscopio, es indispensable agregar un pámetro de seguridad adicional. En especial, con las mediciones en el mundo real, es muy muy común que el componente de tierra no sea el mismo para nuestra computadora (y por extensión en nuestra ESP-32) y la tierra del fenómeno que estamos intentando medir. Pensemos en que nuestra computadora funcionara por medio de una batería (como es el caso de las computadora portátiles), no tenemos ninguna garantía que la tierra de la batería de la pila sea la misma que la tierra de un generador se señales conectado a la corriente de un enchufe. En realidad, dado que están desacopladas ambas fuentes de voltaje, existe garantía que de que la tierra no sea la misma. Lo más probable es que el voltaje de diferencia entre tierras de la batería y la red eléctrica no sea de demasiados voltios, pero sí puede ser de unos cinco o diez voltios en condiciones no tan anómalas (apagones, generadores de emergencia, baterías de coche, etc.) Es por eso que recomiendo darle un parámetro de seguridad a nuestro diseño de al menos 20%. Tendremos una sobre-atenuación, sin embargo, nuestro modelo lo contemplará de la manera correcta.</p>
 <p>Recordemos que es indisepensable garantizar la seguridad de la ESP-32, eso quiere decir, el voltaje presente en RN no puede ser mayor a 3.3[V] ni menor a 0[V]. </p>
-<p>Correremos riesgo de exceder los 3.3[V] cuando sea máximo y de irnos por debajo de los 0[V] cuando sea mínimo. Podemos plantear un circuito de ejemplo para determinar entonces nuestro primer resistor N. </p>
-<p>Ya que R1 y R2 serán mucho más chiquitos que el resistor N, podemos considerarlos de buenas a primeras resistores de 330 ohmios ya que además van a ser resistores de valores más o menos semejantes y únicamente preocuparnos por la discipación en el resistor N. Esto nos dará un valor propuesta para el resistor N, el cual podemos multiplicar por algún factor de seguridad y posteriormente cambiar el valor de R1 y R2 siguiendo la formulación que realizamos previamente donde R1 y R2 dependen de N. Ya que el voltaje de V_T es mucho mucho más grande que V_Ref podemos incluso considerar que V_Ref es una fuente apagada.</p>
+<p>Correremos riesgo de exceder los 3.3[V] cuando V_T sea máximo y de irnos por debajo de los 0[V] cuando V_T sea mínimo. Podemos plantear un circuito de ejemplo para determinar entonces nuestro primer resistor N. </p>
+<p>Ya que R1 y R2 serán mucho más chiquitos que el resistor N, podemos considerarlos de buenas a primeras resistores de 330 ohmios ya que además van a ser resistores de valores más o menos semejantes y únicamente preocuparnos por la disipación en el resistor N. Esto nos dará un valor propuesta para el resistor N, el cual podemos multiplicar por algún factor de seguridad y, así, posteriormente cambiar el valor de R1 y R2 siguiendo la formulación que realizamos previamente donde R1 y R2 dependen de N. Ya que el voltaje de V_T es mucho mucho más grande que V_Ref podemos incluso considerar que V_Ref es una fuente apagada.</p>
 <p>Suponiendo un resistor inicial de:</p>
 <p align="center">
  <img src="../../capturas/3_avanzado/alambrado/captura03.png?raw=true" />
@@ -277,7 +278,6 @@ En realidad, con este conocimiento ya explícito podemos simplifcar toda la expr
 <p align="center">
  <img src="../../capturas/3_avanzado/alambrado/captura04.png?raw=true" />
 </p>
-<p>Obtenemos una vez más un divisor de voltaje, el cual podemos caracterizar con:</p>
 <p><a href="https://falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgpABZsKBTAWjDACgA3ENPEQm7vnApeVKjSrZo9MVGgI2AJ0G8wIldxQDJuJRpRaN2NFBDZdAcyMmeZhClOQ2VzA-5nIA92LYB3De6ufNp6xISaArYG2iCkcWwAHuA0ECgI4WAIvGnEtNwCAHKJ+eRgWNzlYHji+SAASuxJaVSYuSItBHmGdSjFhFngGLkYNEhVDpECDQA6AM4APvNzPcX22Qj0CKPc6V2FejTVGgjEDrZUYPDOfHjZQoS3EY56J2f3j+fg-cV0mkh45AMvEmIAAagB9AAqPzAkTUtAGKEyezBULYQA">Circuito interactivo</a></p>
 <p>Entonces, el voltaje en RN queda caracterizado en este primer modelo propuesto:
 \[ V_{RN} = V_{T} \frac{R_{1} || R_{2}}{R_{N} + R1||R2} \]</p>
@@ -307,7 +307,7 @@ En realidad, con este conocimiento ya explícito podemos simplifcar toda la expr
 <li>R2 = 180 Ohmios + 51 Ohmios</li>
 </ul>
 <p>Hay que recordar que tenemos que armarlo tanto para la terminal A (positiva) como la terminal B (negativa) por lo que necesitaremos dos de cada uno. </p>
-<p>El último paso a tomar en esta parte es deducir una fórmula fácil de hacer rápidamente para calcular el voltaje en T a partir del voltaje en RN. Si recordamos la fase anterior de diseño, cuando usamos fuentes de voltaje independientes, obtuvimos:</p>
+<p>El último paso a tomar en esta parte es deducir una fórmula fácil de calcular rápidamente para calcular el voltaje en T a partir del voltaje en RN. Si recordamos la fase anterior de diseño, cuando usamos fuentes de voltaje independientes, obtuvimos:</p>
 <p>\[ V_{RN}(V_{T}) = V_{T} \frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} + V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}} \]</p>
 <p>Con una fácil manipulación podemos obtener el valor del voltaje en la terminal T con respecto al voltaje de RN.</p>
 <p>\[ V_{T}(RN)  = \frac{V_{RN} - V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}}}{\frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}}}\]</p>
@@ -319,33 +319,33 @@ En realidad, con este conocimiento ya explícito podemos simplifcar toda la expr
 <ol>
 <li>No lo haga.</li>
 <li>De verdad, no lo haga.</li>
-<li>Lo digo con toda la sinceridad del mundo, utilice diseños de otras personas en las que confíe, esto resulta más un proceso de crecimiento personal que algo de verdadera utilidad. </li>
+<li>Lo digo con toda la sinceridad del mundo, utilice diseños de otras personas en las que confíe, diseñar las cosas desde cero resulta más un proceso de crecimiento personal que algo de verdadera utilidad. </li>
 </ol>
 <p>Si en verdad quiere hacerlo o lo necesita:</p>
 <ol start="4">
-<li>El proceso de diseño es arduo y lleno de errores, para llegar a este último diseño se tuvo que pasar por al menos otras dies propuestas de diseño, todas revisadas con gente con más experiencia que yo. </li>
-<li>Siempre consulte cada paso que de con alguien más, mientras más fácil de explicar más fácil será de diseñar también.</li>
+<li>El proceso de diseño es arduo y lleno de errores, para llegar a este último diseño se tuvo que pasar por al menos otras dies propuestas de diseño, todas revisadas acompañado de gente con más experiencia que yo. </li>
+<li>Siempre consulte cada paso que dé con alguien más, mientras más fácil de explicar más fácil será de diseñar también.</li>
 <li>Si puede, pregúntele a profesores o gente con más experiencia que usted sobre la tecnología que conocen y la que han usado. Eso puede orientar mucho la fase de diseño además de tener cerca una persona que podrá entender los diseños propuestos sin necesidad de demasiado contexto.</li>
 </ol>
 <h2 id="con-respecto-al-osciloscopio"><a class="header" href="#con-respecto-al-osciloscopio">Con respecto al osciloscopio</a></h2>
-<p>Hay muchos sitios en donde se podrían agregar soluciones más complejas según el uso que usted usuario le quiera dar: </p>
+<p>Existen muchos sitios en donde se podrían agregar soluciones más complejas según el uso que usted usuario le quiera dar: </p>
 <ul>
 <li>Convertirlo en un dispositivo autónomo (no dependiente de un cable para alimentación)</li>
 <li>Realisar análisis únicamente de voltajes en corriente alterna para análisis de señales</li>
 <li>Obviar el análisis de señales para convertir este dispositivo en un multímetro</li>
 <li>Agregar capacidad de medición de corriente</li>
 </ul>
-<p>Existen muchas cosas que no se contemplaron en el diseño de este osciloscopio, sin embargo, queda en usted lector, en su entusiasmo el desarrollo de mejoras. Este proyecto no es bajo ninguna definición perfecto. </p>
+<p>Hay muchas cosas que no se contemplaron en el diseño de este osciloscopio, sin embargo, queda en usted lector. Este proyecto no es bajo ninguna definición perfecto. </p>
 <p>El diseño de electrónica analógica es difícil, intente usar los componentes que mejor conoce:</p>
 <ul>
 <li>Resistores</li>
 <li>Condensadores </li>
 <li>Amplificadores operacionales sencillos</li>
 </ul>
-<p>Intente resolver el problema que quiere resolver con esos componentes antes de comenzar a usar piezas más complejas. </p>
-<p>El único verdadero requisito en esta parte de diseño es haga &quot;embonar&quot; un voltaje de -Vmax a Vmax en el intervalo de 0[V] a 3.3[V]. Mi recomendación es que se pueda hacer con una función tan sencilla como lo hicimos en esta solución:</p>
+<p>Intente reducir el problema que quiere resolver a estos componentes antes de comenzar a usar piezas más complejas. </p>
+<p>El único verdadero requisito en esta parte de diseño es haga &quot;embonar&quot; un voltaje de -Vmax a Vmax en el intervalo de 0[V] a 3.3[V]. Mi recomendación es que lo logre con una función tan sencilla como lo hicimos en esta solución:</p>
 <p>\[ V_{RN}(V_{T}) = V_{T} * K_{Atenuación} + C_{Ajuste} \]</p>
-<p>Si decidiera realizar un diseño en el cual ya se comtemple desde el acondicionamiento de señal la resta de los voltajes entre las terminales de lectura A positiva y B negativa tendrá que tener un poco de cuidado nada más con la parte del proyecto subescuente, la programación de la tarjeta ESP-32 ya que el código como está explicado y construido en este proyecto contempla la entrada del voltaje por dos diferentes pines realizando la resta de voltaje de manera digital, no analógica. </p>
+<p>Si decidiera realizar un diseño en el cual ya se contemple desde el acondicionamiento de señal la resta de los voltajes entre las terminales de lectura A positiva y B negativa tendrá que tener un poco de cuidado nada más con la parte del proyecto subsecuente La programación de la tarjeta ESP-32 ya está programada contemplando la resta de voltajes entrantes por dos diferentes terminales, por lo que tendrá que realizar modificaciones ahí también.</p>
 <p>Le deseo la mejor de las suertes; este es sin lugar a duda el lugar donde más oportunidad existe para el diseño, sin embargo, también considero que es el lugar donde más dificultades encuentra uno.</p>
 
                     </main>

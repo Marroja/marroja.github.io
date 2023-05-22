@@ -147,14 +147,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="diseño-interfaz-usuario"><a class="header" href="#diseño-interfaz-usuario">Diseño interfaz usuario</a></h1>
-<p>Como se mencionó en la sección <a href="02_esp32.html">anterior</a> existen varias aplicaciones que se pueden utilizar para leer los valores del monitor serial. En realidad, dado que por diseño el ESP-32 no tuvo ningún código con el que pudiéramos interacturar, únicamente vamos a trabajar con la lectura del puerto serial en la aplicación.</p>
+<p>Como se mencionó en la sección <a href="02_esp32.html">anterior</a> existen varias aplicaciones que se pueden utilizar para leer los valores del monitor serial. En realidad, dado que hemos programado la ESP-32 de la manera más eficiente posible, nos hemos quedado sin ninguna forma de interactuar con ella. Es por ello que tendremos que realizar toda la manipulación de las señales que envía por medio de otra aplicación que se ejecutará en una computadora personal.</p>
 <h2 id="lectura-de-los-valores-del-monitor-serial"><a class="header" href="#lectura-de-los-valores-del-monitor-serial">Lectura de los valores del monitor serial</a></h2>
-<p>En los sistemas operativos más utilizados el día de hoy (Window, Mac, Linux y Android) es bastante fácil manipular los puertos seriales por medio del propio sistema operativo por lo que no tenemos que hacer una implementación de cero. Dicho esto, es muy latosa la implementación según el lenguaje de programación ya que a pesar de que es sencillo, habría que realizar la implementación para cada sistema operativo de manera diferente. En este sentido es muy amable el uso de Java y la biblioteca que usa el IDE de Arduino para manipular el monitor serial: <a href="https://fazecast.github.io/jSerialComm/">JSerialComm</a></p>
+<p>En los sistemas operativos más utilizados el día de hoy (Window, Mac, Linux y Android) es bastante fácil manipular los puertos seriales por medio del propio sistema operativo por lo que no tenemos que hacer una implementación de cero. Dicho esto, es muy latosa la implementación según el lenguaje de programación ya que a pesar de que es sencillo, habría que realizar la implementación distinta para cada sistema operativo de manera diferente. En este sentido es muy amable el uso de Java y la biblioteca que usa el IDE de Arduino para manipular el monitor serial: <a href="https://fazecast.github.io/jSerialComm/">JSerialComm</a></p>
 <p>Esta será la única biblioteca externa que usaremos para la implementación de nuestro osciloscopio. </p>
 <p>La mejor solución que encontré para el diseño, puesto en pseudocódigo una vez más:</p>
 <pre><code>    //Creamos una lista o un arreglo grande en el cual guardaremos los voltajes
-    lista entero lista_lecturas_adc
-    lista flotante lista_voltajes
+    lista&lt;entero&gt; lista_lecturas_adc
+    lista&lt;flotante&gt; lista_voltajes
 
     inicialización(){
         //Abrimos el puerto serial y lo configuramos para poder
@@ -185,14 +185,14 @@
 </code></pre>
 <p>El pseudocódigo es muy elemental pero ese es el esquema general del proyecto que se siguió al momento de diseñar el programa final. Obviamente la implementación es sustancialmente más compleja que el pseudocódigo pero la realidad es que lo subsecuente fue un tema más de ingeniería de implementación que de diseño.</p>
 <h2 id="diseño-de-la-interfaz-gráfica-de-usuario"><a class="header" href="#diseño-de-la-interfaz-gráfica-de-usuario">Diseño de la interfaz gráfica de usuario</a></h2>
-<p>Entre los diseños comerciales existen múltiples diseños de osciloscopio pero todos respetan una serie de lineamientos más o menos univerales, en los primeros osciloscopios analógicos ya se incluía:</p>
+<p>Entre los diseños comerciales existen múltiples diseños de osciloscopio pero todos respetan una serie de lineamientos más o menos univerales. En los primeros osciloscopios analógicos ya se incluían:</p>
 <ul>
 <li>Pantalla rectangular dividida en 10 ó 12 secciones en horizontal, en 8 ó 10 secciones en vertical. </li>
 <li>Capacidad de modificar la escala en el eje X, en el eje Y. </li>
 <li>La positibilidad de mover los valores graficados tanto en el eje X como Y. </li>
-<li>Manejo de múltiples (generalmente dos) canales de lectura</li>
+<li>Manejo de múltiples canales de lectura(generalmente dos) </li>
 </ul>
-<p>En los osciloscopios digitales modernos existen una serie de ventajas adicionales que en los osciloscopios más clásicos no aprovechando las capacidades de los procesadores más y más modernos con los que se fabrican.</p>
+<p>En los osciloscopios digitales modernos existen una serie de ventajas adicionales que en los osciloscopios más clásicos no,  esto es gracias al aprovechamiento de las capacidades de los procesadores más y más modernos con los que se diseñan.</p>
 <ul>
 <li>Detección de frecuencia</li>
 <li>Cálculo automático de voltaje de corriente directa</li>
@@ -200,14 +200,15 @@
 <li>Centrado automático de los picos en señales con oscilación (i.e. centrado de una sinusoidal)</li>
 <li>Dibujo de líneas de referencia</li>
 </ul>
-<p>La funcionalidad &quot;fundamental&quot; que es la funcionalidad que se le podía dar a un osciloscopio analógico fue la parte del diseño a la que se le dio más énfasis al momento de desarrollar el código. Las capacidades más complejas que se encuentran en los osciloscopios modernos fueron considerados ganancia adicional.</p>
+<p>La funcionalidad &quot;fundamental&quot; es aquella que podríamos asociar con un osciloscopio analógico clásico. Las capacidades más complejas que se encuentran en los osciloscopios modernos fueron considerados ganancia adicional.</p>
 <p>Ya con los lineamientos básicos establecidos comenzó el desarrollo de la aplicación usando la biblioteca de &quot;swing&quot; en Java, con la cual es muy fácil programar aplicaciones gráficas. </p>
-<p>Después de múltiples diseños determiné que quizá el mejor para una experiencia de usuario sencilla sería el siguiente:</p>
+<p>Después de múltiples diseños se determinó que quizá el mejor para una experiencia de usuario sencilla sería el siguiente:</p>
 <p align="center">
   <img src="../../capturas/2_disenno/programa_java/captura00.png?raw=true" />
 </p>
 <p>Entrar en detalle con respecto al funcionamiento preciso de la graficación así como los detalles de manejo del puerto serial etc. estaría fuera de enfoque ya que, una vez más, estaríamos trabajando con temas muy específicos de código y no de diseño. </p>
 <p>Se tratarán más adelante los detalles con respecto a todas estas minucias. </p>
+<p><a href="../cap_03_avanzado/03_java.html">Usuario avanzado: Diseño código Java</a></p>
 
                     </main>
 
