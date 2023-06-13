@@ -274,11 +274,12 @@ comPort.closePort();
 }
 </code></pre>
 <p>El paso siguiente es la conversión de valores del ADC -4096 -&gt; 4095 a valores de voltaje usando las fórmulas que obtuvimos en la fase del diseño de circuito.</p>
-<p>Agregamos una manera de calcular el voltaje en RN a partir del valor del ADC y a partir de este valor obtenemos el valor de voltaje en T:</p>
-<pre><code class="language-java">    public static double VTdeVR(double resol, double valADC, double VRef, double R1, double R2, double N){
+<p>Agregamos una manera de calcular el voltaje en RN a partir del valor de la diferencia de los valores entre ambos ADCs y a partir de este valor obtenemos el valor de voltaje en T:</p>
+<pre><code class="language-java">    public static double VTdeVR(double resol, double deltaADC, double VRef, double R1, double R2, double N){
         //Calculamos el valor del voltaje en RN
-        double VRN = VRef * (valADC + resol)/(resol*2);
-        return ((VRN*(R1 * R2 + N * R1 + N * R2)) - VRef*(N * R2))/(R1 * R2);
+        double VRN = VRef * (deltaADC + resol)/(resol*2);
+        //Regresamos el valor de V_T según la función inversa que calculamos desde el circuito
+        return VRN*(R1 * R2 + N * R1 + N * R2)/(R1 * R2);
     }
 </code></pre>
 <p>Y agregamos la impresión de este método para visualizar los valores:</p>

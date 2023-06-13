@@ -313,6 +313,20 @@ En realidad, con este conocimiento ya explícito podemos simplifcar toda la expr
 <p>\[ V_{T}(RN)  = \frac{V_{RN} - V_{Ref} \frac{N R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}}}{\frac{R_{1} R_{2}}{R_{1} R_{2} + N R_{1} + N R_{2}}}\]</p>
 <p>Para obtener un poco más de rendimiento en la computadora podemos simplificar las divisiones:</p>
 <p>\[ V_{T}(V_{RN}) = V_{RN}(\frac{R_{1} R_{2} + N R_{1} + N R_{2}}{R_{1} R_{2}}) - V_{Ref} (\frac{N R_{2}}{R_{1} R_{2}}) = \frac{V_{RN}(R_{1} R_{2} + N R_{1} + N R_{2}) - V_{Ref}(N R_{2})}{R_{1} R_{2}} \]</p>
+<p>Resumido:</p>
+<p>\[ V_{T}(V_{RN}) = \frac{V_{RN}(R_{1} R_{2} + N R_{1} + N R_{2}) - V_{Ref}(N R_{2})}{R_{1} R_{2}} \]</p>
+<h2 id="cancelación-del-término-independiente"><a class="header" href="#cancelación-del-término-independiente">Cancelación del término independiente</a></h2>
+<p>Así, obtuvimos una caracterización del voltaje en las terminales T. Sin embargo, tenemos que recordar que no nos interesa conocer el voltaje de las terminales de manera independiente, nos interesa la diferencia de los voltajes. </p>
+<p>Pensemos que las terminales de en las que estamos midiendo el voltaje se llamaran &quot;A&quot; en la terminal positiva y &quot;B&quot; en la negativa. (En este caso, la B se comportará más bien como el punto de referencia).</p>
+<p>\[ V_{T_{A}} - V_{T_{B}} = (K_{V_{RN_{A}}} + C_{Ajuste A}) - (K_{V_{RNB}} + C_{Ajuste B})\]</p>
+<p>Sin embargo, podemos analisar brevemente cuál es el valor de C de ajuste y encontrar que el valor es el mismo para ambos circuitos. </p>
+<p>\[ V_{T}(V_{RN}) = \frac{V_{RN}(R_{1} R_{2} + N R_{1} + N R_{2})}{R_{1} R_{2}} - \frac{V_{Ref}(N R_{2})}{R_{1} R_{2}} \]</p>
+<p>Podemos ver que únicamente el sumando del lado izquierdo es dependiente del valor aplicado en el nodo RN. El sumado del lado derecho es dependiente de los resistores y el valor de voltaje de referencia, no de la variable independiente. Como la caracterización del voltaje en el nodo RN es el mismo tanto para el nodo RNA como para el nodo RNB, podemos fácilmente simplificar. </p>
+<p>\[ V_{T}(V_{RN_{A}}) - V_T{T}(V_{RN_{B}}) = \frac{V_{RN_{A}}(R_{1} R_{2} + N R_{1} + N R_{2})}{R_{1} R_{2}} - \frac{V_{Ref}(N R_{2})}{R_{1} R_{2}} - (\frac{V_{RN_{B}}(R_{1} R_{2} + N R_{1} + N R_{2})}{R_{1} R_{2}} - \frac{V_{Ref}(N R_{2})}{R_{1} R_{2}}) \]</p>
+<p>Simplificado:</p>
+<p>\[ \Delta(V_{TAB}) = V_{T}(V_{RN_{A}}) - V_{T}(V_{RN_{B}}) = \frac{V_{RN_{A}}(R_{1} R_{2} + N R_{1} + N R_{2})}{R_{1} R_{2}} - \frac{V_{RN_{B}}(R_{1} R_{2} + N R_{1} + N R_{2})}{R_{1} R_{2}}\]</p>
+<p>\[ \Delta(V_{TAB}) = (V_{RN_{A}} - V_{RN_{B}})(\frac{R_{1} R_{2} + N R_{1} + N R_{2}}{R_{1} R_{2}})\]</p>
+<p>Esta será la función que se utilizará para determinar el valor de la diferencia de voltajes en las fases siguientes del diseño. </p>
 <h1 id="recomendaciones-a-futuro"><a class="header" href="#recomendaciones-a-futuro">Recomendaciones a futuro</a></h1>
 <p>Si ha llegado a este punto del manual le deseo toda la suerte y le transmito todo el entusiasmo del mundo. Como puede ver, el diseño está lleno de recovecos y errores que pueden surgir durante el proceso. Le agradezco muchísimo haberme seguido en este proceso de diseño.</p>
 <p>No hay mayor muestra de agradecimiento que le pueda dar que dejarle consejos con respecto al diseños posteriores que quiera hacer como modificaciones a este proyecto así como proyectos personales de otra índole. </p>
